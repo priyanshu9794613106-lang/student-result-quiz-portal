@@ -1,43 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <title>Student Dashboard | Student Result & Quiz Portal</title>
 
-    <title>Dashboard | Student Portal</title>
-
-    <link
-        rel="stylesheet"
-        href="css/style.css"
-    >
-
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 
 <body>
 
-    <!-- Header -->
+    <!-- HEADER -->
+    <header class="main-header">
 
-    <header>
+        <div class="header-container">
 
-        <div class="container">
+            <div class="logo">
+                🎓 Student Portal
+            </div>
 
-            <h1>Student Portal</h1>
-
-            <nav>
+            <nav class="main-nav">
 
                 <a href="index.html">Home</a>
 
-                <a
-                    href="dashboard.html"
-                    class="active"
-                >
+                <a href="dashboard.html" class="active">
                     Dashboard
                 </a>
 
@@ -49,7 +36,7 @@
                     Quiz
                 </a>
 
-                <a href="login.html">
+                <a href="#" onclick="logoutStudent(); return false;">
                     Logout
                 </a>
 
@@ -60,327 +47,477 @@
     </header>
 
 
-    <!-- Dashboard -->
+    <!-- DASHBOARD -->
+    <main>
 
-    <main class="dashboard-section">
+        <section class="dashboard-section">
 
-        <div class="dashboard-container">
-
-
-            <!-- Welcome -->
-
-            <div class="dashboard-welcome">
-
-                <div>
-
-                    <span class="welcome-label">
-                        STUDENT DASHBOARD
-                    </span>
-
-                    <h2>
-                        Welcome back, Student! 👋
-                    </h2>
-
-                    <p>
-                        Track your academic performance,
-                        results and quiz progress from one place.
-                    </p>
-
-                </div>
-
-                <div class="student-avatar">
-                    👨‍🎓
-                </div>
-
-            </div>
+            <div class="dashboard-container">
 
 
-            <!-- Statistics -->
+                <!-- WELCOME CARD -->
+                <div class="dashboard-welcome">
 
-            <div class="stats-grid">
+                    <div class="welcome-content">
 
-                <div class="stat-card">
+                        <div class="student-avatar">
+                            👨‍🎓
+                        </div>
 
-                    <div class="stat-icon">
-                        📚
-                    </div>
+                        <div>
 
-                    <div>
+                            <p class="welcome-label">
+                                STUDENT DASHBOARD
+                            </p>
 
-                        <span>
-                            Total Subjects
-                        </span>
+                            <h1>
+                                Welcome back,
+                                <span id="studentName">
+                                    Student
+                                </span>! 👋
+                            </h1>
 
-                        <h3>6</h3>
+                            <p class="student-basic-info">
 
-                    </div>
+                                <span id="studentCourse">
+                                    B.Tech CSE
+                                </span>
 
-                </div>
+                                <span class="divider">|</span>
 
+                                <span id="studentSemester">
+                                    3rd Semester
+                                </span>
 
-                <div class="stat-card">
+                            </p>
 
-                    <div class="stat-icon">
-                        📈
-                    </div>
+                            <p class="student-email">
 
-                    <div>
+                                📧
+                                <span id="studentEmail">
+                                    student@example.com
+                                </span>
 
-                        <span>
-                            Average Score
-                        </span>
+                            </p>
 
-                        <h3>78%</h3>
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <div class="stat-card">
+                <!-- STATISTICS -->
+                <div class="stats-grid">
 
-                    <div class="stat-icon">
-                        📝
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            📚
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                6
+                            </h3>
+
+                            <p>
+                                Total Subjects
+                            </p>
+
+                        </div>
+
                     </div>
 
-                    <div>
 
-                        <span>
-                            Quizzes Completed
-                        </span>
+                    <div class="stat-card">
 
-                        <h3>8</h3>
+                        <div class="stat-icon">
+                            📊
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                78%
+                            </h3>
+
+                            <p>
+                                Average Score
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            🏆
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                8
+                            </h3>
+
+                            <p>
+                                Quizzes Completed
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon">
+                            ⭐
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                A
+                            </h3>
+
+                            <p>
+                                Overall Grade
+                            </p>
+
+                        </div>
 
                     </div>
 
                 </div>
 
 
-                <div class="stat-card">
-
-                    <div class="stat-icon">
-                        🏆
-                    </div>
-
-                    <div>
-
-                        <span>
-                            Overall Grade
-                        </span>
-
-                        <h3>A</h3>
-
-                    </div>
-
-                </div>
-
-            </div>
+                <!-- MAIN DASHBOARD CARDS -->
+                <div class="dashboard-grid">
 
 
-            <!-- Main Cards -->
+                    <!-- RESULT CARD -->
+                    <div class="dashboard-card">
 
-            <div class="dashboard-grid">
+                        <div class="dashboard-card-icon">
+                            📄
+                        </div>
 
-
-                <!-- Result -->
-
-                <div class="dashboard-card">
-
-                    <div class="card-icon">
-                        📊
-                    </div>
-
-                    <h3>
-                        Academic Result
-                    </h3>
-
-                    <p>
-                        View your subject-wise marks,
-                        percentage and academic performance.
-                    </p>
-
-                    <a
-                        href="result.html"
-                        class="dashboard-btn"
-                    >
-                        View Result →
-                    </a>
-
-                </div>
-
-
-                <!-- Quiz -->
-
-                <div class="dashboard-card">
-
-                    <div class="card-icon">
-                        🧠
-                    </div>
-
-                    <h3>
-                        Online Quiz
-                    </h3>
-
-                    <p>
-                        Attempt interactive quizzes
-                        and check your score instantly.
-                    </p>
-
-                    <a
-                        href="quiz.html"
-                        class="dashboard-btn"
-                    >
-                        Start Quiz →
-                    </a>
-
-                </div>
-
-
-                <!-- Profile -->
-
-                <div class="dashboard-card">
-
-                    <div class="card-icon">
-                        👤
-                    </div>
-
-                    <h3>
-                        Student Profile
-                    </h3>
-
-                    <p>
-                        View your personal information
-                        and student details.
-                    </p>
-
-                    <a
-                        href="#"
-                        class="dashboard-btn"
-                    >
-                        My Profile →
-                    </a>
-
-                </div>
-
-
-            </div>
-
-
-            <!-- Recent Activity -->
-
-            <div class="activity-card">
-
-                <div class="activity-header">
-
-                    <h3>
-                        Recent Activity
-                    </h3>
-
-                    <span>
-                        Latest
-                    </span>
-
-                </div>
-
-
-                <div class="activity-item">
-
-                    <div class="activity-icon">
-                        📝
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Web Development Quiz
-                        </strong>
+                        <h2>
+                            Academic Result
+                        </h2>
 
                         <p>
-                            Quiz completed with score 85%
+                            View your semester marks,
+                            percentage, grade and
+                            academic performance.
+                        </p>
+
+                        <a
+                            href="result.html"
+                            class="dashboard-btn"
+                        >
+                            View Result
+                        </a>
+
+                    </div>
+
+
+                    <!-- QUIZ CARD -->
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-card-icon">
+                            🧠
+                        </div>
+
+                        <h2>
+                            Online Quiz
+                        </h2>
+
+                        <p>
+                            Test your Web Development
+                            knowledge with interactive
+                            quizzes.
+                        </p>
+
+                        <a
+                            href="quiz.html"
+                            class="dashboard-btn"
+                        >
+                            Start Quiz
+                        </a>
+
+                    </div>
+
+
+                    <!-- PROFILE CARD -->
+                    <div class="dashboard-card">
+
+                        <div class="dashboard-card-icon">
+                            👤
+                        </div>
+
+                        <h2>
+                            Student Profile
+                        </h2>
+
+                        <p>
+                            Your registered student
+                            information is displayed
+                            below.
+                        </p>
+
+                        <div class="profile-mini">
+
+                            <p>
+                                <strong>Name:</strong>
+                                <span id="profileName">
+                                    Student
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Course:</strong>
+                                <span id="profileCourse">
+                                    B.Tech CSE
+                                </span>
+                            </p>
+
+                            <p>
+                                <strong>Semester:</strong>
+                                <span id="profileSemester">
+                                    3rd Semester
+                                </span>
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECENT ACTIVITY -->
+                <div class="activity-card">
+
+                    <div class="activity-header">
+
+                        <h2>
+                            Recent Activity
+                        </h2>
+
+                    </div>
+
+
+                    <div class="activity-list">
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+                                🧠
+                            </div>
+
+                            <div class="activity-content">
+
+                                <h3>
+                                    Web Development Quiz
+                                </h3>
+
+                                <p>
+                                    Quiz completed successfully
+                                </p>
+
+                            </div>
+
+                            <div class="activity-score">
+                                85%
+                            </div>
+
+                            <div class="activity-date">
+                                Today
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+                                📄
+                            </div>
+
+                            <div class="activity-content">
+
+                                <h3>
+                                    Semester Result
+                                </h3>
+
+                                <p>
+                                    Academic result updated
+                                </p>
+
+                            </div>
+
+                            <div class="activity-score">
+                                A
+                            </div>
+
+                            <div class="activity-date">
+                                2 days ago
+                            </div>
+
+                        </div>
+
+
+                        <div class="activity-item">
+
+                            <div class="activity-icon">
+                                📝
+                            </div>
+
+                            <div class="activity-content">
+
+                                <h3>
+                                    Practice Quiz
+                                </h3>
+
+                                <p>
+                                    Practice session completed
+                                </p>
+
+                            </div>
+
+                            <div class="activity-score">
+                                80%
+                            </div>
+
+                            <div class="activity-date">
+                                5 days ago
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+                <!-- STUDENT INFORMATION -->
+                <div class="student-info-card">
+
+                    <div class="student-info-heading">
+
+                        <h2>
+                            👤 Registered Student Information
+                        </h2>
+
+                        <p>
+                            Information submitted during registration
                         </p>
 
                     </div>
 
-                    <span class="activity-date">
-                        Today
-                    </span>
+
+                    <div class="student-info-grid">
+
+
+                        <div class="info-box">
+
+                            <span>
+                                Full Name
+                            </span>
+
+                            <strong id="infoName">
+                                Student
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <span>
+                                Email Address
+                            </span>
+
+                            <strong id="infoEmail">
+                                student@example.com
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <span>
+                                Mobile Number
+                            </span>
+
+                            <strong id="infoPhone">
+                                Not Available
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <span>
+                                Course
+                            </span>
+
+                            <strong id="infoCourse">
+                                B.Tech CSE
+                            </strong>
+
+                        </div>
+
+
+                        <div class="info-box">
+
+                            <span>
+                                Semester
+                            </span>
+
+                            <strong id="infoSemester">
+                                3rd Semester
+                            </strong>
+
+                        </div>
+
+
+                    </div>
 
                 </div>
 
-
-                <div class="activity-item">
-
-                    <div class="activity-icon">
-                        📊
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Semester Result
-                        </strong>
-
-                        <p>
-                            Result information updated
-                        </p>
-
-                    </div>
-
-                    <span class="activity-date">
-                        2 days ago
-                    </span>
-
-                </div>
-
-
-                <div class="activity-item">
-
-                    <div class="activity-icon">
-                        🎯
-                    </div>
-
-                    <div>
-
-                        <strong>
-                            Practice Quiz
-                        </strong>
-
-                        <p>
-                            You completed a practice quiz
-                        </p>
-
-                    </div>
-
-                    <span class="activity-date">
-                        5 days ago
-                    </span>
-
-                </div>
 
             </div>
 
-        </div>
+        </section>
 
     </main>
 
 
-    <!-- Footer -->
-
-    <footer>
-
-        <p>
-            © 2026 Student Result & Quiz Portal
-        </p>
+    <!-- FOOTER -->
+    <footer class="main-footer">
 
         <p>
-            Developed using HTML, CSS & JavaScript
+            © 2026 Student Result & Quiz Portal.
+            All Rights Reserved.
         </p>
 
     </footer>
 
 
+    <!-- JAVASCRIPT -->
     <script src="js/script.js"></script>
 
 </body>
-
 </html>
