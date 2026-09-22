@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Online Test | Student Result & Quiz Portal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .test-page {
+            min-height: 100vh;
+            padding: 30px 20px 60px;
+        }
+
+        .test-container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .test-header {
+            background: white;
+            border-radius: 18px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .test-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .test-header h1 {
+            margin: 0 0 8px;
+            font-size: 28px;
+        }
+
+        .test-header p {
+            margin: 0;
+            color: #667085;
+        }
+
+        .timer {
+            min-width: 130px;
+            padding: 15px 20px;
+            border-radius: 12px;
+            background: #111827;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 800;
+        }
+
+        .timer.warning {
+            background: #dc2626;
+        }
+
+        .progress-box {
+            margin-top: 20px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            width: 10%;
+            background: #2563eb;
+            transition: 0.3s;
+        }
+
+        .question-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .question-number {
+            color: #2563eb;
+            font-weight: 800;
+            margin-bottom: 12px;
+        }
+
+        .question {
+            font-size: 22px;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        .options {
+            display: grid;
+            gap: 14px;
+        }
+
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 16px;
+            border: 1px solid #d0d5dd;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .option:hover {
+            border-color: #2563eb;
+            background: #f8fbff;
+        }
+
+        .option.selected {
+            border-color: #2563eb;
+            background: #eef4ff;
+        }
+
+        .option input {
+            width: 18px;
+            height: 18px;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            gap: 15px;
+        }
+
+        .nav-btn,
+        .submit-btn {
+            border: none;
+            padding: 14px 24px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .prev-btn {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        .next-btn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .submit-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .nav-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .question-navigation {
+            background: white;
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 18px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .question-navigation h3 {
+            margin-top: 0;
+        }
+
+        .question-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .question-btn {
+            width: 42px;
+            height: 42px;
+            border: 1px solid #d0d5dd;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .question-btn.current {
+            background: #2563eb;
+            color: white;
+            border-color: #2563eb;
+        }
+
+        .question-btn.answered {
+            background: #dcfce7;
+            border-color: #16a34a;
+            color: #166534;
+        }
+
+        .result-box {
+            display: none;
+            background: white;
+            border-radius: 18px;
+            padding: 35px;
+            text-align: center;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+        }
+
+        .result-score {
+            font-size: 48px;
+            font-weight: 900;
+            color: #2563eb;
+            margin: 15px 0;
+        }
+
+        .result-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .result-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        .result-actions a,
+        .result-actions button {
+            text-decoration: none;
+            border: none;
+            padding: 13px 20px;
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .certificate-btn {
+            background: #16a34a;
+            color: white;
+        }
+
+        .feedback-btn {
+            background: #f59e0b;
+            color: white;
+        }
+
+        .tests-btn {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+        @media (max-width: 650px) {
+
+            .test-header-top {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .timer {
+                width: 100%;
+            }
+
+            .question-card {
+                padding: 22px;
+            }
+
+            .question {
+                font-size: 19px;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .nav-btn,
+            .submit-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="test-page">
+
+    <div class="test-container">
+
+        <div class="test-header">
+
+            <div class="test-header-top">
+
+                <div>
+                    <h1 id="testTitle">
+                        Web Development Test
+                    </h1>
+
+                    <p>
+                        10 Questions • Maximum Time: 7 Minutes
+                    </p>
+                </div>
+
+                <div class="timer" id="timer">
+                    07:00
+                </div>
+
+            </div>
+
+            <div class="progress-box">
+
+                <div class="progress-info">
+                    <span id="questionProgress">
+                        Question 1 of 10
+                    </span>
+
+                    <span id="answeredCount">
+                        0 Answered
+                    </span>
+                </div>
+
+                <div class="progress-bar">
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div id="testArea">
+
+            <div class="question-card">
+
+                <div
+                    class="question-number"
+                    id="questionNumber"
+                >
+                    Question 1
+                </div>
+
+                <div
+                    class="question"
+                    id="questionText"
+                ></div>
+
+                <div
+                    class="options"
+                    id="options"
+                ></div>
+
+
+                <div class="navigation">
+
+                    <button
+                        class="nav-btn prev-btn"
+                        id="previousBtn"
+                        onclick="previousQuestion()"
+                    >
+                        ← Previous
+                    </button>
+
+                    <button
+                        class="nav-btn next-btn"
+                        id="nextBtn"
+                        onclick="nextQuestion()"
+                    >
+                        Next →
+                    </button>
+
+                    <button
+                        class="submit-btn"
+                        id="submitBtn"
+                        onclick="submitTest()"
+                        style="display:none;"
+                    >
+                        Submit Test
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="question-navigation">
+
+                <h3>
+                    Question Navigation
+                </h3>
+
+                <div
+                    class="question-buttons"
+                    id="questionButtons"
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            class="result-box"
+            id="resultBox"
+        >
+
+            <h2>
+                🎉 Test Completed
+            </h2>
+
+            <p id="resultMessage">
+                Your test has been submitted.
+            </p>
+
+            <div
+                class="result-score"
+                id="resultScore"
+            >
+                0/10
+            </div>
+
+            <p id="resultPercentage">
+                0%
+            </p>
+
+            <div class="result-actions">
+
+                <a
+                    href="feedback.html"
+                    class="feedback-btn"
+                >
+                    ⭐ Rate Your Experience
+                </a>
+
+                <a
+                    href="online-tests.html"
+                    class="tests-btn"
+                >
+                    Back to Tests
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+const questions = [
+
+    {
+        question: "What does HTML stand for?",
+        options: [
+            "Hyper Text Markup Language",
+            "High Text Machine Language",
+            "Hyperlink Text Management Language",
+            "Home Tool Markup Language"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which language is used to style a web page?",
+        options: [
+            "HTML",
+            "CSS",
+            "Python",
+            "SQL"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which language is mainly used to add interactivity to web pages?",
+        options: [
+            "CSS",
+            "HTML",
+            "JavaScript",
+            "SQL"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which HTML tag is used to create a hyperlink?",
+        options: [
+            "<link>",
+            "<a>",
+            "<href>",
+            "<url>"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which CSS property changes text color?",
+        options: [
+            "font-style",
+            "background",
+            "color",
+            "text-design"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which HTML tag is used to display an image?",
+        options: [
+            "<image>",
+            "<img>",
+            "<picture>",
+            "<src>"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which symbol is used for an ID selector in CSS?",
+        options: [
+            ".",
+            "#",
+            "*",
+            "@"
+        ],
+        answer: 1
+    },
+
+    {
+        question: "Which method is used to select an element by ID in JavaScript?",
+        options: [
+            "getElementById()",
+            "getElement()",
+            "selectById()",
+            "findElement()"
+        ],
+        answer: 0
+    },
+
+    {
+        question: "Which HTML element is used for the largest heading?",
+        options: [
+            "<heading>",
+            "<h6>",
+            "<h1>",
+            "<head>"
+        ],
+        answer: 2
+    },
+
+    {
+        question: "Which file extension is commonly used for JavaScript?",
+        options: [
+            ".java",
+            ".js",
+            ".javascript",
+            ".script"
+        ],
+        answer: 1
+    }
+
+];
+
+
+let currentQuestion = 0;
+
+let userAnswers = new Array(questions.length).fill(null);
+
+let timeLeft = 7 * 60;
+
+let timerInterval = null;
+
+let testSubmitted = false;
+
+
+const questionText =
+    document.getElementById("questionText");
+
+const optionsContainer =
+    document.getElementById("options");
+
+const questionNumber =
+    document.getElementById("questionNumber");
+
+const questionProgress =
+    document.getElementById("questionProgress");
+
+const answeredCount =
+    document.getElementById("answeredCount");
+
+const progressFill =
+    document.getElementById("progressFill");
+
+const questionButtons =
+    document.getElementById("questionButtons");
+
+const timer =
+    document.getElementById("timer");
+
+
+function loadQuestion() {
+
+    const question = questions[currentQuestion];
+
+    questionNumber.textContent =
+        "Question " + (currentQuestion + 1);
+
+    questionText.textContent =
+        question.question;
+
+    questionProgress.textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        questions.length;
+
+
+    optionsContainer.innerHTML = "";
+
+
+    question.options.forEach(function(option, index) {
+
+        const label =
+            document.createElement("label");
+
+        label.className = "option";
+
+
+        if (userAnswers[currentQuestion] === index) {
+            label.classList.add("selected");
+        }
+
+
+        label.innerHTML = `
+            <input
+                type="radio"
+                name="answer"
+                value="${index}"
+                ${userAnswers[currentQuestion] === index ? "checked" : ""}
+            >
+
+            <span>${option}</span>
+        `;
+
+
+        label.addEventListener("click", function() {
+
+            userAnswers[currentQuestion] = index;
+
+            updateInterface();
+
+            loadQuestion();
+
+        });
+
+
+        optionsContainer.appendChild(label);
+
+    });
+
+
+    document.getElementById("previousBtn").disabled =
+        currentQuestion === 0;
+
+
+    if (currentQuestion === questions.length - 1) {
+
+        document.getElementById("nextBtn").style.display =
+            "none";
+
+        document.getElementById("submitBtn").style.display =
+            "block";
+
+    } else {
+
+        document.getElementById("nextBtn").style.display =
+            "block";
+
+        document.getElementById("submitBtn").style.display =
+            "none";
+
+    }
+
+
+    updateInterface();
+
+}
+
+
+function updateInterface() {
+
+    const answered =
+        userAnswers.filter(function(answer) {
+            return answer !== null;
+        }).length;
+
+
+    answeredCount.textContent =
+        answered + " Answered";
+
+
+    const progress =
+        ((currentQuestion + 1) / questions.length) * 100;
+
+
+    progressFill.style.width =
+        progress + "%";
+
+
+    questionButtons.innerHTML = "";
+
+
+    questions.forEach(function(_, index) {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "question-btn";
+
+        button.textContent =
+            index + 1;
+
+
+        if (index === currentQuestion) {
+            button.classList.add("current");
+        }
+
+
+        if (userAnswers[index] !== null) {
+            button.classList.add("answered");
+        }
+
+
+        button.onclick = function() {
+
+            currentQuestion = index;
+
+            loadQuestion();
+
+        };
+
+
+        questionButtons.appendChild(button);
+
+    });
+
+}
+
+
+function nextQuestion() {
+
+    if (currentQuestion < questions.length - 1) {
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+function previousQuestion() {
+
+    if (currentQuestion > 0) {
+
+        currentQuestion--;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+function startTimer() {
+
+    timerInterval =
+        setInterval(function() {
+
+            if (testSubmitted) {
+                clearInterval(timerInterval);
+                return;
+            }
+
+
+            timeLeft--;
+
+
+            const minutes =
+                Math.floor(timeLeft / 60);
+
+            const seconds =
+                timeLeft % 60;
+
+
+            timer.textContent =
+                String(minutes).padStart(2, "0") +
+                ":" +
+                String(seconds).padStart(2, "0");
+
+
+            if (timeLeft <= 60) {
+                timer.classList.add("warning");
+            }
+
+
+            if (timeLeft <= 0) {
+
+                clearInterval(timerInterval);
+
+                alert(
+                    "Time is over. Your test will be submitted automatically."
+                );
+
+                submitTest();
+
+            }
+
+        }, 1000);
+
+}
+
+
+function submitTest() {
+
+    if (testSubmitted) {
+        return;
+    }
+
+
+    const unanswered =
+        userAnswers.filter(function(answer) {
+            return answer === null;
+        }).length;
+
+
+    if (unanswered > 0 && timeLeft > 0) {
+
+        const confirmSubmit =
+            confirm(
+                "You have " +
+                unanswered +
+                " unanswered question(s). Do you want to submit the test?"
+            );
+
+
+        if (!confirmSubmit) {
+            return;
+        }
+
+    }
+
+
+    testSubmitted = true;
+
+    clearInterval(timerInterval);
+
+
+    let score = 0;
+
+
+    questions.forEach(function(question, index) {
+
+        if (userAnswers[index] === question.answer) {
+            score++;
+        }
+
+    });
+
+
+    const percentage =
+        Math.round(
+            (score / questions.length) * 100
+        );
+
+
+    const testRecord = {
+
+        id: "TEST-" + Date.now(),
+
+        subject: "Web Development",
+
+        score: score,
+
+        totalQuestions: questions.length,
+
+        percentage: percentage,
+
+        date: new Date().toLocaleString(),
+
+        certificateEligible: percentage >= 60
+
+    };
+
+
+    let allTests =
+        JSON.parse(
+            localStorage.getItem("testAttempts")
+        ) || [];
+
+
+    allTests.push(testRecord);
+
+
+    localStorage.setItem(
+        "testAttempts",
+        JSON.stringify(allTests)
+    );
+
+
+    document.getElementById("testArea").style.display =
+        "none";
+
+
+    document.getElementById("resultBox").style.display =
+        "block";
+
+
+    document.getElementById("resultScore").textContent =
+        score + "/" + questions.length;
+
+
+    document.getElementById("resultPercentage").textContent =
+        percentage + "%";
+
+
+    if (percentage >= 60) {
+
+        document.getElementById("resultMessage").textContent =
+            "Congratulations! You are eligible for an achievement certificate.";
+
+        document.querySelector(".result-actions").insertAdjacentHTML(
+            "afterbegin",
+            `
+            <a
+                href="certificate.html"
+                class="certificate-btn"
+            >
+                🎓 View Certificate
+            </a>
+            `
+        );
+
+    } else {
+
+        document.getElementById("resultMessage").textContent =
+            "Test completed. Score 60% or above to become eligible for the certificate.";
+
+    }
+
+}
+
+
+loadQuestion();
+
+startTimer();
+
+</script>
+
+</body>
+</html>
