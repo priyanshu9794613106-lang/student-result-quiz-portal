@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Online Quiz | Student Portal</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+    <!-- Header -->
+
+    <header>
+
+        <div class="container">
+
+            <h1>Student Portal</h1>
+
+            <nav>
+
+                <a href="index.html">Home</a>
+
+                <a href="dashboard.html">Dashboard</a>
+
+                <a href="result.html">Result</a>
+
+                <a
+                    href="quiz.html"
+                    class="active"
+                >
+                    Quiz
+                </a>
+
+                <a href="login.html">Logout</a>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <!-- Quiz Section -->
+
+    <main class="quiz-section">
+
+        <div class="quiz-container">
+
+
+            <!-- Quiz Header -->
+
+            <div class="quiz-heading">
+
+                <span class="quiz-label">
+                    KNOWLEDGE TEST
+                </span>
+
+                <h2>
+                    Web Development Quiz
+                </h2>
+
+                <p>
+                    Test your basic knowledge of
+                    HTML, CSS and JavaScript.
+                </p>
+
+            </div>
+
+
+            <!-- Quiz Card -->
+
+            <div class="quiz-card">
+
+                <div class="quiz-info">
+
+                    <span>
+                        📝 5 Questions
+                    </span>
+
+                    <span>
+                        ⏱ No Time Limit
+                    </span>
+
+                    <span>
+                        🎯 1 Mark Each
+                    </span>
+
+                </div>
+
+
+                <form id="quizForm">
+
+
+                    <!-- Question 1 -->
+
+                    <div class="question-box">
+
+                        <h3>
+                            1. What does HTML stand for?
+                        </h3>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q1"
+                                value="a"
+                            >
+                            Hyper Text Markup Language
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q1"
+                                value="b"
+                            >
+                            High Text Machine Language
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q1"
+                                value="c"
+                            >
+                            Hyperlink Text Management Language
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q1"
+                                value="d"
+                            >
+                            Home Tool Markup Language
+                        </label>
+
+                    </div>
+
+
+                    <!-- Question 2 -->
+
+                    <div class="question-box">
+
+                        <h3>
+                            2. Which language is used
+                            to style a webpage?
+                        </h3>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q2"
+                                value="a"
+                            >
+                            HTML
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q2"
+                                value="b"
+                            >
+                            CSS
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q2"
+                                value="c"
+                            >
+                            Java
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q2"
+                                value="d"
+                            >
+                            SQL
+                        </label>
+
+                    </div>
+
+
+                    <!-- Question 3 -->
+
+                    <div class="question-box">
+
+                        <h3>
+                            3. Which language is mainly
+                            used to add interactivity to webpages?
+                        </h3>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q3"
+                                value="a"
+                            >
+                            HTML
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q3"
+                                value="b"
+                            >
+                            CSS
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q3"
+                                value="c"
+                            >
+                            JavaScript
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q3"
+                                value="d"
+                            >
+                            XML
+                        </label>
+
+                    </div>
+
+
+                    <!-- Question 4 -->
+
+                    <div class="question-box">
+
+                        <h3>
+                            4. Which HTML tag is used
+                            to create a hyperlink?
+                        </h3>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q4"
+                                value="a"
+                            >
+                            &lt;link&gt;
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q4"
+                                value="b"
+                            >
+                            &lt;a&gt;
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q4"
+                                value="c"
+                            >
+                            &lt;href&gt;
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q4"
+                                value="d"
+                            >
+                            &lt;url&gt;
+                        </label>
+
+                    </div>
+
+
+                    <!-- Question 5 -->
+
+                    <div class="question-box">
+
+                        <h3>
+                            5. Which property is used
+                            to change text color in CSS?
+                        </h3>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q5"
+                                value="a"
+                            >
+                            background
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q5"
+                                value="b"
+                            >
+                            font-size
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q5"
+                                value="c"
+                            >
+                            color
+                        </label>
+
+                        <label>
+                            <input
+                                type="radio"
+                                name="q5"
+                                value="d"
+                            >
+                            text-style
+                        </label>
+
+                    </div>
+
+
+                    <!-- Submit -->
+
+                    <button
+                        type="submit"
+                        class="quiz-submit-btn"
+                    >
+                        Submit Quiz
+                    </button>
+
+                </form>
+
+
+                <!-- Quiz Result -->
+
+                <div
+                    id="quizResult"
+                    class="quiz-result"
+                >
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 Student Result & Quiz Portal
+        </p>
+
+        <p>
+            Developed using HTML, CSS & JavaScript
+        </p>
+
+    </footer>
+
+
+    <script src="js/script.js"></script>
+
+</body>
+
+</html>
