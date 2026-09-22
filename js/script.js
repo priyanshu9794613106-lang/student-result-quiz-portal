@@ -1,14 +1,303 @@
-// =====================================================
-// STUDENT RESULT & QUIZ PORTAL
-// COMPLETE JAVASCRIPT
-// =====================================================
-
+/* =========================================================
+   STUDENT RESULT & QUIZ PORTAL
+   MAIN JAVASCRIPT
+   ========================================================= */
 
 document.addEventListener("DOMContentLoaded", function () {
 
-    // =================================================
-    // LOGIN SYSTEM
-    // =================================================
+    /* =====================================================
+       REGISTRATION
+       ===================================================== */
+
+    const registerForm = document.getElementById("registerForm");
+
+    if (registerForm) {
+
+        registerForm.addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+            const fullNameElement =
+                document.getElementById("fullName");
+
+            const emailElement =
+                document.getElementById("email");
+
+            const phoneElement =
+                document.getElementById("phone");
+
+            const courseElement =
+                document.getElementById("course");
+
+            const semesterElement =
+                document.getElementById("semester");
+
+            const passwordElement =
+                document.getElementById("password");
+
+            const confirmPasswordElement =
+                document.getElementById("confirmPassword");
+
+            const termsElement =
+                document.getElementById("terms");
+
+
+            /* Check required elements */
+
+            if (
+                !fullNameElement ||
+                !emailElement ||
+                !phoneElement ||
+                !courseElement ||
+                !semesterElement ||
+                !passwordElement ||
+                !confirmPasswordElement
+            ) {
+
+                alert(
+                    "Registration form fields are missing. Please check register.html."
+                );
+
+                return;
+            }
+
+
+            const fullName =
+                fullNameElement.value.trim();
+
+            const email =
+                emailElement.value.trim().toLowerCase();
+
+            const phone =
+                phoneElement.value.trim();
+
+            const course =
+                courseElement.value;
+
+            const semester =
+                semesterElement.value;
+
+            const password =
+                passwordElement.value;
+
+            const confirmPassword =
+                confirmPasswordElement.value;
+
+
+            /* Name validation */
+
+            const namePattern =
+                /^[A-Za-z ]+$/;
+
+            if (!namePattern.test(fullName)) {
+
+                alert(
+                    "Please enter a valid name using alphabets only."
+                );
+
+                return;
+            }
+
+
+            if (fullName.length < 3) {
+
+                alert(
+                    "Name must contain at least 3 characters."
+                );
+
+                return;
+            }
+
+
+            /* Email validation */
+
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+
+                alert(
+                    "Please enter a valid email address."
+                );
+
+                return;
+            }
+
+
+            /* Phone validation */
+
+            const phonePattern =
+                /^[0-9]{10}$/;
+
+            if (!phonePattern.test(phone)) {
+
+                alert(
+                    "Please enter a valid 10-digit mobile number."
+                );
+
+                return;
+            }
+
+
+            /* Password validation */
+
+            if (password.length < 6) {
+
+                alert(
+                    "Password must be at least 6 characters long."
+                );
+
+                return;
+            }
+
+
+            /* Confirm password */
+
+            if (password !== confirmPassword) {
+
+                alert(
+                    "Password and Confirm Password do not match."
+                );
+
+                return;
+            }
+
+
+            /* Terms */
+
+            if (termsElement && !termsElement.checked) {
+
+                alert(
+                    "Please agree to the terms and conditions."
+                );
+
+                return;
+            }
+
+
+            /* =================================================
+               CHECK EXISTING USER
+               ================================================= */
+
+            const existingUser =
+                JSON.parse(
+                    localStorage.getItem("studentData")
+                );
+
+
+            if (
+                existingUser &&
+                existingUser.email === email
+            ) {
+
+                alert(
+                    "An account with this email already exists. Please login."
+                );
+
+                window.location.href =
+                    "login.html";
+
+                return;
+            }
+
+
+            /* =================================================
+               SAVE STUDENT
+               ================================================= */
+
+            const studentData = {
+
+                id:
+                    "STU-" +
+                    Date.now(),
+
+                fullName:
+                    fullName,
+
+                email:
+                    email,
+
+                phone:
+                    phone,
+
+                course:
+                    course,
+
+                semester:
+                    semester,
+
+                password:
+                    password,
+
+                registeredAt:
+                    new Date().toLocaleString()
+
+            };
+
+
+            localStorage.setItem(
+                "studentData",
+                JSON.stringify(studentData)
+            );
+
+
+            /* =================================================
+               CREATE STATISTICS ENTRY
+               ================================================= */
+
+            let registeredStudents =
+                JSON.parse(
+                    localStorage.getItem(
+                        "registeredStudents"
+                    )
+                ) || [];
+
+
+            registeredStudents.push({
+
+                id:
+                    studentData.id,
+
+                name:
+                    studentData.fullName,
+
+                email:
+                    studentData.email,
+
+                registeredAt:
+                    studentData.registeredAt
+
+            });
+
+
+            localStorage.setItem(
+                "registeredStudents",
+                JSON.stringify(
+                    registeredStudents
+                )
+            );
+
+
+            /* =================================================
+               SUCCESS
+               ================================================= */
+
+            alert(
+                "Registration successful! Please login to continue."
+            );
+
+
+            window.location.href =
+                "login.html";
+
+        });
+
+    }
+
+
+    /* =====================================================
+       LOGIN
+       ===================================================== */
 
     const loginForm =
         document.getElementById("loginForm");
@@ -23,49 +312,43 @@ document.addEventListener("DOMContentLoaded", function () {
                 event.preventDefault();
 
 
-                const username =
-                    document
-                        .getElementById("username")
-                        .value
-                        .trim();
+                const usernameElement =
+                    document.getElementById("username");
 
-
-                const password =
-                    document
-                        .getElementById("password")
-                        .value
-                        .trim();
-
+                const passwordElement =
+                    document.getElementById("password");
 
                 const rememberElement =
                     document.getElementById("remember");
 
 
-                const remember =
-                    rememberElement
-                        ? rememberElement.checked
-                        : false;
+                if (
+                    !usernameElement ||
+                    !passwordElement
+                ) {
 
-
-                const oldMessage =
-                    document.querySelector(
-                        ".login-message"
+                    alert(
+                        "Login fields are missing. Please check login.html."
                     );
 
-
-                if (oldMessage) {
-                    oldMessage.remove();
+                    return;
                 }
 
 
-                // Empty field validation
+                const username =
+                    usernameElement.value.trim().toLowerCase();
+
+                const password =
+                    passwordElement.value;
+
+
                 if (
                     username === "" ||
                     password === ""
                 ) {
 
                     showLoginMessage(
-                        "Please enter username and password.",
+                        "Please enter username/email and password.",
                         "error"
                     );
 
@@ -73,11 +356,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                // -----------------------------------------
-                // GET REGISTERED STUDENT DATA
-                // -----------------------------------------
+                /* Get registered student */
 
-                const savedStudent =
+                const studentData =
                     JSON.parse(
                         localStorage.getItem(
                             "studentData"
@@ -85,370 +366,82 @@ document.addEventListener("DOMContentLoaded", function () {
                     );
 
 
-                let loginSuccessful = false;
+                /* =================================================
+                   LOGIN USING REGISTERED ACCOUNT
+                   ================================================= */
 
+                if (studentData) {
 
-                // -----------------------------------------
-                // LOGIN USING REGISTERED EMAIL
-                // -----------------------------------------
+                    const emailMatch =
+                        username ===
+                        studentData.email.toLowerCase();
 
-                if (savedStudent) {
+                    const nameMatch =
+                        username ===
+                        studentData.fullName.toLowerCase();
+
 
                     if (
-                        username === savedStudent.email &&
-                        password === savedStudent.password
+                        (emailMatch || nameMatch) &&
+                        password === studentData.password
                     ) {
 
-                        loginSuccessful = true;
+                        completeLogin(
+                            studentData,
+                            rememberElement
+                        );
 
+                        return;
                     }
 
                 }
 
 
-                // -----------------------------------------
-                // DEMO LOGIN
-                // -----------------------------------------
-
-                if (
-                    username === "student" &&
-                    password === "123456"
-                ) {
-
-                    loginSuccessful = true;
-
-                }
-
-
-                // -----------------------------------------
-                // SUCCESS
-                // -----------------------------------------
-
-                if (loginSuccessful) {
-
-                    localStorage.setItem(
-                        "studentLoggedIn",
-                        "true"
-                    );
-
-
-                    if (savedStudent) {
-
-                        localStorage.setItem(
-                            "studentUsername",
-                            savedStudent.fullName
-                        );
-
-                    } else {
-
-                        localStorage.setItem(
-                            "studentUsername",
-                            "Student"
-                        );
-
-                    }
-
-
-                    if (remember) {
-
-                        localStorage.setItem(
-                            "rememberStudent",
-                            "true"
-                        );
-
-                    } else {
-
-                        localStorage.removeItem(
-                            "rememberStudent"
-                        );
-
-                    }
-
-
-                    showLoginMessage(
-                        "Login successful! Redirecting...",
-                        "success"
-                    );
-
-
-                    setTimeout(
-                        function () {
-
-                            window.location.href =
-                                "dashboard.html";
-
-                        },
-                        1000
-                    );
-
-                }
-
-                // -----------------------------------------
-                // INVALID LOGIN
-                // -----------------------------------------
-
-                else {
-
-                    showLoginMessage(
-                        "Invalid email/username or password.",
-                        "error"
-                    );
-
-                }
-
-            }
-        );
-
-    }
-
-
-    // =================================================
-    // DASHBOARD - LOAD STUDENT DATA
-    // =================================================
-
-    loadStudentDashboard();
-
-
-    // =================================================
-    // REGISTRATION SYSTEM
-    // =================================================
-
-    const registerForm =
-        document.getElementById("registerForm");
-
-
-    if (registerForm) {
-
-        registerForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-
-                const fullName =
-                    document
-                        .getElementById("fullName")
-                        .value
-                        .trim();
-
-
-                const email =
-                    document
-                        .getElementById("email")
-                        .value
-                        .trim();
-
-
-                const phone =
-                    document
-                        .getElementById("phone")
-                        .value
-                        .trim();
-
-
-                const course =
-                    document
-                        .getElementById("course")
-                        .value;
-
-
-                const semester =
-                    document
-                        .getElementById("semester")
-                        .value;
-
-
-                const password =
-                    document
-                        .getElementById(
-                            "registerPassword"
-                        )
-                        .value;
-
-
-                const confirmPassword =
-                    document
-                        .getElementById(
-                            "confirmPassword"
-                        )
-                        .value;
-
-
-                const terms =
-                    document
-                        .getElementById("terms")
-                        .checked;
-
-
-                const message =
-                    document.getElementById(
-                        "registerMessage"
-                    );
-
-
-                // -----------------------------------------
-                // VALIDATION
-                // -----------------------------------------
-
-                if (fullName.length < 3) {
-
-                    showRegisterMessage(
-                        "Please enter a valid full name.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                // Email validation
-                const emailPattern =
-                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-                if (!emailPattern.test(email)) {
-
-                    showRegisterMessage(
-                        "Please enter a valid email address.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                // Phone validation
-                const phonePattern =
-                    /^[0-9]{10}$/;
-
-
-                if (!phonePattern.test(phone)) {
-
-                    showRegisterMessage(
-                        "Please enter a valid 10-digit mobile number.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                if (course === "") {
-
-                    showRegisterMessage(
-                        "Please select your course.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                if (semester === "") {
-
-                    showRegisterMessage(
-                        "Please select your semester.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                if (password.length < 6) {
-
-                    showRegisterMessage(
-                        "Password must contain at least 6 characters.",
-                        "error"
-                    );
-
-                    return;
-
-                }
+                /* =================================================
+                   DEMO ACCOUNT
+                   ================================================= */
+
+                const demoUsername =
+                    "student";
+
+                const demoPassword =
+                    "123456";
 
 
                 if (
-                    password !==
-                    confirmPassword
+                    username === demoUsername &&
+                    password === demoPassword
                 ) {
 
-                    showRegisterMessage(
-                        "Passwords do not match.",
-                        "error"
+                    const demoStudent = {
+
+                        id: "STU-DEMO",
+
+                        fullName: "Student",
+
+                        email: "student@example.com",
+
+                        phone: "",
+
+                        course: "B.Tech CSE",
+
+                        semester: "3rd Semester"
+
+                    };
+
+
+                    completeLogin(
+                        demoStudent,
+                        rememberElement
                     );
 
                     return;
-
                 }
 
 
-                if (!terms) {
-
-                    showRegisterMessage(
-                        "Please accept the terms and conditions.",
-                        "error"
-                    );
-
-                    return;
-
-                }
-
-
-                // -----------------------------------------
-                // STUDENT DATA
-                // -----------------------------------------
-
-                const studentData = {
-
-                    fullName: fullName,
-
-                    email: email,
-
-                    phone: phone,
-
-                    course: course,
-
-                    semester: semester,
-
-                    password: password
-
-                };
-
-
-                // -----------------------------------------
-                // SAVE DATA
-                // -----------------------------------------
-
-                localStorage.setItem(
-                    "studentData",
-                    JSON.stringify(studentData)
-                );
-
-
-                // -----------------------------------------
-                // SUCCESS MESSAGE
-                // -----------------------------------------
-
-                showRegisterMessage(
-                    "Account created successfully! Redirecting to login...",
-                    "success"
-                );
-
-
-                setTimeout(
-                    function () {
-
-                        window.location.href =
-                            "login.html";
-
-                    },
-                    1500
+                showLoginMessage(
+                    "Invalid email/name or password.",
+                    "error"
                 );
 
             }
@@ -457,188 +450,87 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
 
-    // =================================================
-    // QUIZ SYSTEM
-    // =================================================
+    /* =====================================================
+       AUTO LOAD PROFILE DATA
+       ===================================================== */
 
-    const quizForm =
-        document.getElementById("quizForm");
+    loadStudentInformation();
 
 
-    if (quizForm) {
+    /* =====================================================
+       QUIZ
+       ===================================================== */
 
-        quizForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-
-                const correctAnswers = {
-
-                    q1: "a",
-
-                    q2: "b",
-
-                    q3: "c",
-
-                    q4: "b",
-
-                    q5: "c"
-
-                };
-
-
-                let score = 0;
-
-                let attempted = 0;
-
-
-                for (
-                    let question in correctAnswers
-                ) {
-
-                    const selected =
-                        document.querySelector(
-                            `input[name="${question}"]:checked`
-                        );
-
-
-                    if (selected) {
-
-                        attempted++;
-
-
-                        if (
-                            selected.value ===
-                            correctAnswers[question]
-                        ) {
-
-                            score++;
-
-                        }
-
-                    }
-
-                }
-
-
-                const totalQuestions = 5;
-
-
-                const percentage =
-                    (score / totalQuestions) *
-                    100;
-
-
-                let message = "";
-
-
-                if (percentage === 100) {
-
-                    message =
-                        "Excellent! Perfect Score 🎉";
-
-                }
-
-                else if (percentage >= 80) {
-
-                    message =
-                        "Great job! Keep it up 👍";
-
-                }
-
-                else if (percentage >= 60) {
-
-                    message =
-                        "Good attempt! Keep practicing.";
-
-                }
-
-                else {
-
-                    message =
-                        "Keep learning and try again.";
-
-                }
-
-
-                const resultBox =
-                    document.getElementById(
-                        "quizResult"
-                    );
-
-
-                if (resultBox) {
-
-                    resultBox.innerHTML = `
-
-                        <div class="result-icon">
-                            🏆
-                        </div>
-
-                        <h2>
-                            Quiz Completed!
-                        </h2>
-
-                        <div class="quiz-score">
-                            ${score} / ${totalQuestions}
-                        </div>
-
-                        <p>
-                            You attempted
-                            <strong>
-                                ${attempted}
-                            </strong>
-                            out of
-                            <strong>
-                                ${totalQuestions}
-                            </strong>
-                            questions.
-                        </p>
-
-                        <p>
-                            Percentage:
-                            <strong>
-                                ${percentage}%
-                            </strong>
-                        </p>
-
-                        <h3>
-                            ${message}
-                        </h3>
-
-                        <button
-                            onclick="location.reload()"
-                            class="retry-btn"
-                        >
-                            Try Again
-                        </button>
-
-                    `;
-
-
-                    resultBox.style.display =
-                        "block";
-
-
-                    resultBox.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
-                }
-
-            }
-        );
-
-    }
+    setupBasicQuiz();
 
 });
 
 
-// =====================================================
-// LOGIN MESSAGE
-// =====================================================
+/* =========================================================
+   LOGIN SUCCESS
+   ========================================================= */
+
+function completeLogin(
+    studentData,
+    rememberElement
+) {
+
+    localStorage.setItem(
+        "studentLoggedIn",
+        "true"
+    );
+
+
+    localStorage.setItem(
+        "studentUsername",
+        studentData.fullName
+    );
+
+
+    localStorage.setItem(
+        "currentStudent",
+        JSON.stringify(studentData)
+    );
+
+
+    if (
+        rememberElement &&
+        rememberElement.checked
+    ) {
+
+        localStorage.setItem(
+            "rememberStudent",
+            "true"
+        );
+
+    } else {
+
+        localStorage.removeItem(
+            "rememberStudent"
+        );
+
+    }
+
+
+    showLoginMessage(
+        "Login successful! Redirecting to dashboard...",
+        "success"
+    );
+
+
+    setTimeout(function () {
+
+        window.location.href =
+            "dashboard.html";
+
+    }, 1000);
+
+}
+
+
+/* =========================================================
+   LOGIN MESSAGE
+   ========================================================= */
 
 function showLoginMessage(
     message,
@@ -652,6 +544,9 @@ function showLoginMessage(
 
 
     if (!loginCard) {
+
+        alert(message);
+
         return;
     }
 
@@ -668,9 +563,7 @@ function showLoginMessage(
 
 
     const messageBox =
-        document.createElement(
-            "div"
-        );
+        document.createElement("div");
 
 
     messageBox.className =
@@ -694,59 +587,35 @@ function showLoginMessage(
             form
         );
 
+    } else {
+
+        loginCard.prepend(
+            messageBox
+        );
+
     }
 
 }
 
 
-// =====================================================
-// FORGOT PASSWORD
-// =====================================================
+/* =========================================================
+   FORGOT PASSWORD
+   ========================================================= */
 
 function showForgotMessage() {
 
     alert(
-        "For this demo project, please contact the administrator to reset your password."
+        "For this demo project, please register again or contact the portal administrator for password reset."
     );
 
 }
 
 
-// =====================================================
-// REGISTRATION MESSAGE
-// =====================================================
+/* =========================================================
+   LOAD STUDENT INFORMATION
+   ========================================================= */
 
-function showRegisterMessage(
-    messageText,
-    type
-) {
-
-    const message =
-        document.getElementById(
-            "registerMessage"
-        );
-
-
-    if (!message) {
-        return;
-    }
-
-
-    message.textContent =
-        messageText;
-
-
-    message.className =
-        "register-message " + type;
-
-}
-
-
-// =====================================================
-// LOAD STUDENT DASHBOARD
-// =====================================================
-
-function loadStudentDashboard() {
+function loadStudentInformation() {
 
     const studentData =
         JSON.parse(
@@ -756,199 +625,92 @@ function loadStudentDashboard() {
         );
 
 
-    // If no registered student
-    if (!studentData) {
+    const currentStudent =
+        JSON.parse(
+            localStorage.getItem(
+                "currentStudent"
+            )
+        );
 
+
+    const student =
+        currentStudent || studentData;
+
+
+    if (!student) {
         return;
-
     }
 
 
-    // -----------------------------------------
-    // WELCOME SECTION
-    // -----------------------------------------
+    /* Possible name elements */
 
-    const studentName =
-        document.getElementById(
-            "studentName"
+    const nameElements =
+        document.querySelectorAll(
+            "#studentName, .student-name, [data-student-name]"
         );
 
 
-    const studentCourse =
-        document.getElementById(
-            "studentCourse"
+    nameElements.forEach(function (element) {
+
+        element.textContent =
+            student.fullName || "Student";
+
+    });
+
+
+    /* Email */
+
+    const emailElements =
+        document.querySelectorAll(
+            "#studentEmail, .student-email, [data-student-email]"
         );
 
 
-    const studentSemester =
-        document.getElementById(
-            "studentSemester"
+    emailElements.forEach(function (element) {
+
+        element.textContent =
+            student.email || "-";
+
+    });
+
+
+    /* Course */
+
+    const courseElements =
+        document.querySelectorAll(
+            "#studentCourse, .student-course, [data-student-course]"
         );
 
 
-    const studentEmail =
-        document.getElementById(
-            "studentEmail"
+    courseElements.forEach(function (element) {
+
+        element.textContent =
+            student.course || "B.Tech CSE";
+
+    });
+
+
+    /* Semester */
+
+    const semesterElements =
+        document.querySelectorAll(
+            "#studentSemester, .student-semester, [data-student-semester]"
         );
 
 
-    if (studentName) {
+    semesterElements.forEach(function (element) {
 
-        studentName.textContent =
-            studentData.fullName;
+        element.textContent =
+            student.semester || "3rd Semester";
 
-    }
-
-
-    if (studentCourse) {
-
-        studentCourse.textContent =
-            studentData.course;
-
-    }
-
-
-    if (studentSemester) {
-
-        studentSemester.textContent =
-            studentData.semester;
-
-    }
-
-
-    if (studentEmail) {
-
-        studentEmail.textContent =
-            studentData.email;
-
-    }
-
-
-    // -----------------------------------------
-    // PROFILE CARD
-    // -----------------------------------------
-
-    const profileName =
-        document.getElementById(
-            "profileName"
-        );
-
-
-    const profileCourse =
-        document.getElementById(
-            "profileCourse"
-        );
-
-
-    const profileSemester =
-        document.getElementById(
-            "profileSemester"
-        );
-
-
-    if (profileName) {
-
-        profileName.textContent =
-            studentData.fullName;
-
-    }
-
-
-    if (profileCourse) {
-
-        profileCourse.textContent =
-            studentData.course;
-
-    }
-
-
-    if (profileSemester) {
-
-        profileSemester.textContent =
-            studentData.semester;
-
-    }
-
-
-    // -----------------------------------------
-    // FULL INFORMATION CARD
-    // -----------------------------------------
-
-    const infoName =
-        document.getElementById(
-            "infoName"
-        );
-
-
-    const infoEmail =
-        document.getElementById(
-            "infoEmail"
-        );
-
-
-    const infoPhone =
-        document.getElementById(
-            "infoPhone"
-        );
-
-
-    const infoCourse =
-        document.getElementById(
-            "infoCourse"
-        );
-
-
-    const infoSemester =
-        document.getElementById(
-            "infoSemester"
-        );
-
-
-    if (infoName) {
-
-        infoName.textContent =
-            studentData.fullName;
-
-    }
-
-
-    if (infoEmail) {
-
-        infoEmail.textContent =
-            studentData.email;
-
-    }
-
-
-    if (infoPhone) {
-
-        infoPhone.textContent =
-            studentData.phone;
-
-    }
-
-
-    if (infoCourse) {
-
-        infoCourse.textContent =
-            studentData.course;
-
-    }
-
-
-    if (infoSemester) {
-
-        infoSemester.textContent =
-            studentData.semester;
-
-    }
+    });
 
 }
 
 
-// =====================================================
-// LOGOUT
-// =====================================================
+/* =========================================================
+   LOGOUT
+   ========================================================= */
 
 function logoutStudent() {
 
@@ -956,13 +718,169 @@ function logoutStudent() {
         "studentLoggedIn"
     );
 
-
     localStorage.removeItem(
         "studentUsername"
+    );
+
+    localStorage.removeItem(
+        "currentStudent"
     );
 
 
     window.location.href =
         "login.html";
+
+}
+
+
+/* =========================================================
+   BASIC QUIZ SUPPORT
+   ========================================================= */
+
+function setupBasicQuiz() {
+
+    const quizForm =
+        document.getElementById(
+            "quizForm"
+        );
+
+
+    if (!quizForm) {
+        return;
+    }
+
+
+    const quizButton =
+        document.getElementById(
+            "quizSubmit"
+        );
+
+
+    if (quizButton) {
+
+        quizButton.addEventListener(
+            "click",
+            function () {
+
+                calculateBasicQuiz();
+
+            }
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   BASIC QUIZ CALCULATION
+   ========================================================= */
+
+function calculateBasicQuiz() {
+
+    const answers = {
+
+        q1: "a",
+        q2: "b",
+        q3: "c",
+        q4: "b",
+        q5: "c"
+
+    };
+
+
+    let score = 0;
+
+    let attempted = 0;
+
+
+    Object.keys(answers).forEach(
+        function (question) {
+
+            const selected =
+                document.querySelector(
+                    'input[name="' +
+                    question +
+                    '"]:checked'
+                );
+
+
+            if (selected) {
+
+                attempted++;
+
+
+                if (
+                    selected.value ===
+                    answers[question]
+                ) {
+
+                    score++;
+
+                }
+
+            }
+
+        }
+    );
+
+
+    const total =
+        Object.keys(answers).length;
+
+
+    const percentage =
+        Math.round(
+            (score / total) * 100
+        );
+
+
+    const result =
+        document.getElementById(
+            "quizResult"
+        );
+
+
+    if (result) {
+
+        result.innerHTML = `
+            <div class="quiz-result-card">
+                <h2>Quiz Completed</h2>
+                <p><strong>Score:</strong> ${score}/${total}</p>
+                <p><strong>Percentage:</strong> ${percentage}%</p>
+                <p><strong>Attempted:</strong> ${attempted}/${total}</p>
+            </div>
+        `;
+
+    }
+
+}
+
+
+/* =========================================================
+   FORGOT OLD TEST DATA HELPER
+   ========================================================= */
+
+function clearDemoLogin() {
+
+    localStorage.removeItem(
+        "studentData"
+    );
+
+    localStorage.removeItem(
+        "currentStudent"
+    );
+
+    localStorage.removeItem(
+        "studentLoggedIn"
+    );
+
+    localStorage.removeItem(
+        "studentUsername"
+    );
+
+    alert(
+        "Saved demo account data has been cleared."
+    );
 
 }
