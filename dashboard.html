@@ -34,7 +34,10 @@
 
                 <a href="index.html">Home</a>
 
-                <a href="dashboard.html">
+                <a
+                    href="dashboard.html"
+                    class="active"
+                >
                     Dashboard
                 </a>
 
@@ -63,21 +66,123 @@
 
         <div class="dashboard-container">
 
+
+            <!-- Welcome -->
+
             <div class="dashboard-welcome">
 
-                <h2>
-                    Welcome, Student! 👋
-                </h2>
+                <div>
 
-                <p>
-                    Manage your academic activities
-                    from your dashboard.
-                </p>
+                    <span class="welcome-label">
+                        STUDENT DASHBOARD
+                    </span>
+
+                    <h2>
+                        Welcome back, Student! 👋
+                    </h2>
+
+                    <p>
+                        Track your academic performance,
+                        results and quiz progress from one place.
+                    </p>
+
+                </div>
+
+                <div class="student-avatar">
+                    👨‍🎓
+                </div>
 
             </div>
 
 
+            <!-- Statistics -->
+
+            <div class="stats-grid">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📚
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Total Subjects
+                        </span>
+
+                        <h3>6</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📈
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Average Score
+                        </span>
+
+                        <h3>78%</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Quizzes Completed
+                        </span>
+
+                        <h3>8</h3>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        🏆
+                    </div>
+
+                    <div>
+
+                        <span>
+                            Overall Grade
+                        </span>
+
+                        <h3>A</h3>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Main Cards -->
+
             <div class="dashboard-grid">
+
+
+                <!-- Result -->
 
                 <div class="dashboard-card">
 
@@ -86,48 +191,52 @@
                     </div>
 
                     <h3>
-                        View Result
+                        Academic Result
                     </h3>
 
                     <p>
-                        Check your marks and
-                        academic performance.
+                        View your subject-wise marks,
+                        percentage and academic performance.
                     </p>
 
                     <a
                         href="result.html"
                         class="dashboard-btn"
                     >
-                        View Result
+                        View Result →
                     </a>
 
                 </div>
 
 
+                <!-- Quiz -->
+
                 <div class="dashboard-card">
 
                     <div class="card-icon">
-                        📝
+                        🧠
                     </div>
 
                     <h3>
-                        Take Quiz
+                        Online Quiz
                     </h3>
 
                     <p>
-                        Test your knowledge with
-                        interactive quizzes.
+                        Attempt interactive quizzes
+                        and check your score instantly.
                     </p>
 
                     <a
                         href="quiz.html"
                         class="dashboard-btn"
                     >
-                        Start Quiz
+                        Start Quiz →
                     </a>
 
                 </div>
 
+
+                <!-- Profile -->
 
                 <div class="dashboard-card">
 
@@ -140,15 +249,15 @@
                     </h3>
 
                     <p>
-                        View your student information
-                        and profile.
+                        View your personal information
+                        and student details.
                     </p>
 
                     <a
                         href="#"
                         class="dashboard-btn"
                     >
-                        View Profile
+                        My Profile →
                     </a>
 
                 </div>
@@ -156,10 +265,106 @@
 
             </div>
 
+
+            <!-- Recent Activity -->
+
+            <div class="activity-card">
+
+                <div class="activity-header">
+
+                    <h3>
+                        Recent Activity
+                    </h3>
+
+                    <span>
+                        Latest
+                    </span>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        📝
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Web Development Quiz
+                        </strong>
+
+                        <p>
+                            Quiz completed with score 85%
+                        </p>
+
+                    </div>
+
+                    <span class="activity-date">
+                        Today
+                    </span>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        📊
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Semester Result
+                        </strong>
+
+                        <p>
+                            Result information updated
+                        </p>
+
+                    </div>
+
+                    <span class="activity-date">
+                        2 days ago
+                    </span>
+
+                </div>
+
+
+                <div class="activity-item">
+
+                    <div class="activity-icon">
+                        🎯
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Practice Quiz
+                        </strong>
+
+                        <p>
+                            You completed a practice quiz
+                        </p>
+
+                    </div>
+
+                    <span class="activity-date">
+                        5 days ago
+                    </span>
+
+                </div>
+
+            </div>
+
         </div>
 
     </main>
 
+
+    <!-- Footer -->
 
     <footer>
 
@@ -172,6 +377,9 @@
         </p>
 
     </footer>
+
+
+    <script src="js/script.js"></script>
 
 </body>
 
