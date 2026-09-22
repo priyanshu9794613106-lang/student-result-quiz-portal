@@ -1401,3 +1401,239 @@ tbody tr:hover {
     }
 
 }
+/* ==========================================
+   REGISTRATION PAGE
+========================================== */
+
+.register-section {
+    min-height: 75vh;
+
+    padding: 45px 20px;
+
+    background: #f4f7fb;
+}
+
+.register-container {
+    max-width: 650px;
+
+    margin: auto;
+}
+
+
+/* Heading */
+
+.register-heading {
+    text-align: center;
+
+    margin-bottom: 30px;
+}
+
+.register-heading span {
+    color: #2563eb;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.register-heading h2 {
+    margin: 8px 0;
+
+    color: #1e293b;
+
+    font-size: 32px;
+}
+
+.register-heading p {
+    margin: 0;
+
+    color: #64748b;
+}
+
+
+/* Card */
+
+.register-card {
+    background: white;
+
+    padding: 35px;
+
+    border-radius: 18px;
+
+    box-shadow:
+        0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+
+/* Select */
+
+.form-group select {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #cbd5e1;
+
+    border-radius: 10px;
+
+    font-size: 15px;
+
+    background: white;
+
+    color: #334155;
+
+    outline: none;
+
+    box-sizing: border-box;
+
+    transition: 0.3s;
+}
+
+.form-group select:focus {
+    border-color: #2563eb;
+
+    box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+
+/* Terms */
+
+.terms-box {
+    margin: 20px 0;
+
+    color: #64748b;
+
+    font-size: 13px;
+}
+
+.terms-box label {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.terms-box input {
+    accent-color: #2563eb;
+}
+
+
+/* Register Button */
+
+.register-btn {
+    width: 100%;
+
+    padding: 14px;
+
+    border: none;
+
+    border-radius: 10px;
+
+    background: linear-gradient(
+        135deg,
+        #2563eb,
+        #7c3aed
+    );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.3s;
+}
+
+.register-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(37, 99, 235, 0.25);
+}
+
+
+/* Messages */
+
+.register-message {
+    display: none;
+
+    padding: 12px 15px;
+
+    margin-bottom: 20px;
+
+    border-radius: 9px;
+
+    font-size: 14px;
+
+    font-weight: 600;
+}
+
+.register-message.success {
+    display: block;
+
+    background: #dcfce7;
+
+    color: #15803d;
+}
+
+.register-message.error {
+    display: block;
+
+    background: #fee2e2;
+
+    color: #b91c1c;
+}
+
+
+/* Login Link */
+
+.login-link {
+    margin-top: 25px;
+
+    padding-top: 20px;
+
+    text-align: center;
+
+    border-top: 1px solid #e2e8f0;
+}
+
+.login-link p {
+    margin: 0;
+
+    color: #64748b;
+
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #2563eb;
+
+    font-weight: 600;
+
+    text-decoration: none;
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    .register-section {
+        padding: 30px 15px;
+    }
+
+    .register-heading h2 {
+        font-size: 26px;
+    }
+
+    .register-card {
+        padding: 25px 20px;
+    }
+
+}
