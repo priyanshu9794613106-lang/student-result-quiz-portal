@@ -2,41 +2,874 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Student Portal</title>
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <link rel="stylesheet" href="css/style.css">
+    <meta
+        name="description"
+        content="Student Result & Quiz Portal - Manage academic results, take quizzes and track student progress."
+    >
+
+    <title>
+        Student Result & Quiz Portal
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
 </head>
 
 <body>
 
-    <header>
-        <h1>Student Result & Quiz Portal</h1>
-        <p>Learn • Practice • Track Your Progress</p>
+    <!-- ================= HEADER ================= -->
+
+    <header class="site-header">
+
+        <div class="header-container">
+
+            <!-- LOGO -->
+
+            <a
+                href="index.html"
+                class="brand"
+            >
+
+                <div class="brand-icon">
+                    🎓
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>
+                        Student Portal
+                    </strong>
+
+                    <span>
+                        Result & Quiz
+                    </span>
+
+                </div>
+
+            </a>
+
+
+            <!-- NAVIGATION -->
+
+            <nav class="main-navigation">
+
+                <a
+                    href="index.html"
+                    class="nav-link active"
+                >
+                    Home
+                </a>
+
+                <a
+                    href="login.html"
+                    class="nav-link"
+                >
+                    Login
+                </a>
+
+                <a
+                    href="register.html"
+                    class="nav-link"
+                >
+                    Register
+                </a>
+
+                <a
+                    href="quiz.html"
+                    class="nav-link"
+                >
+                    Quiz
+                </a>
+
+                <a
+                    href="#about"
+                    class="nav-link"
+                >
+                    About
+                </a>
+
+                <a
+                    href="#founder"
+                    class="nav-link"
+                >
+                    Founder
+                </a>
+
+            </nav>
+
+
+            <!-- HEADER BUTTON -->
+
+            <a
+                href="register.html"
+                class="header-button"
+            >
+                Get Started
+                <span>→</span>
+            </a>
+
+        </div>
+
     </header>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="login.html">Login</a>
-        <a href="register.html">Register</a>
-        <a href="quiz.html">Quiz</a>
-    </nav>
 
-    <main class="hero">
-        <h2>Welcome to Student Portal</h2>
+    <!-- ================= HERO ================= -->
 
-        <p>
-            Manage your academic information, check results
-            and test your knowledge with interactive quizzes.
-        </p>
+    <main>
 
-        <a href="login.html" class="btn">Get Started</a>
+        <section class="hero-section">
+
+            <div class="hero-container">
+
+
+                <!-- HERO LEFT -->
+
+                <div class="hero-content">
+
+                    <div class="hero-badge">
+
+                        🎓
+
+                        <span>
+                            Learn • Practice • Track Your Progress
+                        </span>
+
+                    </div>
+
+
+                    <h1>
+
+                        Student Result &
+
+                        <span>
+                            Quiz Portal
+                        </span>
+
+                    </h1>
+
+
+                    <p class="hero-description">
+
+                        Access your academic results, take
+                        interactive quizzes and manage your
+                        student profile — all in one place.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a
+                            href="login.html"
+                            class="primary-button"
+                        >
+                            Login Now
+                            <span>→</span>
+                        </a>
+
+
+                        <a
+                            href="register.html"
+                            class="secondary-button"
+                        >
+                            👤 Register Now
+                        </a>
+
+                    </div>
+
+
+                    <!-- HERO TRUST -->
+
+                    <div class="hero-trust">
+
+                        <div>
+                            ✓ Easy to Use
+                        </div>
+
+                        <div>
+                            ✓ Mobile Responsive
+                        </div>
+
+                        <div>
+                            ✓ Interactive Quiz
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- HERO RIGHT -->
+
+                <div class="hero-visual">
+
+
+                    <!-- FLOATING RESULT -->
+
+                    <div class="floating-card result-floating">
+
+                        <div class="floating-icon purple">
+                            📄
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Result
+                            </strong>
+
+                            <small>
+                                Check Your Marks
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- STUDENT VISUAL -->
+
+                    <div class="student-illustration">
+
+                        <div class="illustration-circle">
+
+                            👨‍💻
+
+                        </div>
+
+                        <div class="laptop">
+
+                            💻
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FLOATING QUIZ -->
+
+                    <div class="floating-card quiz-floating">
+
+                        <div class="floating-icon green">
+                            🧠
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Quiz
+                            </strong>
+
+                            <small>
+                                Test Your Knowledge
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- FLOATING PROFILE -->
+
+                    <div class="floating-card profile-floating">
+
+                        <div class="floating-icon blue">
+                            👤
+                        </div>
+
+                        <div>
+
+                            <strong>
+                                Profile
+                            </strong>
+
+                            <small>
+                                View Your Details
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FEATURES ================= -->
+
+        <section class="features-section">
+
+            <div class="features-container">
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon purple">
+                        📄
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            View Results
+                        </h3>
+
+                        <p>
+                            Check your subject-wise marks,
+                            percentage and grade.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon green">
+                        🧠
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Take Quiz
+                        </h3>
+
+                        <p>
+                            Attempt interactive quizzes
+                            and improve your knowledge.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon blue">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Manage Profile
+                        </h3>
+
+                        <p>
+                            View your registered student
+                            information.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="feature-item">
+
+                    <div class="feature-icon red">
+                        🛡️
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            Simple & Reliable
+                        </h3>
+
+                        <p>
+                            A clean platform for academic
+                            practice and progress.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= ABOUT ================= -->
+
+        <section
+            class="about-section"
+            id="about"
+        >
+
+            <div class="about-container">
+
+
+                <!-- ABOUT IMAGE/ICON -->
+
+                <div class="about-visual">
+
+                    <div class="about-main-icon">
+                        🎓
+                    </div>
+
+                    <div class="about-books">
+                        📚
+                    </div>
+
+                    <div class="about-circle">
+                        ✦
+                    </div>
+
+                </div>
+
+
+                <!-- ABOUT CONTENT -->
+
+                <div class="about-content">
+
+                    <span class="section-label">
+                        ABOUT THE PORTAL
+                    </span>
+
+                    <h2>
+                        Your Academic Journey,
+                        <span>Our Priority</span>
+                    </h2>
+
+                    <p>
+
+                        Student Result & Quiz Portal is a
+                        web-based academic platform designed
+                        to provide students with a simple place
+                        to access results, attempt quizzes and
+                        manage their basic student information.
+
+                    </p>
+
+                    <p>
+
+                        The project combines HTML, CSS and
+                        JavaScript concepts with responsive
+                        web design to create an interactive
+                        student portal.
+
+                    </p>
+
+
+                    <div class="about-points">
+
+                        <div>
+                            ✓ Easy to use interface
+                        </div>
+
+                        <div>
+                            ✓ Interactive quizzes
+                        </div>
+
+                        <div>
+                            ✓ Responsive design
+                        </div>
+
+                        <div>
+                            ✓ Student information management
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= WHY CHOOSE ================= -->
+
+        <section class="why-section">
+
+            <div class="section-container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        FEATURES
+                    </span>
+
+                    <h2>
+                        Why Use Student Portal?
+                    </h2>
+
+                    <p>
+                        Everything you need for a simple
+                        academic practice experience.
+                    </p>
+
+                </div>
+
+
+                <div class="why-grid">
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Fast Access
+                        </h3>
+
+                        <p>
+                            Quickly access results and
+                            important student information.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            📱
+                        </div>
+
+                        <h3>
+                            Mobile Responsive
+                        </h3>
+
+                        <p>
+                            Designed to work across
+                            desktop, tablet and mobile.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            🧠
+                        </div>
+
+                        <h3>
+                            Interactive Quiz
+                        </h3>
+
+                        <p>
+                            Test your Web Development
+                            knowledge with quizzes.
+                        </p>
+
+                    </div>
+
+
+                    <div class="why-card">
+
+                        <div class="why-icon">
+                            📊
+                        </div>
+
+                        <h3>
+                            Progress Tracking
+                        </h3>
+
+                        <p>
+                            View your academic performance
+                            and quiz activity.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= FOUNDER ================= -->
+
+        <section
+            class="founder-section"
+            id="founder"
+        >
+
+            <div class="founder-container">
+
+
+                <div class="founder-avatar">
+                    PM
+                </div>
+
+
+                <div class="founder-content">
+
+                    <span class="section-label">
+                        PROJECT FOUNDER
+                    </span>
+
+                    <h2>
+                        Priyanshu Mishra
+                    </h2>
+
+                    <h3>
+                        Founder & Developer
+                    </h3>
+
+                    <p>
+
+                        Student Result & Quiz Portal is a
+                        project developed by <strong>
+                        Priyanshu Mishra
+                        </strong> as a Web Development
+                        project.
+
+                    </p>
+
+                    <p>
+
+                        The project focuses on building a
+                        responsive and interactive academic
+                        portal using modern front-end
+                        development concepts.
+
+                    </p>
+
+
+                    <div class="founder-details">
+
+                        <div>
+                            <strong>
+                                Education
+                            </strong>
+
+                            <span>
+                                B.Tech CSE
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <strong>
+                                Current Semester
+                            </strong>
+
+                            <span>
+                                3rd Semester
+                            </span>
+                        </div>
+
+
+                        <div>
+                            <strong>
+                                Area
+                            </strong>
+
+                            <span>
+                                Web Development
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ================= CTA ================= -->
+
+        <section class="cta-section">
+
+            <div class="cta-container">
+
+                <div>
+
+                    <span>
+                        READY TO GET STARTED?
+                    </span>
+
+                    <h2>
+                        Start Your Student Journey Today
+                    </h2>
+
+                    <p>
+                        Create your account and explore
+                        the Student Result & Quiz Portal.
+                    </p>
+
+                </div>
+
+
+                <a
+                    href="register.html"
+                    class="cta-button"
+                >
+                    Create Account
+                    <span>→</span>
+                </a>
+
+            </div>
+
+        </section>
+
     </main>
 
-    <footer>
-        <p>© 2026 Student Result & Quiz Portal</p>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer class="site-footer">
+
+        <div class="footer-container">
+
+
+            <!-- FOOTER BRAND -->
+
+            <div class="footer-brand">
+
+                <div class="footer-logo">
+
+                    <div class="brand-icon">
+                        🎓
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Student Portal
+                        </strong>
+
+                        <span>
+                            Result & Quiz
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <p>
+                    A student-focused web portal for
+                    academic results, quizzes and
+                    progress tracking.
+                </p>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+                <a href="register.html">
+                    Register
+                </a>
+
+                <a href="quiz.html">
+                    Quiz
+                </a>
+
+            </div>
+
+
+            <!-- PROJECT -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Project
+                </h3>
+
+                <a href="#about">
+                    About Portal
+                </a>
+
+                <a href="#founder">
+                    Founder
+                </a>
+
+                <a href="result.html">
+                    Results
+                </a>
+
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
+            </div>
+
+
+            <!-- FOUNDER -->
+
+            <div class="footer-column">
+
+                <h3>
+                    Founder
+                </h3>
+
+                <strong class="footer-founder">
+                    Priyanshu Mishra
+                </strong>
+
+                <span>
+                    Founder & Developer
+                </span>
+
+                <span>
+                    B.Tech CSE
+                </span>
+
+                <span>
+                    Web Development
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <p>
+                © 2026 Student Result & Quiz Portal
+            </p>
+
+            <p>
+                Developed by
+                <strong>
+                    Priyanshu Mishra
+                </strong>
+            </p>
+
+        </div>
+
     </footer>
+
 
 </body>
 </html>
