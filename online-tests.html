@@ -10,14 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <meta
-        name="description"
-        content="Online Test Center - Student Result & Quiz Portal"
-    >
-
-    <title>
-        Online Test Center | Student Portal
-    </title>
+    <title>Online Tests | Student Result & Quiz Portal</title>
 
     <link
         rel="stylesheet"
@@ -26,449 +19,181 @@
 
     <style>
 
-        /* =========================================
-           ONLINE TEST CENTER
-           ========================================= */
-
-        .test-center-section {
+        .tests-page {
             min-height: 100vh;
-
-            padding:
-                70px 25px 90px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #f5f8ff,
-                    #f8f5ff
-                );
+            padding: 60px 20px;
         }
 
-
-        .test-center-container {
-            max-width: 1150px;
-
-            margin: auto;
-        }
-
-
-        /* HEADER */
-
-        .test-center-heading {
-            text-align: center;
-
-            max-width: 720px;
-
-            margin:
-                0 auto 50px;
-        }
-
-
-        .test-center-badge {
-            display: inline-flex;
-
-            align-items: center;
-
-            gap: 8px;
-
-            padding:
-                8px 16px;
-
-            border-radius: 30px;
-
-            background: #e8f1ff;
-
-            color: #1769ff;
-
-            font-size: 12px;
-
-            font-weight: 800;
-
-            margin-bottom: 15px;
-        }
-
-
-        .test-center-heading h1 {
-            font-size:
-                clamp(34px, 5vw, 50px);
-
-            line-height: 1.15;
-
-            color: #142f59;
-
-            margin-bottom: 15px;
-        }
-
-
-        .test-center-heading h1 span {
-            color: #1769ff;
-        }
-
-
-        .test-center-heading p {
-            color: #718098;
-
-            font-size: 15px;
-
-            line-height: 1.7;
-        }
-
-
-        /* TEST INFORMATION */
-
-        .test-rules {
+        .tests-header {
             max-width: 900px;
+            margin: 0 auto 40px;
+            text-align: center;
+        }
 
-            margin:
-                0 auto 45px;
+        .tests-header h1 {
+            font-size: 42px;
+            color: #102a56;
+            margin-bottom: 12px;
+        }
+
+        .tests-header p {
+            color: #667085;
+            font-size: 17px;
+        }
+
+        .rules-grid {
+            max-width: 1000px;
+            margin: 0 auto 45px;
 
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
+            grid-template-columns: repeat(3, 1fr);
             gap: 18px;
         }
 
-
         .rule-card {
             background: white;
-
-            border:
-                1px solid #e5ebf4;
-
-            border-radius: 14px;
-
-            padding: 20px;
-
-            display: flex;
-
-            align-items: center;
-
-            gap: 14px;
-
-            box-shadow:
-                0 8px 25px
-                rgba(30, 70, 130, 0.05);
+            padding: 24px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid #eaecf0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
         }
-
 
         .rule-icon {
-            width: 45px;
-
-            height: 45px;
-
-            flex-shrink: 0;
-
-            border-radius: 12px;
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: center;
-
-            font-size: 21px;
-
-            background: #eaf2ff;
+            font-size: 32px;
+            margin-bottom: 10px;
         }
 
-
-        .rule-card strong {
-            display: block;
-
-            color: #193961;
-
-            font-size: 14px;
-
-            margin-bottom: 2px;
+        .rule-card h3 {
+            margin-bottom: 5px;
         }
 
-
-        .rule-card span {
-            color: #78869c;
-
-            font-size: 11px;
+        .rule-card p {
+            color: #667085;
+            margin: 0;
         }
 
-
-        /* TEST GRID */
-
-        .test-grid {
+        .tests-grid {
+            max-width: 1200px;
+            margin: auto;
 
             display: grid;
-
-            grid-template-columns:
-                repeat(3, 1fr);
-
+            grid-template-columns: repeat(3, 1fr);
             gap: 22px;
         }
 
-
-        /* TEST CARD */
-
         .test-card {
-
             background: white;
-
-            border:
-                1px solid #e5ebf4;
-
+            padding: 28px;
             border-radius: 18px;
-
-            padding: 25px;
-
-            position: relative;
-
-            overflow: hidden;
-
-            transition:
-                transform .3s ease,
-                box-shadow .3s ease;
-
-            box-shadow:
-                0 8px 30px
-                rgba(30, 70, 130, 0.06);
+            border: 1px solid #eaecf0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+            transition: 0.25s;
         }
-
-
-        .test-card::before {
-
-            content: "";
-
-            position: absolute;
-
-            top: 0;
-
-            left: 0;
-
-            width: 100%;
-
-            height: 4px;
-
-            background:
-                linear-gradient(
-                    90deg,
-                    #1769ff,
-                    #633cff
-                );
-
-        }
-
 
         .test-card:hover {
-
-            transform:
-                translateY(-7px);
-
-            box-shadow:
-                0 18px 40px
-                rgba(30, 70, 130, 0.12);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.09);
         }
 
-
-        .test-card-top {
-
-            display: flex;
-
-            align-items: center;
-
-            justify-content: space-between;
-
-            margin-bottom: 20px;
-        }
-
-
-        .subject-icon {
-
-            width: 58px;
-
-            height: 58px;
-
-            border-radius: 15px;
+        .test-icon {
+            width: 55px;
+            height: 55px;
+            border-radius: 14px;
+            background: #eef4ff;
 
             display: flex;
-
             align-items: center;
-
             justify-content: center;
 
             font-size: 28px;
-
-            background: #edf4ff;
-        }
-
-
-        .test-status {
-
-            padding:
-                5px 10px;
-
-            border-radius: 20px;
-
-            background: #e8f8ef;
-
-            color: #1d9851;
-
-            font-size: 10px;
-
-            font-weight: 800;
-        }
-
-
-        .test-card h2 {
-
-            color: #18375e;
-
-            font-size: 19px;
-
-            margin-bottom: 7px;
-        }
-
-
-        .test-card p {
-
-            color: #78869b;
-
-            font-size: 12px;
-
-            min-height: 40px;
-
             margin-bottom: 18px;
         }
 
-
-        .test-details {
-
-            display: flex;
-
-            gap: 8px;
-
-            flex-wrap: wrap;
-
-            margin-bottom: 20px;
+        .test-card h3 {
+            font-size: 21px;
+            margin-bottom: 8px;
         }
 
+        .test-card p {
+            color: #667085;
+            min-height: 48px;
+        }
 
-        .test-detail {
+        .test-info {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 18px 0;
+        }
 
-            padding:
-                6px 9px;
-
+        .test-info span {
+            background: #f2f4f7;
+            padding: 6px 9px;
             border-radius: 7px;
-
-            background: #f4f7fb;
-
-            color: #64748b;
-
-            font-size: 10px;
-
+            font-size: 12px;
             font-weight: 700;
         }
 
-
-        .start-test-btn {
-
-            width: 100%;
-
-            border: none;
-
-            cursor: pointer;
-
-            padding:
-                12px 18px;
-
-            border-radius: 9px;
-
-            background:
-                linear-gradient(
-                    135deg,
-                    #1769ff,
-                    #633cff
-                );
-
+        .start-test {
+            display: block;
+            text-align: center;
+            padding: 12px 18px;
+            border-radius: 10px;
+            background: #2563eb;
             color: white;
-
-            font-size: 12px;
-
-            font-weight: 800;
-
-            transition: .3s;
+            font-weight: 700;
+            transition: 0.2s;
         }
 
-
-        .start-test-btn:hover {
-
-            transform:
-                translateY(-2px);
-
-            box-shadow:
-                0 8px 20px
-                rgba(23, 105, 255, .25);
+        .start-test:hover {
+            background: #1d4ed8;
         }
 
-
-        /* COMING SOON */
-
-        .test-card.coming-soon {
-
-            opacity: .75;
-        }
-
-
-        .test-card.coming-soon .test-status {
-
-            background: #fff3df;
-
-            color: #b66a00;
-        }
-
-
-        .test-card.coming-soon .start-test-btn {
-
-            background: #dce2eb;
-
-            color: #69778b;
-
+        .coming-soon {
+            background: #98a2b3;
             cursor: not-allowed;
         }
 
+        .coming-soon:hover {
+            background: #98a2b3;
+        }
 
-        /* RESPONSIVE */
+        .test-note {
+            max-width: 900px;
+            margin: 45px auto 0;
+            background: #eef4ff;
+            border: 1px solid #c7d7fe;
+            padding: 20px;
+            border-radius: 14px;
+            text-align: center;
+            color: #344054;
+        }
 
-        @media (max-width: 950px) {
+        @media (max-width: 900px) {
 
-            .test-grid {
+            .tests-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-                grid-template-columns:
-                    repeat(2, 1fr);
-
+            .rules-grid {
+                grid-template-columns: 1fr;
             }
 
         }
 
+        @media (max-width: 600px) {
 
-        @media (max-width: 700px) {
-
-            .test-rules {
-
-                grid-template-columns: 1fr;
-
+            .tests-page {
+                padding: 40px 15px;
             }
 
-
-            .test-grid {
-
-                grid-template-columns: 1fr;
-
+            .tests-header h1 {
+                font-size: 32px;
             }
 
-
-            .test-center-section {
-
-                padding:
-                    50px 18px 70px;
-
+            .tests-grid {
+                grid-template-columns: 1fr;
             }
 
         }
@@ -481,791 +206,466 @@
 <body>
 
 
-    <!-- =========================================
-         HEADER
-         ========================================= -->
+<header class="site-header">
 
-    <header class="site-header">
+    <div class="header-container">
 
-        <div class="header-container">
+        <a
+            href="index.html"
+            class="brand"
+        >
+            Student Portal
+        </a>
 
 
-            <!-- BRAND -->
+        <nav class="main-navigation">
 
             <a
                 href="index.html"
-                class="brand"
+                class="nav-link"
             >
-
-                <div class="brand-icon">
-                    🎓
-                </div>
-
-                <div class="brand-text">
-
-                    <strong>
-                        Student Portal
-                    </strong>
-
-                    <span>
-                        Result & Quiz
-                    </span>
-
-                </div>
-
+                Home
             </a>
 
-
-            <!-- NAVIGATION -->
-
-            <nav class="main-navigation">
-
-                <a
-                    href="index.html"
-                    class="nav-link"
-                >
-                    Home
-                </a>
-
-                <a
-                    href="dashboard.html"
-                    class="nav-link"
-                >
-                    Dashboard
-                </a>
-
-                <a
-                    href="online-tests.html"
-                    class="nav-link active"
-                >
-                    Online Tests
-                </a>
-
-                <a
-                    href="result.html"
-                    class="nav-link"
-                >
-                    Result
-                </a>
-
-                <a
-                    href="login.html"
-                    class="nav-link"
-                >
-                    Login
-                </a>
-
-            </nav>
-
+            <a
+                href="login.html"
+                class="nav-link"
+            >
+                Login
+            </a>
 
             <a
                 href="register.html"
-                class="header-button"
+                class="nav-link"
             >
-                Get Started →
+                Register
             </a>
+
+            <a
+                href="dashboard.html"
+                class="nav-link"
+            >
+                Dashboard
+            </a>
+
+            <a
+                href="online-tests.html"
+                class="nav-link"
+            >
+                Online Tests
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="tests-page">
+
+
+    <section class="tests-header">
+
+        <h1>
+            Online Assessment Center
+        </h1>
+
+        <p>
+            Choose a subject and test your knowledge through
+            our structured online assessment system.
+        </p>
+
+    </section>
+
+
+    <!-- TEST RULES -->
+
+    <section class="rules-grid">
+
+        <div class="rule-card">
+
+            <div class="rule-icon">
+                📝
+            </div>
+
+            <h3>
+                10 Questions
+            </h3>
+
+            <p>
+                Every test contains 10 MCQ questions.
+            </p>
 
         </div>
 
-    </header>
 
+        <div class="rule-card">
 
-
-    <!-- =========================================
-         ONLINE TEST CENTER
-         ========================================= -->
-
-    <main>
-
-        <section class="test-center-section">
-
-            <div class="test-center-container">
-
-
-                <!-- HEADING -->
-
-                <div class="test-center-heading">
-
-                    <div class="test-center-badge">
-
-                        🧠
-
-                        Online Assessment Center
-
-                    </div>
-
-
-                    <h1>
-
-                        Test Your
-
-                        <span>
-                            Knowledge
-                        </span>
-
-                    </h1>
-
-
-                    <p>
-
-                        Choose a subject and challenge
-                        yourself with an interactive online
-                        assessment designed for students
-                        and programming learners.
-
-                    </p>
-
-                </div>
-
-
-
-                <!-- TEST RULES -->
-
-                <div class="test-rules">
-
-
-                    <div class="rule-card">
-
-                        <div class="rule-icon">
-                            📝
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                10 Questions
-                            </strong>
-
-                            <span>
-                                Every test contains 10 questions
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="rule-card">
-
-                        <div class="rule-icon">
-                            ⏱️
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                7 Minutes
-                            </strong>
-
-                            <span>
-                                Maximum time for every test
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                    <div class="rule-card">
-
-                        <div class="rule-icon">
-                            🏆
-                        </div>
-
-                        <div>
-
-                            <strong>
-                                Certificate
-                            </strong>
-
-                            <span>
-                                Eligible students can receive a certificate
-                            </span>
-
-                        </div>
-
-                    </div>
-
-
-                </div>
-
-
-
-                <!-- =================================
-                     TEST CARDS
-                     ================================= -->
-
-                <div class="test-grid">
-
-
-                    <!-- WEB DEVELOPMENT -->
-
-                    <div class="test-card">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                🌐
-                            </div>
-
-                            <span class="test-status">
-                                AVAILABLE
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            Web Development
-                        </h2>
-
-
-                        <p>
-
-                            Test your knowledge of HTML,
-                            CSS, JavaScript and responsive
-                            web development.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                            <span class="test-detail">
-                                MCQ
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            onclick="startTest('web-development')"
-                        >
-                            Start Test →
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- PYTHON -->
-
-                    <div class="test-card">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                🐍
-                            </div>
-
-                            <span class="test-status">
-                                AVAILABLE
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            Python
-                        </h2>
-
-
-                        <p>
-
-                            Test your understanding of
-                            Python programming, syntax,
-                            functions and concepts.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                            <span class="test-detail">
-                                MCQ
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            onclick="startTest('python')"
-                        >
-                            Start Test →
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- DSA -->
-
-                    <div class="test-card">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                🧠
-                            </div>
-
-                            <span class="test-status">
-                                AVAILABLE
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            Data Structures & Algorithms
-                        </h2>
-
-
-                        <p>
-
-                            Test your knowledge of arrays,
-                            stacks, queues, searching,
-                            sorting and algorithms.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                            <span class="test-detail">
-                                MCQ
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            onclick="startTest('dsa')"
-                        >
-                            Start Test →
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- C PROGRAMMING -->
-
-                    <div class="test-card">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                💻
-                            </div>
-
-                            <span class="test-status">
-                                AVAILABLE
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            C Programming
-                        </h2>
-
-
-                        <p>
-
-                            Practice C programming concepts,
-                            variables, loops, functions and
-                            basic programming logic.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                            <span class="test-detail">
-                                MCQ
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            onclick="startTest('c-programming')"
-                        >
-                            Start Test →
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- JAVA -->
-
-                    <div class="test-card">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                ☕
-                            </div>
-
-                            <span class="test-status">
-                                AVAILABLE
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            Java
-                        </h2>
-
-
-                        <p>
-
-                            Check your knowledge of Java
-                            programming and object-oriented
-                            programming concepts.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                            <span class="test-detail">
-                                MCQ
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            onclick="startTest('java')"
-                        >
-                            Start Test →
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- DBMS -->
-
-                    <div class="test-card">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                🗄️
-                            </div>
-
-                            <span class="test-status">
-                                AVAILABLE
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            DBMS
-                        </h2>
-
-
-                        <p>
-
-                            Test your knowledge of databases,
-                            SQL, keys, normalization and
-                            database concepts.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                            <span class="test-detail">
-                                MCQ
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            onclick="startTest('dbms')"
-                        >
-                            Start Test →
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- OPERATING SYSTEM -->
-
-                    <div class="test-card coming-soon">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                ⚙️
-                            </div>
-
-                            <span class="test-status">
-                                COMING SOON
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            Operating System
-                        </h2>
-
-
-                        <p>
-
-                            Processes, memory management,
-                            scheduling and operating system
-                            fundamentals.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            disabled
-                        >
-                            Coming Soon
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- COMPUTER NETWORK -->
-
-                    <div class="test-card coming-soon">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                🌐
-                            </div>
-
-                            <span class="test-status">
-                                COMING SOON
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            Computer Networks
-                        </h2>
-
-
-                        <p>
-
-                            Learn and test networking concepts,
-                            protocols, communication and
-                            network architecture.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            disabled
-                        >
-                            Coming Soon
-                        </button>
-
-                    </div>
-
-
-
-                    <!-- SOFTWARE ENGINEERING -->
-
-                    <div class="test-card coming-soon">
-
-                        <div class="test-card-top">
-
-                            <div class="subject-icon">
-                                🛠️
-                            </div>
-
-                            <span class="test-status">
-                                COMING SOON
-                            </span>
-
-                        </div>
-
-
-                        <h2>
-                            Software Engineering
-                        </h2>
-
-
-                        <p>
-
-                            Test your understanding of software
-                            development processes and engineering
-                            concepts.
-
-                        </p>
-
-
-                        <div class="test-details">
-
-                            <span class="test-detail">
-                                10 Questions
-                            </span>
-
-                            <span class="test-detail">
-                                7 Minutes
-                            </span>
-
-                        </div>
-
-
-                        <button
-                            class="start-test-btn"
-                            disabled
-                        >
-                            Coming Soon
-                        </button>
-
-                    </div>
-
-
-                </div>
-
+            <div class="rule-icon">
+                ⏱️
             </div>
 
-        </section>
+            <h3>
+                7 Minutes
+            </h3>
 
-    </main>
+            <p>
+                Complete the test within the given time.
+            </p>
+
+        </div>
 
 
+        <div class="rule-card">
 
-    <!-- =========================================
-         FOOTER
-         ========================================= -->
+            <div class="rule-icon">
+                🎓
+            </div>
 
-    <footer class="site-footer">
+            <h3>
+                Certificate
+            </h3>
 
-        <div class="footer-container">
+            <p>
+                Eligible students can receive an achievement certificate.
+            </p>
 
-            <div class="footer-brand">
+        </div>
 
-                <div class="footer-logo">
+    </section>
 
-                    <div class="brand-icon">
-                        🎓
-                    </div>
 
-                    <div>
+    <!-- TESTS -->
 
-                        <strong>
-                            Student Portal
-                        </strong>
+    <section class="tests-grid">
 
-                        <span>
-                            Result & Quiz
-                        </span>
 
-                    </div>
+        <!-- WEB DEVELOPMENT -->
 
-                </div>
+        <article class="test-card">
+
+            <div class="test-icon">
+                🌐
+            </div>
+
+            <h3>
+                Web Development
+            </h3>
+
+            <p>
+                HTML, CSS, JavaScript and basic web development concepts.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=web-development"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- PYTHON -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                🐍
+            </div>
+
+            <h3>
+                Python
+            </h3>
+
+            <p>
+                Python programming fundamentals and basic concepts.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=python"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- DSA -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                🧩
+            </div>
+
+            <h3>
+                Data Structures & Algorithms
+            </h3>
+
+            <p>
+                Arrays, stacks, queues, searching and algorithm basics.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=dsa"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- C -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                💻
+            </div>
+
+            <h3>
+                C Programming
+            </h3>
+
+            <p>
+                C language syntax, variables, loops, arrays and functions.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=c-programming"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- JAVA -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                ☕
+            </div>
+
+            <h3>
+                Java
+            </h3>
+
+            <p>
+                Java fundamentals, OOP concepts and programming basics.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=java"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- DBMS -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                🗄️
+            </div>
+
+            <h3>
+                DBMS
+            </h3>
+
+            <p>
+                Database concepts, SQL, keys, normalization and queries.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=dbms"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- OPERATING SYSTEM -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                ⚙️
+            </div>
+
+            <h3>
+                Operating System
+            </h3>
+
+            <p>
+                Processes, memory management, scheduling and OS concepts.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=operating-system"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- COMPUTER NETWORKS -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                🌍
+            </div>
+
+            <h3>
+                Computer Networks
+            </h3>
+
+            <p>
+                Networking fundamentals, protocols, IP and network models.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=computer-networks"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+        <!-- SOFTWARE ENGINEERING -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                🛠️
+            </div>
+
+            <h3>
+                Software Engineering
+            </h3>
+
+            <p>
+                SDLC, software models, testing and development concepts.
+            </p>
+
+            <div class="test-info">
+                <span>10 Questions</span>
+                <span>7 Minutes</span>
+                <span>MCQ</span>
+            </div>
+
+            <a
+                href="test.html?subject=software-engineering"
+                class="start-test"
+            >
+                Start Test →
+            </a>
+
+        </article>
+
+
+    </section>
+
+
+    <div class="test-note">
+
+        <strong>Important:</strong>
+
+        Each assessment has a maximum duration of 7 minutes.
+        The test will be submitted automatically when the timer reaches zero.
+
+    </div>
+
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <h3>
+                    Student Result & Quiz Portal
+                </h3>
 
                 <p>
-                    A student-focused platform for
-                    online tests, academic results and
-                    learning progress.
+                    A student-focused online assessment and
+                    academic result demonstration platform.
                 </p>
 
             </div>
 
 
-            <div class="footer-column">
+            <div>
 
                 <h3>
                     Quick Links
@@ -1275,67 +675,34 @@
                     Home
                 </a>
 
+                <a href="dashboard.html">
+                    Dashboard
+                </a>
+
                 <a href="online-tests.html">
                     Online Tests
                 </a>
 
-                <a href="result.html">
-                    Results
-                </a>
-
-                <a href="login.html">
-                    Login
-                </a>
-
             </div>
 
 
-            <div class="footer-column">
+            <div>
 
                 <h3>
-                    Test Categories
+                    Developer
                 </h3>
 
-                <span>
-                    Web Development
-                </span>
-
-                <span>
-                    Python
-                </span>
-
-                <span>
-                    DSA
-                </span>
-
-                <span>
-                    Java
-                </span>
-
-            </div>
-
-
-            <div class="footer-column">
-
-                <h3>
-                    Founder
-                </h3>
-
-                <strong class="footer-founder">
+                <p>
                     Priyanshu Mishra
-                </strong>
+                </p>
 
-                <span>
+                <p>
                     Founder & Developer
-                </span>
+                </p>
 
-                <span>
-                    B.Tech CSE
-                </span>
-
-                <span>
-                    Web Development
-                </span>
+                <p>
+                    B.Tech CSE • 3rd Semester
+                </p>
 
             </div>
 
@@ -1344,40 +711,14 @@
 
         <div class="footer-bottom">
 
-            <p>
-                © 2026 Student Result & Quiz Portal
-            </p>
-
-            <p>
-                Developed by
-                <strong>
-                    Priyanshu Mishra
-                </strong>
-            </p>
+            © 2026 Student Result & Quiz Portal.
+            Developed using HTML, CSS & JavaScript.
 
         </div>
 
-    </footer>
+    </div>
 
-
-
-    <!-- =========================================
-         TEMPORARY TEST FUNCTION
-         ========================================= -->
-
-    <script>
-
-        function startTest(subject) {
-
-            alert(
-                "The " +
-                subject +
-                " test will be available in the next step."
-            );
-
-        }
-
-    </script>
+</footer>
 
 
 </body>
