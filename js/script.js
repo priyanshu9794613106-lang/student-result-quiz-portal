@@ -307,4 +307,197 @@ if (quizForm) {
     });
 
 }
+// ==========================================
+// REGISTRATION SYSTEM
+// ==========================================
+
+const registerForm =
+    document.getElementById("registerForm");
+
+
+if (registerForm) {
+
+    registerForm.addEventListener(
+        "submit",
+        function (event) {
+
+            event.preventDefault();
+
+
+            const fullName =
+                document.getElementById("fullName")
+                .value.trim();
+
+            const email =
+                document.getElementById("email")
+                .value.trim();
+
+            const phone =
+                document.getElementById("phone")
+                .value.trim();
+
+            const course =
+                document.getElementById("course")
+                .value;
+
+            const semester =
+                document.getElementById("semester")
+                .value;
+
+            const password =
+                document.getElementById("registerPassword")
+                .value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword")
+                .value;
+
+            const terms =
+                document.getElementById("terms")
+                .checked;
+
+
+            const message =
+                document.getElementById(
+                    "registerMessage"
+                );
+
+
+            // Name validation
+
+            if (fullName.length < 3) {
+
+                showRegisterMessage(
+                    "Please enter a valid full name.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Phone validation
+
+            const phonePattern =
+                /^[0-9]{10}$/;
+
+            if (!phonePattern.test(phone)) {
+
+                showRegisterMessage(
+                    "Please enter a valid 10-digit mobile number.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Password validation
+
+            if (password.length < 6) {
+
+                showRegisterMessage(
+                    "Password must contain at least 6 characters.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Confirm password
+
+            if (password !== confirmPassword) {
+
+                showRegisterMessage(
+                    "Passwords do not match.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Terms
+
+            if (!terms) {
+
+                showRegisterMessage(
+                    "Please accept the terms and conditions.",
+                    "error"
+                );
+
+                return;
+            }
+
+
+            // Save demo student data
+
+            const studentData = {
+
+                fullName: fullName,
+
+                email: email,
+
+                phone: phone,
+
+                course: course,
+
+                semester: semester,
+
+                password: password
+
+            };
+
+
+            localStorage.setItem(
+                "studentData",
+                JSON.stringify(studentData)
+            );
+
+
+            // Success
+
+            showRegisterMessage(
+                "Account created successfully! Redirecting to login...",
+                "success"
+            );
+
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "login.html";
+
+            }, 1500);
+
+        }
+    );
+}
+
+
+// ==========================================
+// REGISTRATION MESSAGE
+// ==========================================
+
+function showRegisterMessage(
+    messageText,
+    type
+) {
+
+    const message =
+        document.getElementById(
+            "registerMessage"
+        );
+
+    if (!message) {
+        return;
+    }
+
+    message.textContent = messageText;
+
+    message.className =
+        "register-message " + type;
+
+}
 
