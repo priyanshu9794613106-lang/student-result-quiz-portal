@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Login | Student Portal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <h1>Student Portal</h1>
+
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="login.html" class="active">Login</a>
+                <a href="register.html">Register</a>
+                <a href="quiz.html">Quiz</a>
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- Login Section -->
+    <main class="login-section">
+
+        <div class="login-card">
+
+            <div class="login-icon">
+                🎓
+            </div>
+
+            <h2>Welcome Back!</h2>
+
+            <p class="login-subtitle">
+                Login to access your student dashboard
+            </p>
+
+
+            <form id="loginForm">
+
+                <!-- Username -->
+                <div class="form-group">
+
+                    <label for="username">
+                        Username / Email
+                    </label>
+
+                    <input
+                        type="text"
+                        id="username"
+                        name="username"
+                        placeholder="Enter your username or email"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Enter your password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- Remember -->
+                <div class="login-options">
+
+                    <label class="remember-me">
+                        <input type="checkbox" id="remember">
+                        Remember me
+                    </label>
+
+                    <a href="#" onclick="showForgotMessage()">
+                        Forgot Password?
+                    </a>
+
+                </div>
+
+
+                <!-- Login Button -->
+                <button type="submit" class="login-btn">
+                    Login
+                </button>
+
+            </form>
+
+
+            <!-- Register Link -->
+            <div class="register-link">
+
+                <p>
+                    Don't have an account?
+                    <a href="register.html">Create Account</a>
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- Footer -->
+    <footer>
+
+        <p>
+            © 2026 Student Result & Quiz Portal
+        </p>
+
+        <p>
+            Developed using HTML, CSS & JavaScript
+        </p>
+
+    </footer>
+
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+
+</body>
+</html>
