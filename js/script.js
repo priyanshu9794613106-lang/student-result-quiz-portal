@@ -154,3 +154,157 @@ function showForgotMessage() {
         "For this demo project, please contact the administrator to reset your password."
     );
 }
+// ==========================================
+// QUIZ SYSTEM
+// ==========================================
+
+const quizForm = document.getElementById("quizForm");
+
+if (quizForm) {
+
+    quizForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+
+        // Correct answers
+
+        const correctAnswers = {
+
+            q1: "a",
+            q2: "b",
+            q3: "c",
+            q4: "b",
+            q5: "c"
+
+        };
+
+
+        let score = 0;
+
+        let attempted = 0;
+
+
+        // Check answers
+
+        for (let question in correctAnswers) {
+
+            const selected =
+                document.querySelector(
+                    `input[name="${question}"]:checked`
+                );
+
+
+            if (selected) {
+
+                attempted++;
+
+                if (
+                    selected.value ===
+                    correctAnswers[question]
+                ) {
+
+                    score++;
+
+                }
+
+            }
+
+        }
+
+
+        const totalQuestions = 5;
+
+        const percentage =
+            (score / totalQuestions) * 100;
+
+
+        // Result message
+
+        let message = "";
+
+        if (percentage === 100) {
+
+            message =
+                "Excellent! Perfect Score 🎉";
+
+        } else if (percentage >= 80) {
+
+            message =
+                "Great job! Keep it up 👍";
+
+        } else if (percentage >= 60) {
+
+            message =
+                "Good attempt! Keep practicing.";
+
+        } else {
+
+            message =
+                "Keep learning and try again.";
+
+        }
+
+
+        // Display result
+
+        const resultBox =
+            document.getElementById("quizResult");
+
+
+        resultBox.innerHTML = `
+
+            <div class="result-icon">
+                🏆
+            </div>
+
+            <h2>
+                Quiz Completed!
+            </h2>
+
+            <div class="quiz-score">
+                ${score} / ${totalQuestions}
+            </div>
+
+            <p>
+                You attempted
+                <strong>${attempted}</strong>
+                out of
+                <strong>${totalQuestions}</strong>
+                questions.
+            </p>
+
+            <p>
+                Percentage:
+                <strong>${percentage}%</strong>
+            </p>
+
+            <h3>
+                ${message}
+            </h3>
+
+            <button
+                onclick="location.reload()"
+                class="retry-btn"
+            >
+                Try Again
+            </button>
+
+        `;
+
+
+        // Show result
+
+        resultBox.style.display = "block";
+
+
+        // Scroll to result
+
+        resultBox.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    });
+
+}
+
