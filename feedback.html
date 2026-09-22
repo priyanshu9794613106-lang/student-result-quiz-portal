@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Rate Your Experience | Student Result & Quiz Portal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f5f7fb;
+            color: #172033;
+        }
+
+        .feedback-page {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .feedback-container {
+            width: 100%;
+            max-width: 650px;
+        }
+
+        .feedback-card {
+            background: #ffffff;
+            border-radius: 22px;
+            padding: 40px;
+            box-shadow: 0 15px 45px rgba(0, 0, 0, 0.10);
+            text-align: center;
+        }
+
+        .feedback-icon {
+            width: 75px;
+            height: 75px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            background: #eef4ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+        }
+
+        .feedback-card h1 {
+            margin: 0 0 10px;
+            font-size: 30px;
+        }
+
+        .feedback-card .subtitle {
+            color: #667085;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .rating-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
+        .stars {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-bottom: 30px;
+        }
+
+        .star {
+            border: none;
+            background: transparent;
+            font-size: 42px;
+            cursor: pointer;
+            color: #cbd5e1;
+            transition: 0.2s;
+            padding: 0 3px;
+        }
+
+        .star:hover {
+            transform: scale(1.15);
+        }
+
+        .star.active {
+            color: #f5b301;
+        }
+
+        .rating-text {
+            min-height: 24px;
+            color: #475467;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            text-align: left;
+            margin-bottom: 22px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 1px solid #d0d5dd;
+            border-radius: 12px;
+            outline: none;
+            font-size: 15px;
+            font-family: inherit;
+            transition: 0.2s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.10);
+        }
+
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        .submit-feedback {
+            width: 100%;
+            border: none;
+            padding: 15px 20px;
+            border-radius: 12px;
+            background: #2563eb;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .submit-feedback:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 22px;
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        .success-box {
+            display: none;
+            margin-top: 20px;
+            padding: 18px;
+            border-radius: 12px;
+            background: #ecfdf3;
+            color: #027a48;
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 600px) {
+            .feedback-card {
+                padding: 28px 20px;
+            }
+
+            .feedback-card h1 {
+                font-size: 25px;
+            }
+
+            .star {
+                font-size: 35px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="feedback-page">
+
+        <div class="feedback-container">
+
+            <div class="feedback-card">
+
+                <div class="feedback-icon">
+                    ⭐
+                </div>
+
+                <h1>Rate Your Experience</h1>
+
+                <p class="subtitle">
+                    Thank you for taking the test on our Student Result & Quiz Portal.
+                    Your feedback helps us improve the experience for future students.
+                </p>
+
+                <div class="rating-title">
+                    How would you rate your experience?
+                </div>
+
+                <div class="stars" id="stars">
+
+                    <button class="star" type="button" data-rating="1">
+                        ★
+                    </button>
+
+                    <button class="star" type="button" data-rating="2">
+                        ★
+                    </button>
+
+                    <button class="star" type="button" data-rating="3">
+                        ★
+                    </button>
+
+                    <button class="star" type="button" data-rating="4">
+                        ★
+                    </button>
+
+                    <button class="star" type="button" data-rating="5">
+                        ★
+                    </button>
+
+                </div>
+
+                <div class="rating-text" id="ratingText">
+                    Select a rating
+                </div>
+
+                <form id="feedbackForm">
+
+                    <div class="form-group">
+                        <label for="studentName">
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="studentName"
+                            placeholder="Enter your name"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="studentEmail">
+                            Email
+                        </label>
+
+                        <input
+                            type="email"
+                            id="studentEmail"
+                            placeholder="Enter your email"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="feedback">
+                            Your Feedback
+                        </label>
+
+                        <textarea
+                            id="feedback"
+                            placeholder="Tell us about your experience..."
+                            required
+                        ></textarea>
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="submit-feedback"
+                    >
+                        Submit Feedback
+                    </button>
+
+                </form>
+
+                <div
+                    class="success-box"
+                    id="successBox"
+                >
+                    ✅ Thank you! Your rating and feedback have been recorded
+                    successfully.
+                </div>
+
+                <a
+                    href="online-tests.html"
+                    class="back-link"
+                >
+                    ← Back to Online Tests
+                </a>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <script>
+
+        let selectedRating = 0;
+
+        const stars = document.querySelectorAll(".star");
+        const ratingText = document.getElementById("ratingText");
+        const feedbackForm = document.getElementById("feedbackForm");
+        const successBox = document.getElementById("successBox");
+
+
+        const ratingMessages = {
+            1: "Very Poor",
+            2: "Poor",
+            3: "Average",
+            4: "Good",
+            5: "Excellent"
+        };
+
+
+        stars.forEach(function(star) {
+
+            star.addEventListener("click", function() {
+
+                selectedRating = Number(
+                    this.getAttribute("data-rating")
+                );
+
+                stars.forEach(function(item) {
+
+                    const itemRating = Number(
+                        item.getAttribute("data-rating")
+                    );
+
+                    if (itemRating <= selectedRating) {
+                        item.classList.add("active");
+                    } else {
+                        item.classList.remove("active");
+                    }
+
+                });
+
+                ratingText.textContent =
+                    selectedRating +
+                    " / 5 — " +
+                    ratingMessages[selectedRating];
+
+            });
+
+        });
+
+
+        feedbackForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            if (selectedRating === 0) {
+
+                alert("Please select a rating from 1 to 5 stars.");
+
+                return;
+            }
+
+
+            const studentName =
+                document.getElementById("studentName").value.trim();
+
+            const studentEmail =
+                document.getElementById("studentEmail").value.trim();
+
+            const feedback =
+                document.getElementById("feedback").value.trim();
+
+
+            const feedbackRecord = {
+
+                id: "REV-" + Date.now(),
+
+                studentName: studentName,
+
+                studentEmail: studentEmail,
+
+                rating: selectedRating,
+
+                feedback: feedback,
+
+                date: new Date().toLocaleString()
+
+            };
+
+
+            let allFeedback =
+                JSON.parse(
+                    localStorage.getItem("portalFeedback")
+                ) || [];
+
+
+            allFeedback.push(feedbackRecord);
+
+
+            localStorage.setItem(
+                "portalFeedback",
+                JSON.stringify(allFeedback)
+            );
+
+
+            successBox.style.display = "block";
+
+            feedbackForm.reset();
+
+            selectedRating = 0;
+
+            stars.forEach(function(star) {
+                star.classList.remove("active");
+            });
+
+            ratingText.textContent = "Select a rating";
+
+
+            console.log(
+                "Feedback saved:",
+                feedbackRecord
+            );
+
+        });
+
+    </script>
+
+</body>
+</html>
