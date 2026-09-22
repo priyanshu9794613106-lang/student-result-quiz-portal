@@ -10,7 +10,7 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Register | Student Portal</title>
+    <title>Register | Student Result & Quiz Portal</title>
 
     <link
         rel="stylesheet"
@@ -19,321 +19,382 @@
 
 </head>
 
+
 <body>
 
-    <!-- Header -->
 
-    <header>
+<!-- ================= HEADER ================= -->
 
-        <div class="container">
+<header class="site-header">
 
-            <h1>Student Portal</h1>
+    <div class="header-container">
 
-            <nav>
+        <a
+            href="index.html"
+            class="brand"
+        >
+            Student Portal
+        </a>
 
-                <a href="index.html">Home</a>
 
-                <a href="login.html">Login</a>
+        <nav class="main-navigation">
 
-                <a
-                    href="register.html"
-                    class="active"
+            <a
+                href="index.html"
+                class="nav-link"
+            >
+                Home
+            </a>
+
+            <a
+                href="login.html"
+                class="nav-link"
+            >
+                Login
+            </a>
+
+            <a
+                href="register.html"
+                class="nav-link"
+            >
+                Register
+            </a>
+
+            <a
+                href="quiz.html"
+                class="nav-link"
+            >
+                Quiz
+            </a>
+
+            <a
+                href="online-tests.html"
+                class="nav-link"
+            >
+                Online Tests
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<!-- ================= REGISTRATION ================= -->
+
+<main class="form-page">
+
+
+    <div class="form-card">
+
+
+        <h1>
+            Create Your Account
+        </h1>
+
+
+        <p>
+            Register to access your student dashboard,
+            online tests and academic services.
+        </p>
+
+
+        <form id="registerForm">
+
+
+            <!-- FULL NAME -->
+
+            <div class="form-group">
+
+                <label for="fullName">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="fullName"
+                    name="fullName"
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    required
                 >
-                    Register
-                </a>
-
-                <a href="quiz.html">Quiz</a>
-
-            </nav>
-
-        </div>
-
-    </header>
-
-
-    <!-- Registration -->
-
-    <main class="register-section">
-
-        <div class="register-container">
-
-            <div class="register-heading">
-
-                <span>
-                    STUDENT REGISTRATION
-                </span>
-
-                <h2>
-                    Create Your Account
-                </h2>
-
-                <p>
-                    Register to access your student
-                    dashboard and academic services.
-                </p>
 
             </div>
 
 
-            <div class="register-card">
-
-                <div
-                    id="registerMessage"
-                    class="register-message"
-                ></div>
-
-
-                <form id="registerForm">
-
-
-                    <!-- Full Name -->
-
-                    <div class="form-group">
-
-                        <label for="fullName">
-                            Full Name
-                        </label>
-
-                        <input
-                            type="text"
-                            id="fullName"
-                            placeholder="Enter your full name"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- Email -->
-
-                    <div class="form-group">
-
-                        <label for="email">
-                            Email Address
-                        </label>
-
-                        <input
-                            type="email"
-                            id="email"
-                            placeholder="Enter your email"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- Phone -->
-
-                    <div class="form-group">
-
-                        <label for="phone">
-                            Mobile Number
-                        </label>
-
-                        <input
-                            type="tel"
-                            id="phone"
-                            placeholder="Enter 10-digit mobile number"
-                            maxlength="10"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- Course -->
-
-                    <div class="form-group">
-
-                        <label for="course">
-                            Course
-                        </label>
-
-                        <select id="course" required>
-
-                            <option value="">
-                                Select Course
-                            </option>
-
-                            <option value="B.Tech CSE">
-                                B.Tech CSE
-                            </option>
-
-                            <option value="B.Tech IT">
-                                B.Tech IT
-                            </option>
-
-                            <option value="BCA">
-                                BCA
-                            </option>
-
-                            <option value="MCA">
-                                MCA
-                            </option>
-
-                            <option value="Diploma CSE">
-                                Diploma CSE
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- Semester -->
-
-                    <div class="form-group">
-
-                        <label for="semester">
-                            Semester
-                        </label>
-
-                        <select id="semester" required>
-
-                            <option value="">
-                                Select Semester
-                            </option>
-
-                            <option value="1st Semester">
-                                1st Semester
-                            </option>
-
-                            <option value="2nd Semester">
-                                2nd Semester
-                            </option>
-
-                            <option value="3rd Semester">
-                                3rd Semester
-                            </option>
-
-                            <option value="4th Semester">
-                                4th Semester
-                            </option>
-
-                            <option value="5th Semester">
-                                5th Semester
-                            </option>
-
-                            <option value="6th Semester">
-                                6th Semester
-                            </option>
-
-                            <option value="7th Semester">
-                                7th Semester
-                            </option>
-
-                            <option value="8th Semester">
-                                8th Semester
-                            </option>
-
-                        </select>
-
-                    </div>
-
-
-                    <!-- Password -->
-
-                    <div class="form-group">
-
-                        <label for="registerPassword">
-                            Password
-                        </label>
-
-                        <input
-                            type="password"
-                            id="registerPassword"
-                            placeholder="Create password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- Confirm Password -->
-
-                    <div class="form-group">
-
-                        <label for="confirmPassword">
-                            Confirm Password
-                        </label>
-
-                        <input
-                            type="password"
-                            id="confirmPassword"
-                            placeholder="Confirm password"
-                            required
-                        >
-
-                    </div>
-
-
-                    <!-- Terms -->
-
-                    <div class="terms-box">
-
-                        <label>
-
-                            <input
-                                type="checkbox"
-                                id="terms"
-                                required
-                            >
-
-                            I agree to the terms and
-                            conditions.
-
-                        </label>
-
-                    </div>
-
-
-                    <!-- Submit -->
-
-                    <button
-                        type="submit"
-                        class="register-btn"
-                    >
-                        Create Account
-                    </button>
-
-                </form>
-
-
-                <div class="login-link">
-
-                    <p>
-                        Already have an account?
-
-                        <a href="login.html">
-                            Login here
-                        </a>
-                    </p>
-
-                </div>
+            <!-- EMAIL -->
+
+            <div class="form-group">
+
+                <label for="email">
+                    Email Address
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Enter your email"
+                    autocomplete="email"
+                    required
+                >
 
             </div>
 
+
+            <!-- MOBILE -->
+
+            <div class="form-group">
+
+                <label for="phone">
+                    Mobile Number
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter 10-digit mobile number"
+                    maxlength="10"
+                    inputmode="numeric"
+                    autocomplete="tel"
+                    required
+                >
+
+            </div>
+
+
+            <!-- COURSE -->
+
+            <div class="form-group">
+
+                <label for="course">
+                    Course
+                </label>
+
+                <select
+                    id="course"
+                    name="course"
+                    required
+                >
+
+                    <option value="">
+                        Select Course
+                    </option>
+
+                    <option value="B.Tech CSE">
+                        B.Tech CSE
+                    </option>
+
+                    <option value="BCA">
+                        BCA
+                    </option>
+
+                    <option value="MCA">
+                        MCA
+                    </option>
+
+                    <option value="Diploma CSE">
+                        Diploma CSE
+                    </option>
+
+                    <option value="Other">
+                        Other
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- SEMESTER -->
+
+            <div class="form-group">
+
+                <label for="semester">
+                    Semester
+                </label>
+
+                <select
+                    id="semester"
+                    name="semester"
+                    required
+                >
+
+                    <option value="">
+                        Select Semester
+                    </option>
+
+                    <option value="1st Semester">
+                        1st Semester
+                    </option>
+
+                    <option value="2nd Semester">
+                        2nd Semester
+                    </option>
+
+                    <option value="3rd Semester">
+                        3rd Semester
+                    </option>
+
+                    <option value="4th Semester">
+                        4th Semester
+                    </option>
+
+                    <option value="5th Semester">
+                        5th Semester
+                    </option>
+
+                    <option value="6th Semester">
+                        6th Semester
+                    </option>
+
+                    <option value="7th Semester">
+                        7th Semester
+                    </option>
+
+                    <option value="8th Semester">
+                        8th Semester
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    placeholder="Create a password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label for="confirmPassword">
+                    Confirm Password
+                </label>
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    name="confirmPassword"
+                    placeholder="Confirm your password"
+                    autocomplete="new-password"
+                    minlength="6"
+                    required
+                >
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <div
+                style="
+                    display:flex;
+                    align-items:flex-start;
+                    gap:10px;
+                    margin-bottom:20px;
+                "
+            >
+
+                <input
+                    type="checkbox"
+                    id="terms"
+                    name="terms"
+                    style="
+                        width:18px;
+                        height:18px;
+                        margin-top:3px;
+                    "
+                    required
+                >
+
+                <label
+                    for="terms"
+                    style="
+                        font-size:14px;
+                        color:#667085;
+                        cursor:pointer;
+                    "
+                >
+                    I agree to the terms and conditions.
+                </label>
+
+            </div>
+
+
+            <!-- SUBMIT -->
+
+            <button
+                type="submit"
+                class="form-button"
+            >
+                Create Account
+            </button>
+
+
+        </form>
+
+
+        <!-- LOGIN LINK -->
+
+        <div class="form-footer">
+
+            Already have an account?
+
+            <a href="login.html">
+                Login here
+            </a>
+
         </div>
 
-    </main>
+
+    </div>
+
+</main>
 
 
-    <!-- Footer -->
+<!-- ================= FOOTER ================= -->
 
-    <footer>
+<footer class="site-footer">
 
-        <p>
-            © 2026 Student Result & Quiz Portal
-        </p>
+    <div class="footer-container">
 
-        <p>
-            Developed using HTML, CSS & JavaScript
-        </p>
+        <div class="footer-bottom">
 
-    </footer>
+            © 2026 Student Result & Quiz Portal.
+            Developed using HTML, CSS & JavaScript.
+
+        </div>
+
+    </div>
+
+</footer>
 
 
-    <script src="js/script.js"></script>
+<!-- IMPORTANT: JAVASCRIPT -->
+
+<script src="js/script.js"></script>
+
 
 </body>
 
