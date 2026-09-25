@@ -3,294 +3,293 @@
    MAIN JAVASCRIPT
    ========================================================= */
 
+
+/* =========================================================
+   GLOBAL RESULT STORAGE
+   ========================================================= */
+
+let latestResult = null;
+
+
+/* =========================================================
+   DOM READY
+   ========================================================= */
+
 document.addEventListener("DOMContentLoaded", function () {
+
 
     /* =====================================================
        REGISTRATION
        ===================================================== */
 
-    const registerForm = document.getElementById("registerForm");
+    const registerForm =
+        document.getElementById("registerForm");
+
 
     if (registerForm) {
 
-        registerForm.addEventListener("submit", function (event) {
+        registerForm.addEventListener(
+            "submit",
+            function (event) {
 
-            event.preventDefault();
-
-            const fullNameElement =
-                document.getElementById("fullName");
-
-            const emailElement =
-                document.getElementById("email");
-
-            const phoneElement =
-                document.getElementById("phone");
-
-            const courseElement =
-                document.getElementById("course");
-
-            const semesterElement =
-                document.getElementById("semester");
-
-            const passwordElement =
-                document.getElementById("password");
-
-            const confirmPasswordElement =
-                document.getElementById("confirmPassword");
-
-            const termsElement =
-                document.getElementById("terms");
+                event.preventDefault();
 
 
-            /* Check required elements */
+                const fullNameElement =
+                    document.getElementById("fullName");
 
-            if (
-                !fullNameElement ||
-                !emailElement ||
-                !phoneElement ||
-                !courseElement ||
-                !semesterElement ||
-                !passwordElement ||
-                !confirmPasswordElement
-            ) {
+                const emailElement =
+                    document.getElementById("email");
+
+                const phoneElement =
+                    document.getElementById("phone");
+
+                const courseElement =
+                    document.getElementById("course");
+
+                const semesterElement =
+                    document.getElementById("semester");
+
+                const passwordElement =
+                    document.getElementById("password");
+
+                const confirmPasswordElement =
+                    document.getElementById("confirmPassword");
+
+                const termsElement =
+                    document.getElementById("terms");
+
+
+                if (
+                    !fullNameElement ||
+                    !emailElement ||
+                    !phoneElement ||
+                    !courseElement ||
+                    !semesterElement ||
+                    !passwordElement ||
+                    !confirmPasswordElement
+                ) {
+
+                    alert(
+                        "Registration form fields are missing. Please check register.html."
+                    );
+
+                    return;
+                }
+
+
+                const fullName =
+                    fullNameElement.value.trim();
+
+                const email =
+                    emailElement.value
+                        .trim()
+                        .toLowerCase();
+
+                const phone =
+                    phoneElement.value.trim();
+
+                const course =
+                    courseElement.value;
+
+                const semester =
+                    semesterElement.value;
+
+                const password =
+                    passwordElement.value;
+
+                const confirmPassword =
+                    confirmPasswordElement.value;
+
+
+                const namePattern =
+                    /^[A-Za-z ]+$/;
+
+
+                if (!namePattern.test(fullName)) {
+
+                    alert(
+                        "Please enter a valid name using alphabets only."
+                    );
+
+                    return;
+                }
+
+
+                if (fullName.length < 3) {
+
+                    alert(
+                        "Name must contain at least 3 characters."
+                    );
+
+                    return;
+                }
+
+
+                const emailPattern =
+                    /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+                if (!emailPattern.test(email)) {
+
+                    alert(
+                        "Please enter a valid email address."
+                    );
+
+                    return;
+                }
+
+
+                const phonePattern =
+                    /^[0-9]{10}$/;
+
+
+                if (!phonePattern.test(phone)) {
+
+                    alert(
+                        "Please enter a valid 10-digit mobile number."
+                    );
+
+                    return;
+                }
+
+
+                if (password.length < 6) {
+
+                    alert(
+                        "Password must be at least 6 characters long."
+                    );
+
+                    return;
+                }
+
+
+                if (password !== confirmPassword) {
+
+                    alert(
+                        "Password and Confirm Password do not match."
+                    );
+
+                    return;
+                }
+
+
+                if (
+                    termsElement &&
+                    !termsElement.checked
+                ) {
+
+                    alert(
+                        "Please agree to the terms and conditions."
+                    );
+
+                    return;
+                }
+
+
+                const existingUser =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "studentData"
+                        )
+                    );
+
+
+                if (
+                    existingUser &&
+                    existingUser.email === email
+                ) {
+
+                    alert(
+                        "An account with this email already exists. Please login."
+                    );
+
+                    window.location.href =
+                        "login.html";
+
+                    return;
+                }
+
+
+                const studentData = {
+
+                    id:
+                        "STU-" +
+                        Date.now(),
+
+                    fullName:
+                        fullName,
+
+                    email:
+                        email,
+
+                    phone:
+                        phone,
+
+                    course:
+                        course,
+
+                    semester:
+                        semester,
+
+                    password:
+                        password,
+
+                    registeredAt:
+                        new Date().toLocaleString()
+
+                };
+
+
+                localStorage.setItem(
+                    "studentData",
+                    JSON.stringify(studentData)
+                );
+
+
+                let registeredStudents =
+                    JSON.parse(
+                        localStorage.getItem(
+                            "registeredStudents"
+                        )
+                    ) || [];
+
+
+                registeredStudents.push({
+
+                    id:
+                        studentData.id,
+
+                    name:
+                        studentData.fullName,
+
+                    email:
+                        studentData.email,
+
+                    registeredAt:
+                        studentData.registeredAt
+
+                });
+
+
+                localStorage.setItem(
+                    "registeredStudents",
+                    JSON.stringify(
+                        registeredStudents
+                    )
+                );
+
 
                 alert(
-                    "Registration form fields are missing. Please check register.html."
+                    "Registration successful! Please login to continue."
                 );
 
-                return;
-            }
-
-
-            const fullName =
-                fullNameElement.value.trim();
-
-            const email =
-                emailElement.value.trim().toLowerCase();
-
-            const phone =
-                phoneElement.value.trim();
-
-            const course =
-                courseElement.value;
-
-            const semester =
-                semesterElement.value;
-
-            const password =
-                passwordElement.value;
-
-            const confirmPassword =
-                confirmPasswordElement.value;
-
-
-            /* Name validation */
-
-            const namePattern =
-                /^[A-Za-z ]+$/;
-
-            if (!namePattern.test(fullName)) {
-
-                alert(
-                    "Please enter a valid name using alphabets only."
-                );
-
-                return;
-            }
-
-
-            if (fullName.length < 3) {
-
-                alert(
-                    "Name must contain at least 3 characters."
-                );
-
-                return;
-            }
-
-
-            /* Email validation */
-
-            const emailPattern =
-                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-            if (!emailPattern.test(email)) {
-
-                alert(
-                    "Please enter a valid email address."
-                );
-
-                return;
-            }
-
-
-            /* Phone validation */
-
-            const phonePattern =
-                /^[0-9]{10}$/;
-
-            if (!phonePattern.test(phone)) {
-
-                alert(
-                    "Please enter a valid 10-digit mobile number."
-                );
-
-                return;
-            }
-
-
-            /* Password validation */
-
-            if (password.length < 6) {
-
-                alert(
-                    "Password must be at least 6 characters long."
-                );
-
-                return;
-            }
-
-
-            /* Confirm password */
-
-            if (password !== confirmPassword) {
-
-                alert(
-                    "Password and Confirm Password do not match."
-                );
-
-                return;
-            }
-
-
-            /* Terms */
-
-            if (termsElement && !termsElement.checked) {
-
-                alert(
-                    "Please agree to the terms and conditions."
-                );
-
-                return;
-            }
-
-
-            /* =================================================
-               CHECK EXISTING USER
-               ================================================= */
-
-            const existingUser =
-                JSON.parse(
-                    localStorage.getItem("studentData")
-                );
-
-
-            if (
-                existingUser &&
-                existingUser.email === email
-            ) {
-
-                alert(
-                    "An account with this email already exists. Please login."
-                );
 
                 window.location.href =
                     "login.html";
 
-                return;
             }
-
-
-            /* =================================================
-               SAVE STUDENT
-               ================================================= */
-
-            const studentData = {
-
-                id:
-                    "STU-" +
-                    Date.now(),
-
-                fullName:
-                    fullName,
-
-                email:
-                    email,
-
-                phone:
-                    phone,
-
-                course:
-                    course,
-
-                semester:
-                    semester,
-
-                password:
-                    password,
-
-                registeredAt:
-                    new Date().toLocaleString()
-
-            };
-
-
-            localStorage.setItem(
-                "studentData",
-                JSON.stringify(studentData)
-            );
-
-
-            /* =================================================
-               CREATE STATISTICS ENTRY
-               ================================================= */
-
-            let registeredStudents =
-                JSON.parse(
-                    localStorage.getItem(
-                        "registeredStudents"
-                    )
-                ) || [];
-
-
-            registeredStudents.push({
-
-                id:
-                    studentData.id,
-
-                name:
-                    studentData.fullName,
-
-                email:
-                    studentData.email,
-
-                registeredAt:
-                    studentData.registeredAt
-
-            });
-
-
-            localStorage.setItem(
-                "registeredStudents",
-                JSON.stringify(
-                    registeredStudents
-                )
-            );
-
-
-            /* =================================================
-               SUCCESS
-               ================================================= */
-
-            alert(
-                "Registration successful! Please login to continue."
-            );
-
-
-            window.location.href =
-                "login.html";
-
-        });
+        );
 
     }
 
@@ -336,7 +335,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
                 const username =
-                    usernameElement.value.trim().toLowerCase();
+                    usernameElement.value
+                        .trim()
+                        .toLowerCase();
 
                 const password =
                     passwordElement.value;
@@ -356,8 +357,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* Get registered student */
-
                 const studentData =
                     JSON.parse(
                         localStorage.getItem(
@@ -365,10 +364,6 @@ document.addEventListener("DOMContentLoaded", function () {
                         )
                     );
 
-
-                /* =================================================
-                   LOGIN USING REGISTERED ACCOUNT
-                   ================================================= */
 
                 if (studentData) {
 
@@ -397,10 +392,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
 
 
-                /* =================================================
-                   DEMO ACCOUNT
-                   ================================================= */
-
                 const demoUsername =
                     "student";
 
@@ -415,17 +406,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
                     const demoStudent = {
 
-                        id: "STU-DEMO",
+                        id:
+                            "STU-DEMO",
 
-                        fullName: "Student",
+                        fullName:
+                            "Student",
 
-                        email: "student@example.com",
+                        email:
+                            "student@example.com",
 
-                        phone: "",
+                        phone:
+                            "",
 
-                        course: "B.Tech CSE",
+                        course:
+                            "B.Tech CSE",
 
-                        semester: "3rd Semester"
+                        semester:
+                            "3rd Semester"
 
                     };
 
@@ -462,6 +459,13 @@ document.addEventListener("DOMContentLoaded", function () {
        ===================================================== */
 
     setupBasicQuiz();
+
+
+    /* =====================================================
+       LOAD LAST RESULT
+       ===================================================== */
+
+    loadLatestResult();
 
 });
 
@@ -558,7 +562,9 @@ function showLoginMessage(
 
 
     if (oldMessage) {
+
         oldMessage.remove();
+
     }
 
 
@@ -638,11 +644,11 @@ function loadStudentInformation() {
 
 
     if (!student) {
+
         return;
+
     }
 
-
-    /* Possible name elements */
 
     const nameElements =
         document.querySelectorAll(
@@ -658,8 +664,6 @@ function loadStudentInformation() {
     });
 
 
-    /* Email */
-
     const emailElements =
         document.querySelectorAll(
             "#studentEmail, .student-email, [data-student-email]"
@@ -674,8 +678,6 @@ function loadStudentInformation() {
     });
 
 
-    /* Course */
-
     const courseElements =
         document.querySelectorAll(
             "#studentCourse, .student-course, [data-student-course]"
@@ -689,8 +691,6 @@ function loadStudentInformation() {
 
     });
 
-
-    /* Semester */
 
     const semesterElements =
         document.querySelectorAll(
@@ -746,7 +746,9 @@ function setupBasicQuiz() {
 
 
     if (!quizForm) {
+
         return;
+
     }
 
 
@@ -835,21 +837,98 @@ function calculateBasicQuiz() {
         );
 
 
-    const result =
+    const result = {
+
+        score:
+            score,
+
+        total:
+            total,
+
+        percentage:
+            percentage,
+
+        passed:
+            percentage >= 70,
+
+        testName:
+            "Basic Quiz",
+
+        studentName:
+            getCurrentStudentName(),
+
+        date:
+            new Date().toLocaleDateString(
+                "en-IN"
+            ),
+
+        certificateId:
+            createCertificateId()
+
+    };
+
+
+    latestResult =
+        result;
+
+
+    localStorage.setItem(
+        "lastTestResult",
+        JSON.stringify(result)
+    );
+
+
+    const resultElement =
         document.getElementById(
             "quizResult"
         );
 
 
-    if (result) {
+    if (resultElement) {
 
-        result.innerHTML = `
+        resultElement.innerHTML = `
+
             <div class="quiz-result-card">
-                <h2>Quiz Completed</h2>
-                <p><strong>Score:</strong> ${score}/${total}</p>
-                <p><strong>Percentage:</strong> ${percentage}%</p>
-                <p><strong>Attempted:</strong> ${attempted}/${total}</p>
+
+                <h2>
+                    Quiz Completed
+                </h2>
+
+                <p>
+                    <strong>Score:</strong>
+                    ${score}/${total}
+                </p>
+
+                <p>
+                    <strong>Percentage:</strong>
+                    ${percentage}%
+                </p>
+
+                <p>
+                    <strong>Attempted:</strong>
+                    ${attempted}/${total}
+                </p>
+
+                ${
+                    result.passed
+                    ? `
+                        <button
+                            type="button"
+                            onclick="generateCertificate()"
+                        >
+                            🎓 Generate Certificate
+                        </button>
+                      `
+                    : `
+                        <p>
+                            Certificate requires a minimum
+                            passing score of 70%.
+                        </p>
+                      `
+                }
+
             </div>
+
         `;
 
     }
@@ -858,7 +937,1220 @@ function calculateBasicQuiz() {
 
 
 /* =========================================================
-   FORGOT OLD TEST DATA HELPER
+   LOAD LATEST RESULT
+   ========================================================= */
+
+function loadLatestResult() {
+
+    try {
+
+        const savedResult =
+            JSON.parse(
+                localStorage.getItem(
+                    "lastTestResult"
+                )
+            );
+
+
+        if (savedResult) {
+
+            latestResult =
+                savedResult;
+
+        }
+
+    } catch (error) {
+
+        latestResult =
+            null;
+
+    }
+
+}
+
+
+/* =========================================================
+   CURRENT STUDENT NAME
+   ========================================================= */
+
+function getCurrentStudentName() {
+
+    const currentStudent =
+        JSON.parse(
+            localStorage.getItem(
+                "currentStudent"
+            )
+        );
+
+
+    const studentData =
+        JSON.parse(
+            localStorage.getItem(
+                "studentData"
+            )
+        );
+
+
+    const student =
+        currentStudent ||
+        studentData;
+
+
+    return (
+        student &&
+        student.fullName
+    ) || "Student";
+
+}
+
+
+/* =========================================================
+   CERTIFICATE ID
+   ========================================================= */
+
+function createCertificateId() {
+
+    return (
+
+        "SRQP-" +
+
+        new Date()
+            .getFullYear() +
+
+        "-" +
+
+        Math.random()
+            .toString(36)
+            .substring(2, 8)
+            .toUpperCase()
+
+    );
+
+}
+
+
+/* =========================================================
+   PREMIUM CERTIFICATE GENERATOR
+   ========================================================= */
+
+function generateCertificate() {
+
+    const result =
+        latestResult ||
+        JSON.parse(
+            localStorage.getItem(
+                "lastTestResult"
+            )
+        );
+
+
+    if (!result) {
+
+        alert(
+            "No test result found."
+        );
+
+        return;
+
+    }
+
+
+    if (!result.passed) {
+
+        alert(
+            "Certificate is available only after passing the assessment."
+        );
+
+        return;
+
+    }
+
+
+    const certificateWindow =
+        window.open(
+            "",
+            "_blank"
+        );
+
+
+    if (!certificateWindow) {
+
+        alert(
+            "Please allow pop-ups for this website to generate the certificate."
+        );
+
+        return;
+
+    }
+
+
+    const issueDate =
+        result.date ||
+        new Date().toLocaleDateString(
+            "en-IN",
+            {
+                day:
+                    "2-digit",
+
+                month:
+                    "long",
+
+                year:
+                    "numeric"
+            }
+        );
+
+
+    const studentName =
+        result.studentName ||
+        getCurrentStudentName();
+
+
+    const testName =
+        result.testName ||
+        "Online Assessment";
+
+
+    const certificateId =
+        result.certificateId ||
+        createCertificateId();
+
+
+    certificateWindow.document.write(`
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>
+    Certificate of Achievement
+</title>
+
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 30px;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            #dbeafe,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #e0e7ff,
+            transparent 35%
+        ),
+        #f1f5f9;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    color: #0f172a;
+
+}
+
+
+.certificate {
+
+    position: relative;
+
+    width: min(
+        1120px,
+        100%
+    );
+
+    min-height: 720px;
+
+    background: #ffffff;
+
+    border-radius: 18px;
+
+    padding: 70px 85px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 30px 80px
+        rgba(15,23,42,.18);
+
+    border:
+        1px solid #cbd5e1;
+
+}
+
+
+.certificate::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 18px;
+
+    border:
+        2px solid #1d4ed8;
+
+    border-radius: 10px;
+
+}
+
+
+.certificate::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 28px;
+
+    border:
+        1px solid #d4af37;
+
+    border-radius: 7px;
+
+}
+
+
+.corner {
+
+    position: absolute;
+
+    width: 80px;
+
+    height: 80px;
+
+    border-color: #d4af37;
+
+    border-style: solid;
+
+    z-index: 2;
+
+}
+
+
+.top-left {
+
+    top: 38px;
+
+    left: 38px;
+
+    border-width:
+        5px 0 0 5px;
+
+}
+
+
+.top-right {
+
+    top: 38px;
+
+    right: 38px;
+
+    border-width:
+        5px 5px 0 0;
+
+}
+
+
+.bottom-left {
+
+    bottom: 38px;
+
+    left: 38px;
+
+    border-width:
+        0 0 5px 5px;
+
+}
+
+
+.bottom-right {
+
+    bottom: 38px;
+
+    right: 38px;
+
+    border-width:
+        0 5px 5px 0;
+
+}
+
+
+.content {
+
+    position: relative;
+
+    z-index: 5;
+
+}
+
+
+.portal-name {
+
+    text-align: center;
+
+    font-size: 15px;
+
+    font-weight: 900;
+
+    letter-spacing: 4px;
+
+    color: #1d4ed8;
+
+}
+
+
+.portal-subtitle {
+
+    text-align: center;
+
+    margin-top: 8px;
+
+    font-size: 11px;
+
+    letter-spacing: 2px;
+
+    color: #64748b;
+
+}
+
+
+.divider {
+
+    width: 110px;
+
+    height: 3px;
+
+    margin: 18px auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            #1d4ed8,
+            #d4af37
+        );
+
+}
+
+
+.title {
+
+    text-align: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            38px,
+            5vw,
+            58px
+        );
+
+    letter-spacing: 3px;
+
+    margin: 10px 0 5px;
+
+    color: #0f172a;
+
+    text-transform:
+        uppercase;
+
+}
+
+
+.subtitle {
+
+    text-align: center;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    letter-spacing: 3px;
+
+    color: #64748b;
+
+}
+
+
+.presented {
+
+    text-align: center;
+
+    margin-top: 42px;
+
+    color: #64748b;
+
+    font-size: 14px;
+
+}
+
+
+.student-name {
+
+    text-align: center;
+
+    margin: 15px 0 10px;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size:
+        clamp(
+            34px,
+            5vw,
+            52px
+        );
+
+    font-weight: 700;
+
+    color: #1e3a8a;
+
+}
+
+
+.name-line {
+
+    width: 360px;
+
+    max-width: 70%;
+
+    height: 1px;
+
+    margin: auto;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            #d4af37,
+            transparent
+        );
+
+}
+
+
+.description {
+
+    text-align: center;
+
+    margin-top: 25px;
+
+    color: #475569;
+
+    font-size: 15px;
+
+}
+
+
+.test-name {
+
+    text-align: center;
+
+    margin: 12px auto 25px;
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    color: #0f172a;
+
+}
+
+
+.affiliation {
+
+    max-width: 650px;
+
+    margin: 0 auto 28px;
+
+    padding: 12px 18px;
+
+    text-align: center;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    border:
+        1px solid #e2e8f0;
+
+    color: #334155;
+
+    font-size: 13px;
+
+}
+
+
+.affiliation strong {
+
+    color: #1e3a8a;
+
+}
+
+
+.stats {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            3,
+            1fr
+        );
+
+    gap: 16px;
+
+    max-width: 760px;
+
+    margin: 0 auto 28px;
+
+}
+
+
+.stat {
+
+    padding: 18px;
+
+    text-align: center;
+
+    border:
+        1px solid #e2e8f0;
+
+    border-radius: 12px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8fafc
+        );
+
+}
+
+
+.stat-label {
+
+    font-size: 10px;
+
+    font-weight: 800;
+
+    letter-spacing: 1.5px;
+
+    color: #64748b;
+
+}
+
+
+.stat-value {
+
+    margin-top: 7px;
+
+    font-size: 20px;
+
+    font-weight: 900;
+
+    color: #1d4ed8;
+
+}
+
+
+.meta {
+
+    text-align: center;
+
+    font-size: 12px;
+
+    color: #64748b;
+
+}
+
+
+.meta strong {
+
+    color: #0f172a;
+
+}
+
+
+.footer {
+
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        150px
+        1fr;
+
+    align-items: end;
+
+    gap: 30px;
+
+    margin-top: 48px;
+
+}
+
+
+.signature {
+
+    text-align: center;
+
+}
+
+
+.signature-name {
+
+    font-family:
+        "Brush Script MT",
+        "Segoe Script",
+        cursive;
+
+    font-size: 30px;
+
+}
+
+
+.signature-line {
+
+    width: 190px;
+
+    height: 1px;
+
+    margin: 5px auto;
+
+    background: #334155;
+
+}
+
+
+.signature-role {
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    color: #64748b;
+
+}
+
+
+.seal {
+
+    width: 110px;
+
+    height: 110px;
+
+    margin: auto;
+
+    border:
+        4px solid #d4af37;
+
+    border-radius: 50%;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #fffdf0,
+            #f8fafc
+        );
+
+    color: #92400e;
+
+    font-size: 10px;
+
+    font-weight: 900;
+
+    letter-spacing: 1px;
+
+}
+
+
+.seal-star {
+
+    font-size: 25px;
+
+    color: #d4af37;
+
+}
+
+
+.issuer {
+
+    text-align: center;
+
+}
+
+
+.issuer-name {
+
+    font-size: 14px;
+
+    font-weight: 900;
+
+    color: #1e3a8a;
+
+}
+
+
+.issuer-sub {
+
+    margin-top: 5px;
+
+    font-size: 10px;
+
+    color: #64748b;
+
+    line-height: 1.5;
+
+}
+
+
+.print-controls {
+
+    text-align: center;
+
+    margin-top: 22px;
+
+}
+
+
+.print-btn {
+
+    border: none;
+
+    border-radius: 10px;
+
+    padding: 13px 22px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #1d4ed8,
+            #2563eb
+        );
+
+    color: white;
+
+    font-weight: 800;
+
+    cursor: pointer;
+
+}
+
+
+@media (max-width: 700px) {
+
+    body {
+
+        padding: 12px;
+
+    }
+
+
+    .certificate {
+
+        padding: 55px 25px;
+
+    }
+
+
+    .stats {
+
+        grid-template-columns: 1fr;
+
+    }
+
+
+    .footer {
+
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+
+    }
+
+
+    .seal {
+
+        order: -1;
+
+    }
+
+}
+
+
+@media print {
+
+    @page {
+
+        size: A4 landscape;
+
+        margin: 0;
+
+    }
+
+
+    body {
+
+        padding: 0;
+
+        background: white;
+
+    }
+
+
+    .certificate {
+
+        width: 100vw;
+
+        min-height: 100vh;
+
+        border-radius: 0;
+
+        box-shadow: none;
+
+    }
+
+
+    .print-controls {
+
+        display: none;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<div class="certificate">
+
+
+    <div class="corner top-left"></div>
+
+    <div class="corner top-right"></div>
+
+    <div class="corner bottom-left"></div>
+
+    <div class="corner bottom-right"></div>
+
+
+    <div class="content">
+
+
+        <div class="portal-name">
+            STUDENT RESULT &amp; QUIZ PORTAL
+        </div>
+
+
+        <div class="portal-subtitle">
+            ONLINE LEARNING &amp; ASSESSMENT PLATFORM
+        </div>
+
+
+        <div class="divider"></div>
+
+
+        <div class="title">
+            Certificate of Achievement
+        </div>
+
+
+        <div class="subtitle">
+            PROFESSIONAL ONLINE ASSESSMENT
+        </div>
+
+
+        <div class="presented">
+            This certificate is proudly presented to
+        </div>
+
+
+        <div class="student-name">
+            ${escapeCertificateText(studentName)}
+        </div>
+
+
+        <div class="name-line"></div>
+
+
+        <div class="description">
+            In recognition of successfully completing the
+            online assessment
+        </div>
+
+
+        <div class="test-name">
+            ${escapeCertificateText(testName)}
+        </div>
+
+
+        <div class="affiliation">
+
+            Academic Affiliation:
+
+            <strong>
+                IEC College of Institutions, Greater Noida
+            </strong>
+
+        </div>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    SCORE
+                </div>
+
+                <div class="stat-value">
+                    ${result.score}/${result.total}
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    PERCENTAGE
+                </div>
+
+                <div class="stat-value">
+                    ${result.percentage}%
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    ASSESSMENT
+                </div>
+
+                <div class="stat-value">
+                    ${result.total} Questions
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="meta">
+
+            Certificate ID:
+
+            <strong>
+                ${escapeCertificateText(certificateId)}
+            </strong>
+
+            &nbsp; | &nbsp;
+
+            Issue Date:
+
+            <strong>
+                ${escapeCertificateText(issueDate)}
+            </strong>
+
+        </div>
+
+
+        <div class="footer">
+
+
+            <div class="signature">
+
+                <div class="signature-name">
+                    Priyanshu Mishra
+                </div>
+
+                <div class="signature-line"></div>
+
+                <div class="signature-role">
+                    Founder &amp; Developer
+                </div>
+
+            </div>
+
+
+            <div class="seal">
+
+                <div class="seal-star">
+                    ★
+                </div>
+
+                VERIFIED
+
+                <br>
+
+                ASSESSMENT
+
+                <br>
+
+                CERTIFICATE
+
+            </div>
+
+
+            <div class="issuer">
+
+                <div class="issuer-name">
+                    Student Result &amp; Quiz Portal
+                </div>
+
+                <div class="issuer-sub">
+
+                    Online Learning &amp; Assessment Platform
+
+                    <br>
+
+                    Certificate of Achievement
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+
+<div class="print-controls">
+
+    <button
+        class="print-btn"
+        onclick="window.print()"
+    >
+
+        🖨️ Print / Save as PDF
+
+    </button>
+
+</div>
+
+
+<script>
+
+window.onload = function () {
+
+    setTimeout(
+        function () {
+
+            window.print();
+
+        },
+        900
+    );
+
+};
+
+</script>
+
+
+</body>
+
+</html>
+
+    `);
+
+
+    certificateWindow.document.close();
+
+}
+
+
+/* =========================================================
+   CERTIFICATE TEXT SAFETY
+   ========================================================= */
+
+function escapeCertificateText(value) {
+
+    return String(value || "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
+
+}
+
+
+/* =========================================================
+   CLEAR DEMO LOGIN
    ========================================================= */
 
 function clearDemoLogin() {
@@ -878,6 +2170,7 @@ function clearDemoLogin() {
     localStorage.removeItem(
         "studentUsername"
     );
+
 
     alert(
         "Saved demo account data has been cleared."
