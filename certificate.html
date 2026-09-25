@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Certificate of Achievement | Student Portal</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Georgia, "Times New Roman", serif;
+            background:
+                radial-gradient(circle at top left, #dbeafe, transparent 35%),
+                radial-gradient(circle at bottom right, #ede9fe, transparent 35%),
+                #eef2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px;
+        }
+
+        .page {
+            width: 100%;
+            max-width: 1100px;
+        }
+
+        .actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .btn {
+            border: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .print-btn {
+            background: #172554;
+            color: white;
+        }
+
+        .back-btn {
+            background: white;
+            color: #172554;
+            border: 1px solid #cbd5e1;
+        }
+
+        .certificate {
+            position: relative;
+            background: #fff;
+            padding: 18px;
+            box-shadow: 0 20px 60px rgba(15, 23, 42, 0.18);
+        }
+
+        .outer-border {
+            border: 5px solid #172554;
+            padding: 8px;
+        }
+
+        .inner-border {
+            border: 2px solid #c9a227;
+            min-height: 700px;
+            padding: 48px 55px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .corner {
+            position: absolute;
+            width: 90px;
+            height: 90px;
+            border-color: #c9a227;
+            border-style: solid;
+        }
+
+        .top-left {
+            top: 18px;
+            left: 18px;
+            border-width: 4px 0 0 4px;
+        }
+
+        .top-right {
+            top: 18px;
+            right: 18px;
+            border-width: 4px 4px 0 0;
+        }
+
+        .bottom-left {
+            bottom: 18px;
+            left: 18px;
+            border-width: 0 0 4px 4px;
+        }
+
+        .bottom-right {
+            bottom: 18px;
+            right: 18px;
+            border-width: 0 4px 4px 0;
+        }
+
+        .logo-circle {
+            width: 74px;
+            height: 74px;
+            margin: 0 auto 12px;
+            border-radius: 50%;
+            background: #172554;
+            color: #facc15;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .organization {
+            font-family: Arial, sans-serif;
+            color: #172554;
+            font-size: 15px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .certificate-title {
+            margin-top: 25px;
+            color: #172554;
+            font-size: 44px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            margin-top: 8px;
+            color: #64748b;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        .presented {
+            margin-top: 38px;
+            font-family: Arial, sans-serif;
+            color: #475569;
+            font-size: 15px;
+        }
+
+        .student-name {
+            margin-top: 12px;
+            color: #111827;
+            font-size: 42px;
+            font-weight: 700;
+            border-bottom: 2px solid #c9a227;
+            display: inline-block;
+            padding: 0 35px 8px;
+        }
+
+        .achievement-text {
+            max-width: 760px;
+            margin: 25px auto 0;
+            font-family: Arial, sans-serif;
+            color: #334155;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        .test-name {
+            color: #172554;
+            font-weight: 800;
+        }
+
+        .score-box {
+            margin: 28px auto;
+            width: 260px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            background: #f8fafc;
+            border-radius: 10px;
+        }
+
+        .score {
+            font-size: 32px;
+            color: #172554;
+            font-weight: 800;
+        }
+
+        .score-label {
+            margin-top: 3px;
+            font-family: Arial, sans-serif;
+            font-size: 11px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .details {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 20px;
+            font-family: Arial, sans-serif;
+        }
+
+        .detail-item {
+            min-width: 170px;
+        }
+
+        .detail-label {
+            color: #64748b;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-value {
+            margin-top: 5px;
+            color: #172554;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .signatures {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 55px;
+            padding: 0 45px;
+            font-family: Arial, sans-serif;
+        }
+
+        .signature {
+            width: 220px;
+        }
+
+        .signature-line {
+            border-top: 1px solid #475569;
+            padding-top: 7px;
+            color: #172554;
+            font-weight: 700;
+            font-size: 13px;
+        }
+
+        .signature-role {
+            color: #64748b;
+            font-size: 11px;
+            margin-top: 3px;
+        }
+
+        .certificate-id {
+            margin-top: 30px;
+            font-family: Arial, sans-serif;
+            color: #64748b;
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+
+        .seal {
+            position: absolute;
+            right: 70px;
+            bottom: 75px;
+            width: 82px;
+            height: 82px;
+            border: 3px solid #c9a227;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #c9a227;
+            font-family: Arial, sans-serif;
+            font-size: 10px;
+            font-weight: 800;
+            text-align: center;
+            transform: rotate(-12deg);
+        }
+
+        @media (max-width: 700px) {
+            body {
+                padding: 10px;
+            }
+
+            .inner-border {
+                padding: 35px 20px;
+            }
+
+            .certificate-title {
+                font-size: 28px;
+            }
+
+            .student-name {
+                font-size: 28px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+
+            .details {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .signatures {
+                padding: 0;
+                gap: 20px;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .seal {
+                position: static;
+                margin: 25px auto 0;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .actions {
+                display: none;
+            }
+
+            .certificate {
+                box-shadow: none;
+            }
+
+            @page {
+                size: A4 landscape;
+                margin: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="page">
+
+    <div class="actions">
+
+        <button class="btn print-btn"
+                onclick="window.print()">
+            🖨️ Print / Save PDF
+        </button>
+
+        <button class="btn back-btn"
+                onclick="history.back()">
+            ← Back
+        </button>
+
+    </div>
+
+    <div class="certificate">
+
+        <div class="outer-border">
+
+            <div class="inner-border">
+
+                <div class="corner top-left"></div>
+                <div class="corner top-right"></div>
+                <div class="corner bottom-left"></div>
+                <div class="corner bottom-right"></div>
+
+                <div class="logo-circle">
+                    SP
+                </div>
+
+                <div class="organization">
+                    Student Result & Quiz Portal
+                </div>
+
+                <h1 class="certificate-title">
+                    Certificate
+                </h1>
+
+                <div class="subtitle">
+                    OF ACHIEVEMENT
+                </div>
+
+                <div class="presented">
+                    This certificate is proudly presented to
+                </div>
+
+                <div class="student-name" id="studentName">
+                    Priyanshu Mishra
+                </div>
+
+                <p class="achievement-text">
+                    In recognition of successfully completing the
+                    <span class="test-name" id="testName">
+                        Online Assessment
+                    </span>
+                    and achieving the required performance standard
+                    through the Student Result & Quiz Portal.
+                </p>
+
+                <div class="score-box">
+
+                    <div class="score"
+                         id="score">
+                        95%
+                    </div>
+
+                    <div class="score-label">
+                        Final Assessment Score
+                    </div>
+
+                </div>
+
+                <div class="details">
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Certificate Date
+                        </div>
+
+                        <div class="detail-value"
+                             id="certificateDate">
+                            —
+                        </div>
+
+                    </div>
+
+                    <div class="detail-item">
+
+                        <div class="detail-label">
+                            Result
+                        </div>
+
+                        <div class="detail-value">
+                            PASSED
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="signatures">
+
+                    <div class="signature">
+
+                        <div class="signature-line">
+                            Priyanshu Mishra
+                        </div>
+
+                        <div class="signature-role">
+                            Founder & Developer
+                        </div>
+
+                    </div>
+
+                    <div class="signature">
+
+                        <div class="signature-line">
+                            Student Portal
+                        </div>
+
+                        <div class="signature-role">
+                            Issuing Platform
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="seal">
+                    VERIFIED<br>
+                    ACHIEVEMENT
+                </div>
+
+                <div class="certificate-id">
+                    Certificate ID:
+                    <span id="certificateId">
+                        SP-CERT-2026
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    /*
+       Read available student/test information
+       from URL parameters when supplied.
+    */
+
+    const params = new URLSearchParams(window.location.search);
+
+    const name =
+        params.get("name") ||
+        localStorage.getItem("studentName") ||
+        "Priyanshu Mishra";
+
+    const test =
+        params.get("test") ||
+        localStorage.getItem("lastTestName") ||
+        "Online Assessment";
+
+    const score =
+        params.get("score") ||
+        localStorage.getItem("lastTestScore") ||
+        "95";
+
+    document.getElementById("studentName").textContent = name;
+
+    document.getElementById("testName").textContent = test;
+
+    document.getElementById("score").textContent =
+        score.toString().includes("%")
+        ? score
+        : score + "%";
+
+
+    const today = new Date();
+
+    const formattedDate =
+        today.toLocaleDateString("en-IN", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric"
+        });
+
+    document.getElementById("certificateDate")
+        .textContent = formattedDate;
+
+
+    /*
+       Create a certificate ID.
+    */
+
+    const certificateId =
+        "SP-CERT-" +
+        today.getFullYear() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2, 8)
+            .toUpperCase();
+
+    document.getElementById("certificateId")
+        .textContent = certificateId;
+
+</script>
+
+</body>
+</html>
