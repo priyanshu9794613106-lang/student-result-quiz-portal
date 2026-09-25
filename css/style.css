@@ -1338,3 +1338,725 @@ footer a:hover {
     }
 
 }
+/* =========================================================
+   🚀 ULTIMATE PREMIUM HERO OVERRIDE
+   STUDENT RESULT & QUIZ PORTAL
+   ========================================================= */
+
+/* ---------- PREMIUM HERO ---------- */
+
+.hero,
+.hero-section {
+    position: relative !important;
+    min-height: 680px !important;
+    width: 100% !important;
+    padding: 110px 7% 100px !important;
+
+    display: flex !important;
+    align-items: center !important;
+
+    overflow: hidden !important;
+
+    color: #ffffff !important;
+
+    background:
+        radial-gradient(
+            circle at 78% 18%,
+            rgba(59,130,246,.28),
+            transparent 22%
+        ),
+        radial-gradient(
+            circle at 92% 78%,
+            rgba(99,102,241,.20),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 15% 90%,
+            rgba(14,165,233,.12),
+            transparent 30%
+        ),
+        linear-gradient(
+            135deg,
+            #020617 0%,
+            #0f172a 38%,
+            #172554 70%,
+            #1e3a8a 100%
+        ) !important;
+}
+
+
+/* ---------- HERO GRID ---------- */
+
+.hero::before,
+.hero-section::before {
+    content: "" !important;
+
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    background-image:
+        linear-gradient(
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(255,255,255,.035) 1px,
+            transparent 1px
+        ) !important;
+
+    background-size: 55px 55px !important;
+
+    mask-image: linear-gradient(
+        to bottom,
+        rgba(0,0,0,.9),
+        transparent
+    );
+
+    pointer-events: none !important;
+}
+
+
+/* ---------- HERO LIGHT ORB ---------- */
+
+.hero::after,
+.hero-section::after {
+    content: "" !important;
+
+    position: absolute !important;
+
+    width: 500px !important;
+    height: 500px !important;
+
+    right: -180px !important;
+    top: 70px !important;
+
+    border-radius: 50% !important;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(59,130,246,.25),
+            rgba(59,130,246,.05) 45%,
+            transparent 70%
+        ) !important;
+
+    border: 1px solid rgba(147,197,253,.15) !important;
+
+    box-shadow:
+        0 0 0 70px rgba(59,130,246,.025),
+        0 0 0 140px rgba(59,130,246,.018),
+        0 0 100px rgba(59,130,246,.15) !important;
+
+    animation: heroOrb 8s ease-in-out infinite !important;
+
+    pointer-events: none !important;
+}
+
+
+/* ---------- HERO CONTENT ---------- */
+
+.hero > *,
+.hero-section > * {
+    position: relative !important;
+    z-index: 5 !important;
+}
+
+
+/* ---------- HERO HEADING ---------- */
+
+.hero h1,
+.hero-section h1 {
+    position: relative !important;
+
+    max-width: 900px !important;
+
+    margin-bottom: 26px !important;
+
+    font-family: "Manrope", "Inter", sans-serif !important;
+
+    font-size: clamp(
+        48px,
+        6.5vw,
+        82px
+    ) !important;
+
+    line-height: .98 !important;
+
+    letter-spacing: -4px !important;
+
+    font-weight: 800 !important;
+
+    color: #ffffff !important;
+
+    text-shadow:
+        0 8px 35px rgba(0,0,0,.20) !important;
+}
+
+
+/* ---------- GRADIENT WORD ---------- */
+
+.hero h1 span,
+.hero-section h1 span {
+    background:
+        linear-gradient(
+            90deg,
+            #60a5fa,
+            #818cf8,
+            #a78bfa
+        ) !important;
+
+    -webkit-background-clip: text !important;
+    background-clip: text !important;
+
+    -webkit-text-fill-color: transparent !important;
+
+    color: transparent !important;
+}
+
+
+/* ---------- HERO PARAGRAPH ---------- */
+
+.hero p,
+.hero-section p {
+    max-width: 680px !important;
+
+    margin-bottom: 34px !important;
+
+    color: #cbd5e1 !important;
+
+    font-size: 17px !important;
+
+    line-height: 1.85 !important;
+
+    letter-spacing: .1px !important;
+}
+
+
+/* ---------- HERO BUTTON GROUP ---------- */
+
+.hero a,
+.hero button,
+.hero-section a,
+.hero-section button {
+    position: relative !important;
+
+    min-height: 54px !important;
+
+    padding: 0 25px !important;
+
+    border-radius: 13px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #3b82f6,
+            #2563eb
+        ) !important;
+
+    border: 1px solid rgba(255,255,255,.12) !important;
+
+    color: #ffffff !important;
+
+    font-size: 14px !important;
+
+    font-weight: 800 !important;
+
+    box-shadow:
+        0 12px 30px rgba(37,99,235,.38),
+        inset 0 1px 0 rgba(255,255,255,.18) !important;
+
+    transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease !important;
+}
+
+
+.hero a:hover,
+.hero button:hover,
+.hero-section a:hover,
+.hero-section button:hover {
+    transform: translateY(-4px) !important;
+
+    filter: brightness(1.08) !important;
+
+    box-shadow:
+        0 20px 45px rgba(37,99,235,.48),
+        0 0 25px rgba(59,130,246,.20) !important;
+}
+
+
+/* ---------- SECONDARY BUTTON ---------- */
+
+.hero a:nth-of-type(2),
+.hero-section a:nth-of-type(2) {
+    background:
+        rgba(255,255,255,.07) !important;
+
+    border: 1px solid rgba(255,255,255,.18) !important;
+
+    box-shadow:
+        0 10px 30px rgba(0,0,0,.15),
+        inset 0 1px 0 rgba(255,255,255,.08) !important;
+
+    backdrop-filter: blur(12px) !important;
+}
+
+
+.hero a:nth-of-type(2):hover,
+.hero-section a:nth-of-type(2):hover {
+    background:
+        rgba(255,255,255,.13) !important;
+}
+
+
+/* =========================================================
+   PREMIUM HERO INFO STRIP
+   ========================================================= */
+
+.hero .stats,
+.hero-section .stats,
+.hero .statistics,
+.hero-section .statistics {
+    margin-top: 45px !important;
+
+    display: flex !important;
+
+    flex-wrap: wrap !important;
+
+    gap: 12px !important;
+
+    width: auto !important;
+}
+
+
+.hero .stat,
+.hero-section .stat,
+.hero .stat-card,
+.hero-section .stat-card {
+    min-width: 130px !important;
+
+    padding: 13px 18px !important;
+
+    text-align: left !important;
+
+    background:
+        rgba(255,255,255,.055) !important;
+
+    border:
+        1px solid rgba(255,255,255,.12) !important;
+
+    border-radius: 14px !important;
+
+    box-shadow:
+        0 10px 25px rgba(0,0,0,.12) !important;
+
+    backdrop-filter: blur(14px) !important;
+}
+
+
+.hero .stat strong,
+.hero-section .stat strong,
+.hero .stat-card strong,
+.hero-section .stat-card strong {
+    margin: 0 !important;
+
+    color: #ffffff !important;
+
+    font-size: 22px !important;
+}
+
+
+.hero .stat span,
+.hero-section .stat span,
+.hero .stat-card span,
+.hero-section .stat-card span {
+    color: #94a3b8 !important;
+
+    font-size: 11px !important;
+}
+
+
+/* =========================================================
+   HERO BADGE
+   ========================================================= */
+
+.hero > div:first-child::before,
+.hero-section > div:first-child::before {
+    content: "✦  ONLINE STUDENT ASSESSMENT PLATFORM";
+
+    display: inline-flex;
+
+    align-items: center;
+
+    margin-bottom: 22px;
+
+    padding: 8px 14px;
+
+    border-radius: 999px;
+
+    background:
+        rgba(59,130,246,.10);
+
+    border:
+        1px solid rgba(96,165,250,.25);
+
+    color: #93c5fd;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    letter-spacing: 1px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 8px 25px rgba(37,99,235,.10);
+}
+
+
+/* =========================================================
+   HERO FLOATING DECORATIONS
+   ========================================================= */
+
+.hero-section {
+    isolation: isolate;
+}
+
+
+.hero,
+.hero-section {
+    --hero-glow: rgba(59,130,246,.25);
+}
+
+
+/* =========================================================
+   ANIMATION
+   ========================================================= */
+
+@keyframes heroOrb {
+
+    0% {
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translate3d(-20px,18px,0)
+            scale(1.04);
+    }
+
+    100% {
+        transform:
+            translate3d(0,0,0)
+            scale(1);
+    }
+
+}
+
+
+@keyframes heroFade {
+
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+.hero h1,
+.hero-section h1 {
+    animation:
+        heroFade .75s ease both !important;
+}
+
+
+.hero p,
+.hero-section p {
+    animation:
+        heroFade .75s .12s ease both !important;
+}
+
+
+.hero a,
+.hero-section a,
+.hero button,
+.hero-section button {
+    animation:
+        heroFade .75s .22s ease both !important;
+}
+
+
+/* =========================================================
+   NAVBAR PREMIUM
+   ========================================================= */
+
+header,
+.navbar,
+nav {
+    background:
+        rgba(255,255,255,.92) !important;
+
+    backdrop-filter:
+        blur(22px) !important;
+
+    -webkit-backdrop-filter:
+        blur(22px) !important;
+
+    border-bottom:
+        1px solid rgba(226,232,240,.75) !important;
+
+    box-shadow:
+        0 8px 30px rgba(15,23,42,.05) !important;
+}
+
+
+nav {
+    min-height: 76px !important;
+
+    padding:
+        0 6% !important;
+}
+
+
+nav h1,
+nav .logo,
+header h1,
+.logo {
+    font-family:
+        "Manrope",
+        sans-serif !important;
+
+    font-size: 21px !important;
+
+    font-weight: 800 !important;
+
+    letter-spacing: -.6px !important;
+
+    color: #0f172a !important;
+}
+
+
+nav a {
+    margin-left: 25px !important;
+
+    font-size: 13px !important;
+
+    font-weight: 700 !important;
+
+    color: #334155 !important;
+}
+
+
+nav a:hover {
+    color: #2563eb !important;
+}
+
+
+/* =========================================================
+   PREMIUM SECTION TRANSITION
+   ========================================================= */
+
+.hero + section,
+.hero-section + section {
+    position: relative !important;
+
+    background:
+        linear-gradient(
+            180deg,
+            #f8fafc 0%,
+            #ffffff 100%
+        ) !important;
+}
+
+
+.hero + section::before,
+.hero-section + section::before {
+    content: "";
+
+    display: block;
+
+    position: absolute;
+
+    top: -1px;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 70px;
+
+    background:
+        linear-gradient(
+            to bottom,
+            rgba(15,23,42,.08),
+            transparent
+        );
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   PREMIUM FEATURE CARDS
+   ========================================================= */
+
+.card,
+.feature-card,
+.feature,
+.features > div {
+    border-radius: 20px !important;
+
+    background:
+        rgba(255,255,255,.88) !important;
+
+    backdrop-filter: blur(12px) !important;
+
+    box-shadow:
+        0 10px 35px rgba(15,23,42,.055) !important;
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease !important;
+}
+
+
+.card:hover,
+.feature-card:hover,
+.feature:hover,
+.features > div:hover {
+    transform:
+        translateY(-10px) !important;
+
+    box-shadow:
+        0 25px 60px rgba(15,23,42,.12) !important;
+
+    border-color:
+        rgba(96,165,250,.45) !important;
+}
+
+
+/* =========================================================
+   MOBILE HERO
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+    .hero,
+    .hero-section {
+        min-height: 620px !important;
+
+        padding:
+            85px 6% 80px !important;
+    }
+
+    .hero h1,
+    .hero-section h1 {
+        font-size:
+            clamp(45px, 10vw, 65px) !important;
+
+        letter-spacing:
+            -3px !important;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .hero,
+    .hero-section {
+        min-height: 650px !important;
+
+        padding:
+            70px 6% !important;
+
+        align-items:
+            center !important;
+    }
+
+    .hero h1,
+    .hero-section h1 {
+        font-size:
+            43px !important;
+
+        line-height:
+            1.02 !important;
+
+        letter-spacing:
+            -2px !important;
+    }
+
+    .hero p,
+    .hero-section p {
+        font-size:
+            14px !important;
+
+        line-height:
+            1.7 !important;
+    }
+
+    .hero a,
+    .hero-section a,
+    .hero button,
+    .hero-section button {
+        width:
+            100% !important;
+
+        margin-bottom:
+            10px !important;
+    }
+
+    .hero .stats,
+    .hero-section .stats,
+    .hero .statistics,
+    .hero-section .statistics {
+        display:
+            grid !important;
+
+        grid-template-columns:
+            repeat(2, 1fr) !important;
+
+        width:
+            100% !important;
+    }
+
+    .hero .stat,
+    .hero-section .stat,
+    .hero .stat-card,
+    .hero-section .stat-card {
+        min-width:
+            0 !important;
+    }
+
+}
+
+
+/* =========================================================
+   FINAL POLISH
+   ========================================================= */
+
+::selection {
+    background: #2563eb;
+
+    color: white;
+}
+
+
+body {
+    overflow-x: hidden;
+}
