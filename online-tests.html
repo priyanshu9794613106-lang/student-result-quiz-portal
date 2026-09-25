@@ -1,2350 +1,2169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Online Tests | Student Result & Quiz Portal</title>
-
-    <meta
-        name="description"
-        content="Take professional online tests in Python, Data Structures & Algorithms and Web Development."
-    >
-
-    <meta
-        name="author"
-        content="Priyanshu Mishra"
-    >
-
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --primary: #4f46e5;
-            --primary-dark: #3730a3;
-            --secondary: #06b6d4;
-            --success: #16a34a;
-            --danger: #dc2626;
-            --warning: #f59e0b;
-            --dark: #0f172a;
-            --dark-2: #1e293b;
-            --text: #334155;
-            --muted: #64748b;
-            --light: #f8fafc;
-            --border: #e2e8f0;
-            --white: #ffffff;
-            --shadow: 0 20px 50px rgba(15, 23, 42, 0.10);
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: Inter, Arial, Helvetica, sans-serif;
-            background:
-                radial-gradient(circle at top left, rgba(79,70,229,.10), transparent 30%),
-                radial-gradient(circle at top right, rgba(6,182,212,.10), transparent 28%),
-                #f8fafc;
-            color: var(--text);
-            min-height: 100vh;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        button {
-            font: inherit;
-        }
-
-        /* ================= HEADER ================= */
-
-        .site-header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255,255,255,.92);
-            backdrop-filter: blur(18px);
-            border-bottom: 1px solid rgba(226,232,240,.9);
-        }
-
-        .header-container {
-            width: min(1180px, 92%);
-            margin: auto;
-            min-height: 74px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-        }
-
-        .brand {
-            font-size: 20px;
-            font-weight: 900;
-            color: var(--dark);
-            letter-spacing: -.5px;
-        }
-
-        .brand span {
-            color: var(--primary);
-        }
-
-        .main-navigation {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .nav-link {
-            padding: 10px 14px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 700;
-            color: var(--muted);
-            transition: .2s ease;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background: #eef2ff;
-            color: var(--primary);
-        }
-
-        /* ================= PAGE HERO ================= */
-
-        .page-hero {
-            width: min(1180px, 92%);
-            margin: 55px auto 30px;
-            padding: 55px 40px;
-            border-radius: 28px;
-            color: white;
-            background:
-                linear-gradient(135deg, rgba(15,23,42,.98), rgba(49,46,129,.95)),
-                #0f172a;
-            box-shadow: var(--shadow);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .page-hero::before {
-            content: "";
-            position: absolute;
-            width: 320px;
-            height: 320px;
-            border-radius: 50%;
-            background: rgba(6,182,212,.18);
-            right: -100px;
-            top: -130px;
-        }
-
-        .page-hero::after {
-            content: "";
-            position: absolute;
-            width: 220px;
-            height: 220px;
-            border-radius: 50%;
-            background: rgba(99,102,241,.16);
-            left: -90px;
-            bottom: -100px;
-        }
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 760px;
-        }
-
-        .eyebrow {
-            display: inline-flex;
-            padding: 8px 13px;
-            border-radius: 999px;
-            background: rgba(255,255,255,.10);
-            border: 1px solid rgba(255,255,255,.16);
-            font-size: 12px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            margin-bottom: 18px;
-        }
-
-        .page-hero h1 {
-            font-size: clamp(34px, 5vw, 58px);
-            line-height: 1.05;
-            margin-bottom: 18px;
-            letter-spacing: -2px;
-        }
-
-        .page-hero h1 span {
-            color: #67e8f9;
-        }
-
-        .page-hero p {
-            color: #cbd5e1;
-            line-height: 1.7;
-            font-size: 16px;
-            max-width: 700px;
-        }
-
-        /* ================= STATS ================= */
-
-        .stats-grid {
-            width: min(1180px, 92%);
-            margin: 25px auto 45px;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        .stat-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 18px;
-            padding: 23px;
-            box-shadow: 0 10px 30px rgba(15,23,42,.05);
-        }
-
-        .stat-icon {
-            font-size: 25px;
-            margin-bottom: 12px;
-        }
-
-        .stat-value {
-            font-size: 28px;
-            font-weight: 900;
-            color: var(--dark);
-        }
-
-        .stat-label {
-            color: var(--muted);
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        /* ================= TEST CARDS ================= */
-
-        .section {
-            width: min(1180px, 92%);
-            margin: 0 auto 55px;
-        }
-
-        .section-heading {
-            margin-bottom: 25px;
-        }
-
-        .section-heading small {
-            color: var(--primary);
-            font-weight: 900;
-            letter-spacing: 1px;
-        }
-
-        .section-heading h2 {
-            color: var(--dark);
-            font-size: 32px;
-            margin: 7px 0;
-        }
-
-        .section-heading p {
-            color: var(--muted);
-        }
-
-        .tests-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 22px;
-        }
-
-        .test-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 27px;
-            box-shadow: 0 12px 35px rgba(15,23,42,.06);
-            transition: .25s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .test-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 22px 45px rgba(15,23,42,.12);
-            border-color: #c7d2fe;
-        }
-
-        .test-top {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            align-items: center;
-            margin-bottom: 22px;
-        }
-
-        .test-icon {
-            width: 55px;
-            height: 55px;
-            display: grid;
-            place-items: center;
-            border-radius: 16px;
-            background: #eef2ff;
-            font-size: 28px;
-        }
-
-        .test-badge {
-            padding: 7px 10px;
-            border-radius: 999px;
-            font-size: 11px;
-            font-weight: 900;
-            background: #ecfeff;
-            color: #0e7490;
-        }
-
-        .test-card h3 {
-            font-size: 23px;
-            color: var(--dark);
-            margin-bottom: 9px;
-        }
-
-        .test-card p {
-            color: var(--muted);
-            line-height: 1.6;
-            min-height: 75px;
-        }
-
-        .test-meta {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin: 20px 0;
-        }
-
-        .meta-box {
-            padding: 12px;
-            background: #f8fafc;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-        }
-
-        .meta-box strong {
-            display: block;
-            color: var(--dark);
-            font-size: 15px;
-        }
-
-        .meta-box span {
-            display: block;
-            color: var(--muted);
-            font-size: 11px;
-            margin-top: 3px;
-        }
-
-        .start-button,
-        .primary-button,
-        .secondary-button {
-            width: 100%;
-            border: 0;
-            border-radius: 13px;
-            padding: 13px 17px;
-            cursor: pointer;
-            font-weight: 800;
-            transition: .2s ease;
-        }
-
-        .start-button,
-        .primary-button {
-            background: linear-gradient(135deg, var(--primary), #6366f1);
-            color: white;
-            box-shadow: 0 10px 25px rgba(79,70,229,.22);
-        }
-
-        .start-button:hover,
-        .primary-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(79,70,229,.30);
-        }
-
-        .secondary-button {
-            background: white;
-            color: var(--dark);
-            border: 1px solid var(--border);
-        }
-
-        /* ================= TEST SCREEN ================= */
-
-        .test-screen {
-            display: none;
-            width: min(1000px, 92%);
-            margin: 35px auto 60px;
-        }
-
-        .test-header {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 10px 30px rgba(15,23,42,.07);
-            margin-bottom: 18px;
-        }
-
-        .test-header-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 20px;
-            align-items: center;
-        }
-
-        .test-title h2 {
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-
-        .test-title p {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
-        .timer {
-            min-width: 125px;
-            text-align: center;
-            padding: 13px 17px;
-            border-radius: 14px;
-            background: #eff6ff;
-            color: #1d4ed8;
-            font-size: 22px;
-            font-weight: 900;
-        }
-
-        .timer.warning {
-            background: #fff7ed;
-            color: #c2410c;
-        }
-
-        .timer.danger {
-            background: #fef2f2;
-            color: #dc2626;
-            animation: pulse 1s infinite;
-        }
-
-        @keyframes pulse {
-            50% {
-                transform: scale(1.03);
-            }
-        }
-
-        .progress-wrap {
-            margin-top: 17px;
-        }
-
-        .progress-info {
-            display: flex;
-            justify-content: space-between;
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 7px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 999px;
-            overflow: hidden;
-        }
-
-        .progress-fill {
-            height: 100%;
-            width: 5%;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            transition: .25s ease;
-        }
-
-        .question-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 22px;
-            padding: 30px;
-            box-shadow: var(--shadow);
-        }
-
-        .question-number {
-            display: inline-flex;
-            padding: 7px 11px;
-            border-radius: 999px;
-            background: #eef2ff;
-            color: var(--primary);
-            font-size: 12px;
-            font-weight: 900;
-            margin-bottom: 17px;
-        }
-
-        .question-text {
-            color: var(--dark);
-            font-size: 22px;
-            line-height: 1.45;
-            margin-bottom: 24px;
-        }
-
-        .options {
-            display: grid;
-            gap: 12px;
-        }
-
-        .option {
-            position: relative;
-        }
-
-        .option input {
-            position: absolute;
-            opacity: 0;
-        }
-
-        .option label {
-            display: block;
-            padding: 17px;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            cursor: pointer;
-            transition: .2s ease;
-            color: var(--dark-2);
-            font-weight: 650;
-        }
-
-        .option label:hover {
-            border-color: #a5b4fc;
-            background: #f8faff;
-        }
-
-        .option input:checked + label {
-            border-color: var(--primary);
-            background: #eef2ff;
-            color: var(--primary-dark);
-            box-shadow: 0 0 0 3px rgba(79,70,229,.08);
-        }
-
-        .question-actions {
-            display: flex;
-            justify-content: space-between;
-            gap: 12px;
-            margin-top: 28px;
-        }
-
-        .question-actions button {
-            min-width: 130px;
-            border: 0;
-            padding: 13px 18px;
-            border-radius: 12px;
-            cursor: pointer;
-            font-weight: 800;
-        }
-
-        .prev-btn {
-            background: #f1f5f9;
-            color: var(--dark);
-        }
-
-        .next-btn {
-            background: var(--primary);
-            color: white;
-        }
-
-        .submit-btn {
-            background: var(--success);
-            color: white;
-        }
-
-        /* ================= RESULT ================= */
-
-        .result-screen {
-            display: none;
-            width: min(850px, 92%);
-            margin: 40px auto 70px;
-        }
-
-        .result-card {
-            background: white;
-            border: 1px solid var(--border);
-            border-radius: 26px;
-            padding: 38px;
-            box-shadow: var(--shadow);
-            text-align: center;
-        }
-
-        .result-icon {
-            width: 78px;
-            height: 78px;
-            border-radius: 50%;
-            display: grid;
-            place-items: center;
-            margin: 0 auto 18px;
-            background: #dcfce7;
-            font-size: 38px;
-        }
-
-        .result-card h2 {
-            color: var(--dark);
-            font-size: 34px;
-            margin-bottom: 8px;
-        }
-
-        .result-card > p {
-            color: var(--muted);
-        }
-
-        .result-score {
-            font-size: 62px;
-            font-weight: 950;
-            color: var(--primary);
-            margin: 20px 0 3px;
-        }
-
-        .result-label {
-            color: var(--muted);
-        }
-
-        .result-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 12px;
-            margin: 28px 0;
-        }
-
-        .result-box {
-            padding: 18px 10px;
-            background: #f8fafc;
-            border-radius: 14px;
-        }
-
-        .result-box strong {
-            display: block;
-            color: var(--dark);
-            font-size: 23px;
-        }
-
-        .result-box span {
-            font-size: 12px;
-            color: var(--muted);
-        }
-
-        .certificate-box {
-            display: none;
-            padding: 18px;
-            border-radius: 16px;
-            background: #ecfdf5;
-            border: 1px solid #bbf7d0;
-            color: #166534;
-            margin-bottom: 22px;
-            line-height: 1.6;
-        }
-
-        .result-actions {
-            display: flex;
-            gap: 12px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .result-actions button {
-            width: auto;
-            min-width: 170px;
-        }
-
-        /* ================= RATING ================= */
-
-        .rating-section {
-            margin-top: 30px;
-            padding-top: 28px;
-            border-top: 1px solid var(--border);
-        }
-
-        .rating-section h3 {
-            color: var(--dark);
-            margin-bottom: 8px;
-        }
-
-        .rating-section p {
-            color: var(--muted);
-            font-size: 14px;
-            margin-bottom: 17px;
-        }
-
-        .stars {
-            display: flex;
-            justify-content: center;
-            gap: 7px;
-            margin-bottom: 15px;
-        }
-
-        .star {
-            border: 0;
-            background: transparent;
-            cursor: pointer;
-            font-size: 34px;
-            filter: grayscale(1);
-            opacity: .45;
-            transition: .15s ease;
-        }
-
-        .star.active {
-            filter: grayscale(0);
-            opacity: 1;
-            transform: scale(1.08);
-        }
-
-        .feedback {
-            width: 100%;
-            min-height: 100px;
-            resize: vertical;
-            border: 1px solid var(--border);
-            border-radius: 14px;
-            padding: 13px;
-            outline: none;
-            font: inherit;
-            margin-bottom: 12px;
-        }
-
-        .feedback:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(79,70,229,.08);
-        }
-
-        .rating-success {
-            display: none;
-            color: var(--success);
-            font-weight: 800;
-            margin-top: 10px;
-        }
-
-        /* ================= FOOTER ================= */
-
-        .site-footer {
-            margin-top: 70px;
-            background: #0f172a;
-            color: #cbd5e1;
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        .footer-brand {
-            color: white;
-            font-size: 21px;
-            font-weight: 900;
-            margin-bottom: 8px;
-        }
-
-        .footer-text {
-            color: #94a3b8;
-            font-size: 13px;
-        }
-
-        .founder-mini {
-            margin-top: 15px;
-            color: #94a3b8;
-            font-size: 12px;
-        }
-
-        /* ================= RESPONSIVE ================= */
-
-        @media (max-width: 900px) {
-            .tests-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-        }
-
-        @media (max-width: 650px) {
-            .header-container {
-                padding: 12px 0;
-                align-items: flex-start;
-                flex-direction: column;
-            }
-
-            .main-navigation {
-                width: 100%;
-                overflow-x: auto;
-                flex-wrap: nowrap;
-            }
-
-            .nav-link {
-                white-space: nowrap;
-            }
-
-            .page-hero {
-                padding: 38px 24px;
-                margin-top: 25px;
-            }
-
-            .tests-grid,
-            .stats-grid,
-            .result-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .test-header-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .timer {
-                width: 100%;
-            }
-
-            .question-card {
-                padding: 22px;
-            }
-
-            .question-text {
-                font-size: 19px;
-            }
-
-            .question-actions {
-                flex-direction: column;
-            }
-
-            .question-actions button {
-                width: 100%;
-            }
-
-            .result-card {
-                padding: 25px 18px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Online Tests | Student Result & Quiz Portal</title>
+
+<meta name="description"
+content="Professional online assessments for Python, Data Structures & Algorithms and Web Development. 20 questions, 10 minute timed tests and certificate eligibility.">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --bg:#07111f;
+    --card:#0d1b2e;
+    --card2:#11243b;
+    --text:#f7fbff;
+    --muted:#9fb0c5;
+    --primary:#6c63ff;
+    --primary2:#8b5cf6;
+    --success:#22c55e;
+    --danger:#ef4444;
+    --border:rgba(255,255,255,.10);
+    --shadow:0 25px 70px rgba(0,0,0,.35);
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:Inter,Segoe UI,Arial,sans-serif;
+    background:
+        radial-gradient(circle at 10% 10%,rgba(108,99,255,.18),transparent 30%),
+        radial-gradient(circle at 90% 20%,rgba(139,92,246,.13),transparent 30%),
+        var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+
+/* NAVBAR */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(7,17,31,.82);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+    max-width:1200px;
+    margin:auto;
+    padding:18px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.brand{
+    color:white;
+    text-decoration:none;
+    font-size:21px;
+    font-weight:800;
+}
+
+.brand span{
+    color:#8b7cff;
+}
+
+.nav-links{
+    display:flex;
+    gap:22px;
+    flex-wrap:wrap;
+}
+
+.nav-links a{
+    color:#cbd5e1;
+    text-decoration:none;
+    font-size:14px;
+    font-weight:600;
+}
+
+.nav-links a:hover{
+    color:white;
+}
+
+/* HERO */
+
+.hero{
+    max-width:1050px;
+    margin:0 auto;
+    text-align:center;
+    padding:80px 22px 45px;
+}
+
+.badge{
+    display:inline-flex;
+    padding:9px 16px;
+    border:1px solid rgba(139,124,255,.35);
+    background:rgba(108,99,255,.10);
+    color:#b8b1ff;
+    border-radius:999px;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:.7px;
+}
+
+.hero h1{
+    margin-top:22px;
+    font-size:clamp(42px,7vw,76px);
+    line-height:1.05;
+    letter-spacing:-3px;
+}
+
+.hero h1 span{
+    background:linear-gradient(90deg,#7c72ff,#b388ff);
+    -webkit-background-clip:text;
+    color:transparent;
+}
+
+.hero p{
+    max-width:750px;
+    margin:22px auto 0;
+    color:var(--muted);
+    line-height:1.8;
+    font-size:17px;
+}
+
+/* STATS */
+
+.stats{
+    max-width:1000px;
+    margin:10px auto 65px;
+    padding:0 22px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.stat-card{
+    background:linear-gradient(145deg,rgba(17,36,59,.9),rgba(10,25,42,.9));
+    border:1px solid var(--border);
+    border-radius:22px;
+    padding:25px;
+    text-align:center;
+    box-shadow:var(--shadow);
+}
+
+.stat-card strong{
+    display:block;
+    font-size:30px;
+}
+
+.stat-card small{
+    color:var(--muted);
+    margin-top:7px;
+    display:block;
+}
+
+/* TESTS */
+
+.tests{
+    max-width:1150px;
+    margin:auto;
+    padding:0 22px 90px;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:35px;
+}
+
+.section-title h2{
+    font-size:36px;
+    margin-bottom:10px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+.test-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+}
+
+.test-card{
+    background:linear-gradient(150deg,rgba(17,36,59,.96),rgba(8,22,38,.96));
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:28px;
+    box-shadow:var(--shadow);
+    transition:.25s ease;
+}
+
+.test-card:hover{
+    transform:translateY(-7px);
+    border-color:rgba(139,124,255,.5);
+}
+
+.test-icon{
+    width:58px;
+    height:58px;
+    border-radius:17px;
+    display:grid;
+    place-items:center;
+    font-size:29px;
+    background:rgba(108,99,255,.14);
+    margin-bottom:18px;
+}
+
+.test-card h3{
+    font-size:23px;
+    margin-bottom:12px;
+}
+
+.test-card p{
+    color:var(--muted);
+    line-height:1.7;
+    font-size:14px;
+    min-height:95px;
+}
+
+.test-meta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:20px 0;
+}
+
+.meta{
+    padding:7px 10px;
+    border-radius:9px;
+    background:rgba(255,255,255,.06);
+    color:#cbd5e1;
+    font-size:11px;
+}
+
+.start-btn{
+    width:100%;
+    border:0;
+    border-radius:13px;
+    padding:14px;
+    cursor:pointer;
+    color:white;
+    font-weight:800;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+    transition:.2s;
+}
+
+.start-btn:hover{
+    transform:translateY(-2px);
+    filter:brightness(1.1);
+}
+
+/* TEST SCREEN */
+
+.test-screen{
+    display:none;
+    position:fixed;
+    inset:0;
+    z-index:2000;
+    overflow-y:auto;
+    background:
+        radial-gradient(circle at 20% 10%,rgba(108,99,255,.12),transparent 30%),
+        var(--bg);
+}
+
+.test-header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(7,17,31,.9);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid var(--border);
+}
+
+.test-header-inner{
+    max-width:1050px;
+    margin:auto;
+    padding:17px 22px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+}
+
+.test-title{
+    font-size:15px;
+    font-weight:800;
+}
+
+.timer{
+    min-width:100px;
+    text-align:center;
+    padding:11px 15px;
+    border-radius:12px;
+    background:#13243a;
+    border:1px solid var(--border);
+    font-weight:900;
+    font-variant-numeric:tabular-nums;
+}
+
+.timer.warning{
+    color:#fff;
+    background:rgba(239,68,68,.18);
+    border-color:rgba(239,68,68,.5);
+}
+
+.test-container{
+    max-width:850px;
+    margin:auto;
+    padding:35px 22px 70px;
+}
+
+.progress-info{
+    display:flex;
+    justify-content:space-between;
+    color:var(--muted);
+    font-size:13px;
+    margin-bottom:9px;
+}
+
+.progress{
+    height:7px;
+    background:#17283d;
+    border-radius:99px;
+    overflow:hidden;
+}
+
+.progress-bar{
+    height:100%;
+    width:5%;
+    background:linear-gradient(90deg,var(--primary),#b184ff);
+    transition:.3s;
+}
+
+.question-card{
+    margin-top:25px;
+    background:linear-gradient(145deg,#10233a,#0c1b2e);
+    border:1px solid var(--border);
+    border-radius:25px;
+    padding:32px;
+    box-shadow:var(--shadow);
+}
+
+.question-number{
+    color:#9c91ff;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:1px;
+    margin-bottom:18px;
+}
+
+.question-card h2{
+    font-size:24px;
+    line-height:1.5;
+}
+
+.options{
+    margin-top:27px;
+    display:grid;
+    gap:13px;
+}
+
+.option{
+    width:100%;
+    text-align:left;
+    padding:17px;
+    border-radius:15px;
+    background:#0b192a;
+    border:1px solid var(--border);
+    color:#dce6f2;
+    cursor:pointer;
+    font-size:15px;
+    transition:.2s;
+}
+
+.option:hover{
+    border-color:#7c72ff;
+    background:#111f34;
+}
+
+.option.selected{
+    background:rgba(108,99,255,.16);
+    border-color:#887eff;
+    color:white;
+}
+
+.navigation{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    margin-top:22px;
+}
+
+.nav-btn{
+    border:1px solid var(--border);
+    background:#12243a;
+    color:white;
+    padding:13px 20px;
+    border-radius:12px;
+    cursor:pointer;
+    font-weight:800;
+}
+
+.nav-btn.primary{
+    border:0;
+    background:linear-gradient(135deg,var(--primary),var(--primary2));
+}
+
+.nav-btn:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+/* RESULT */
+
+.result-screen{
+    display:none;
+    max-width:850px;
+    margin:60px auto;
+    padding:35px 22px;
+}
+
+.result-card{
+    background:linear-gradient(145deg,#10243c,#0b1a2c);
+    border:1px solid var(--border);
+    border-radius:28px;
+    padding:38px;
+    text-align:center;
+    box-shadow:var(--shadow);
+}
+
+.result-icon{
+    font-size:55px;
+}
+
+.result-card h2{
+    font-size:34px;
+    margin-top:10px;
+}
+
+.result-name{
+    color:#aebdd0;
+    margin-top:8px;
+}
+
+.score{
+    font-size:55px;
+    font-weight:900;
+    margin-top:25px;
+}
+
+.percentage{
+    font-size:26px;
+    font-weight:800;
+    color:#a899ff;
+    margin-top:5px;
+}
+
+.status{
+    display:inline-block;
+    margin-top:17px;
+    padding:9px 20px;
+    border-radius:99px;
+    font-weight:900;
+}
+
+.status.pass{
+    background:rgba(34,197,94,.15);
+    color:#4ade80;
+}
+
+.status.fail{
+    background:rgba(239,68,68,.15);
+    color:#f87171;
+}
+
+.result-message{
+    color:var(--muted);
+    margin:20px auto;
+    line-height:1.7;
+}
+
+.result-details{
+    max-width:500px;
+    margin:25px auto;
+    text-align:left;
+    background:rgba(255,255,255,.04);
+    border:1px solid var(--border);
+    border-radius:17px;
+    padding:18px;
+}
+
+.result-details p{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:8px 0;
+    color:#b9c6d6;
+}
+
+.result-details span{
+    color:white;
+    text-align:right;
+}
+
+/* RATING */
+
+.rating-box{
+    margin-top:28px;
+    padding-top:28px;
+    border-top:1px solid var(--border);
+}
+
+.rating-box h3{
+    font-size:21px;
+}
+
+.rating-box p{
+    color:var(--muted);
+    margin:8px 0 18px;
+}
+
+.stars{
+    display:flex;
+    justify-content:center;
+    gap:5px;
+}
+
+.star{
+    border:0;
+    background:transparent;
+    color:#536176;
+    font-size:35px;
+    cursor:pointer;
+    transition:.15s;
+}
+
+.star.active,
+.star:hover{
+    color:#fbbf24;
+    transform:scale(1.08);
+}
+
+.feedback{
+    width:100%;
+    min-height:100px;
+    margin-top:18px;
+    border-radius:13px;
+    border:1px solid var(--border);
+    background:#091727;
+    color:white;
+    padding:14px;
+    resize:vertical;
+    outline:none;
+}
+
+.feedback:focus{
+    border-color:#7c72ff;
+}
+
+.rating-submit{
+    margin-top:12px;
+    border:0;
+    border-radius:12px;
+    padding:13px 20px;
+    color:white;
+    background:#1c3150;
+    cursor:pointer;
+    font-weight:800;
+}
+
+.rating-message{
+    color:#4ade80;
+    margin-top:10px;
+    font-size:13px;
+}
+
+/* CERTIFICATE */
+
+.certificate{
+    display:none;
+    width:min(900px,94vw);
+    margin:30px auto;
+    padding:10px;
+}
+
+.certificate-inner{
+    background:white;
+    color:#172033;
+    padding:55px;
+    border:10px solid #d7c38a;
+    outline:2px solid #172033;
+    outline-offset:-22px;
+    text-align:center;
+    min-height:580px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+
+.certificate-label{
+    font-size:13px;
+    letter-spacing:4px;
+    font-weight:900;
+    color:#6b7280;
+}
+
+.certificate h1{
+    font-family:Georgia,serif;
+    font-size:47px;
+    margin:18px 0;
+}
+
+.certificate h2{
+    font-family:Georgia,serif;
+    font-size:30px;
+    margin:14px 0;
+}
+
+.certificate p{
+    line-height:1.8;
+    color:#4b5563;
+}
+
+.signature{
+    margin:45px auto 0;
+    width:220px;
+    border-top:1px solid #555;
+    padding-top:8px;
+    font-family:cursive;
+    font-size:22px;
+}
+
+.certificate-id{
+    margin-top:25px;
+    font-size:11px;
+    color:#6b7280;
+}
+
+.print-btn{
+    display:block;
+    margin:20px auto 50px;
+    border:0;
+    padding:13px 25px;
+    border-radius:12px;
+    background:#111827;
+    color:white;
+    cursor:pointer;
+    font-weight:800;
+}
+
+/* MOBILE */
+
+@media(max-width:850px){
+    .test-grid{
+        grid-template-columns:1fr;
+    }
+
+    .stats{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        letter-spacing:-2px;
+    }
+}
+
+@media(max-width:600px){
+    .nav-inner{
+        flex-direction:column;
+    }
+
+    .nav-links{
+        justify-content:center;
+        gap:13px;
+    }
+
+    .hero{
+        padding-top:55px;
+    }
+
+    .question-card{
+        padding:22px;
+    }
+
+    .question-card h2{
+        font-size:20px;
+    }
+
+    .navigation{
+        flex-direction:column;
+    }
+
+    .nav-btn{
+        width:100%;
+    }
+
+    .result-card{
+        padding:24px 17px;
+    }
+
+    .result-details p{
+        flex-direction:column;
+        gap:3px;
+    }
+
+    .result-details span{
+        text-align:left;
+    }
+
+    .certificate-inner{
+        padding:35px 20px;
+        min-height:500px;
+    }
+
+    .certificate h1{
+        font-size:34px;
+    }
+}
+
+/* PRINT */
+
+@media print{
+    body *{
+        visibility:hidden;
+    }
+
+    .certificate,
+    .certificate *{
+        visibility:visible;
+    }
+
+    .certificate{
+        position:absolute;
+        left:0;
+        top:0;
+        width:100%;
+    }
+
+    .print-btn{
+        display:none;
+    }
+
+    .certificate-inner{
+        min-height:700px;
+    }
+}
+</style>
 </head>
 
 <body>
 
-<header class="site-header">
-    <div class="header-container">
+<header class="navbar">
+    <div class="nav-inner">
 
         <a href="index.html" class="brand">
             Student <span>Portal</span>
         </a>
 
-        <nav class="main-navigation">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="login.html" class="nav-link">Login</a>
-            <a href="register.html" class="nav-link">Register</a>
-            <a href="dashboard.html" class="nav-link">Dashboard</a>
-            <a href="online-tests.html" class="nav-link active">Online Tests</a>
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="online-tests.html">Tests</a>
+            <a href="login.html">Login</a>
         </nav>
 
     </div>
 </header>
 
+<section class="hero">
 
-<main>
+    <div class="badge">
+        ⚡ PROFESSIONAL ONLINE ASSESSMENT PLATFORM
+    </div>
 
-    <!-- ================= HERO ================= -->
+    <h1>
+        Test Your <span>Knowledge.</span>
+    </h1>
 
-    <section class="page-hero">
+    <p>
+        Take professional assessments in Python,
+        Data Structures & Algorithms and Web Development.
+        Every test contains <strong>20 questions</strong>
+        with a strict <strong>10-minute</strong> time limit.
+    </p>
 
-        <div class="hero-content">
+</section>
 
-            <div class="eyebrow">
-                🎓 PROFESSIONAL ONLINE ASSESSMENT
-            </div>
+<section class="stats">
 
-            <h1>
-                Test Your
-                <span>Knowledge.</span>
-            </h1>
+    <div class="stat-card">
+        <strong>20</strong>
+        <small>Questions / Test</small>
+    </div>
 
-            <p>
-                Take structured technical assessments in Python,
-                Data Structures & Algorithms and Web Development.
-                Every test contains 20 questions with a strict
-                10-minute time limit.
-            </p>
+    <div class="stat-card">
+        <strong>10 Min</strong>
+        <small>Time Limit</small>
+    </div>
 
-        </div>
+    <div class="stat-card">
+        <strong>70%</strong>
+        <small>Certificate Pass Mark</small>
+    </div>
 
-    </section>
+</section>
 
+<section class="tests">
 
-    <!-- ================= PLATFORM STATS ================= -->
+    <div class="section-title">
+        <h2>Available Assessments</h2>
+        <p>Select a subject and begin your timed assessment.</p>
+    </div>
 
-    <section class="stats-grid">
+    <div class="test-grid">
 
-        <div class="stat-card">
-            <div class="stat-icon">📝</div>
-            <div class="stat-value">20</div>
-            <div class="stat-label">Questions Per Test</div>
-        </div>
+        <article class="test-card">
 
-        <div class="stat-card">
-            <div class="stat-icon">⏱️</div>
-            <div class="stat-value">10 min</div>
-            <div class="stat-label">Maximum Test Time</div>
-        </div>
+            <div class="test-icon">🐍</div>
 
-        <div class="stat-card">
-            <div class="stat-icon">🏆</div>
-            <div class="stat-value">70%</div>
-            <div class="stat-label">Certificate Eligibility</div>
-        </div>
-
-        <div class="stat-card">
-            <div class="stat-icon">⭐</div>
-            <div class="stat-value">1–5</div>
-            <div class="stat-label">Student Rating</div>
-        </div>
-
-    </section>
-
-
-    <!-- ================= TEST SELECTION ================= -->
-
-    <section class="section" id="testSelection">
-
-        <div class="section-heading">
-            <small>AVAILABLE ASSESSMENTS</small>
-
-            <h2>
-                Choose Your Test
-            </h2>
+            <h3>Python Programming</h3>
 
             <p>
-                Select a subject below to begin your assessment.
+                Test Python fundamentals, variables, data types,
+                operators, functions, loops, lists, dictionaries
+                and programming concepts.
             </p>
-        </div>
+
+            <div class="test-meta">
+                <span class="meta">20 Questions</span>
+                <span class="meta">⏱ 10 Minutes</span>
+                <span class="meta">🎓 Certificate</span>
+            </div>
+
+            <button class="start-btn"
+                    onclick="startTest('python')">
+                Start Python Test →
+            </button>
+
+        </article>
 
 
-        <div class="tests-grid">
+        <article class="test-card">
+
+            <div class="test-icon">🧠</div>
+
+            <h3>Data Structures & Algorithms</h3>
+
+            <p>
+                Practice arrays, stacks, queues, searching,
+                sorting, trees, graphs and algorithmic complexity.
+            </p>
+
+            <div class="test-meta">
+                <span class="meta">20 Questions</span>
+                <span class="meta">⏱ 10 Minutes</span>
+                <span class="meta">🎓 Certificate</span>
+            </div>
+
+            <button class="start-btn"
+                    onclick="startTest('dsa')">
+                Start DSA Test →
+            </button>
+
+        </article>
 
 
-            <!-- PYTHON -->
+        <article class="test-card">
 
-            <article class="test-card">
+            <div class="test-icon">🌐</div>
 
-                <div class="test-top">
-                    <div class="test-icon">🐍</div>
-                    <div class="test-badge">TECHNICAL</div>
-                </div>
+            <h3>Web Development</h3>
 
-                <h3>
-                    Python Assessment
-                </h3>
+            <p>
+                Test HTML, CSS, JavaScript, responsive design,
+                DOM, Flexbox, Grid and web fundamentals.
+            </p>
 
-                <p>
-                    Test your understanding of Python basics,
-                    variables, functions, loops, data types and
-                    programming concepts.
-                </p>
+            <div class="test-meta">
+                <span class="meta">20 Questions</span>
+                <span class="meta">⏱ 10 Minutes</span>
+                <span class="meta">🎓 Certificate</span>
+            </div>
 
-                <div class="test-meta">
+            <button class="start-btn"
+                    onclick="startTest('web')">
+                Start Web Test →
+            </button>
 
-                    <div class="meta-box">
-                        <strong>20</strong>
-                        <span>Questions</span>
-                    </div>
+        </article>
 
-                    <div class="meta-box">
-                        <strong>10 min</strong>
-                        <span>Time Limit</span>
-                    </div>
+    </div>
 
-                </div>
-
-                <button
-                    class="start-button"
-                    onclick="startTest('python')"
-                >
-                    Start Python Test →
-                </button>
-
-            </article>
+</section>
 
 
-            <!-- DSA -->
+<!-- TEST SCREEN -->
 
-            <article class="test-card">
+<section id="testScreen" class="test-screen">
 
-                <div class="test-top">
-                    <div class="test-icon">🧠</div>
-                    <div class="test-badge">TECHNICAL</div>
-                </div>
+    <header class="test-header">
 
-                <h3>
-                    DSA Assessment
-                </h3>
+        <div class="test-header-inner">
 
-                <p>
-                    Practice Data Structures and Algorithms
-                    questions covering arrays, stacks, queues,
-                    searching, sorting and complexity.
-                </p>
+            <div id="testTitle" class="test-title">
+                Online Assessment
+            </div>
 
-                <div class="test-meta">
-
-                    <div class="meta-box">
-                        <strong>20</strong>
-                        <span>Questions</span>
-                    </div>
-
-                    <div class="meta-box">
-                        <strong>10 min</strong>
-                        <span>Time Limit</span>
-                    </div>
-
-                </div>
-
-                <button
-                    class="start-button"
-                    onclick="startTest('dsa')"
-                >
-                    Start DSA Test →
-                </button>
-
-            </article>
-
-
-            <!-- WEB DEVELOPMENT -->
-
-            <article class="test-card">
-
-                <div class="test-top">
-                    <div class="test-icon">🌐</div>
-                    <div class="test-badge">DEVELOPMENT</div>
-                </div>
-
-                <h3>
-                    Web Development
-                </h3>
-
-                <p>
-                    Test your knowledge of HTML, CSS, JavaScript,
-                    responsive design and modern web development.
-                </p>
-
-                <div class="test-meta">
-
-                    <div class="meta-box">
-                        <strong>20</strong>
-                        <span>Questions</span>
-                    </div>
-
-                    <div class="meta-box">
-                        <strong>10 min</strong>
-                        <span>Time Limit</span>
-                    </div>
-
-                </div>
-
-                <button
-                    class="start-button"
-                    onclick="startTest('web')"
-                >
-                    Start Web Test →
-                </button>
-
-            </article>
+            <div id="timer" class="timer">
+                10:00
+            </div>
 
         </div>
 
-    </section>
+    </header>
 
 
-    <!-- ================= TEST SCREEN ================= -->
+    <div class="test-container">
 
-    <section
-        class="test-screen"
-        id="testScreen"
-    >
+        <div class="progress-info">
 
-        <div class="test-header">
+            <span id="questionCounter">
+                Question 1 of 20
+            </span>
 
-            <div class="test-header-row">
+            <span id="answeredCounter">
+                0 Answered
+            </span>
 
-                <div class="test-title">
+        </div>
 
-                    <h2 id="activeTestTitle">
-                        Online Test
-                    </h2>
-
-                    <p>
-                        20 Questions • 10 Minutes
-                    </p>
-
-                </div>
-
-                <div
-                    class="timer"
-                    id="timer"
-                >
-                    10:00
-                </div>
-
+        <div class="progress">
+            <div id="progressBar"
+                 class="progress-bar">
             </div>
-
-
-            <div class="progress-wrap">
-
-                <div class="progress-info">
-
-                    <span id="questionProgress">
-                        Question 1 of 20
-                    </span>
-
-                    <span id="answeredProgress">
-                        0 answered
-                    </span>
-
-                </div>
-
-                <div class="progress-bar">
-
-                    <div
-                        class="progress-fill"
-                        id="progressFill"
-                    ></div>
-
-                </div>
-
-            </div>
-
         </div>
 
 
         <div class="question-card">
 
-            <div
-                class="question-number"
-                id="questionNumber"
-            >
+            <div id="questionNumber"
+                 class="question-number">
                 QUESTION 01
             </div>
 
-            <h2
-                class="question-text"
-                id="questionText"
-            >
-                Question
+            <h2 id="questionText">
+                Question loading...
             </h2>
 
-            <div
-                class="options"
-                id="options"
-            >
-            </div>
-
-
-            <div class="question-actions">
-
-                <button
-                    class="prev-btn"
-                    id="previousButton"
-                    onclick="previousQuestion()"
-                >
-                    ← Previous
-                </button>
-
-                <button
-                    class="next-btn"
-                    id="nextButton"
-                    onclick="nextQuestion()"
-                >
-                    Next →
-                </button>
-
-                <button
-                    class="submit-btn"
-                    id="submitButton"
-                    onclick="submitTest(false)"
-                    style="display:none;"
-                >
-                    Submit Test ✓
-                </button>
-
+            <div id="options"
+                 class="options">
             </div>
 
         </div>
 
-    </section>
+
+        <div class="navigation">
+
+            <button id="previousBtn"
+                    class="nav-btn"
+                    onclick="previousQuestion()">
+                ← Previous
+            </button>
+
+            <button id="nextBtn"
+                    class="nav-btn primary"
+                    onclick="nextQuestion()">
+                Next →
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
 
 
-    <!-- ================= RESULT SCREEN ================= -->
+<!-- RESULT -->
 
-    <section
-        class="result-screen"
-        id="resultScreen"
-    >
+<section id="resultScreen"
+         class="result-screen">
 
-        <div class="result-card">
+    <div class="result-card">
 
-            <div class="result-icon" id="resultIcon">
-                🏆
-            </div>
+        <div class="result-icon">
+            🏆
+        </div>
 
-            <h2 id="resultTitle">
-                Test Completed
-            </h2>
+        <h2>Your Test Result</h2>
 
-            <p id="resultMessage">
-                Your assessment result is ready.
+        <div id="studentResultName"
+             class="result-name">
+            Student
+        </div>
+
+        <div id="scoreText"
+             class="score">
+            0 / 20
+        </div>
+
+        <div id="percentageText"
+             class="percentage">
+            0%
+        </div>
+
+        <div id="passStatus"
+             class="status">
+            RESULT
+        </div>
+
+        <p id="resultMessage"
+           class="result-message">
+            Your result is being calculated.
+        </p>
+
+
+        <div class="result-details">
+
+            <p>
+                <strong>Test:</strong>
+                <span id="resultTestName">-</span>
             </p>
 
-            <div
-                class="result-score"
-                id="resultScore"
-            >
-                0%
-            </div>
+            <p>
+                <strong>Date:</strong>
+                <span id="resultDate">-</span>
+            </p>
 
-            <div class="result-label">
-                Final Score
-            </div>
+            <p>
+                <strong>Certificate ID:</strong>
+                <span id="certificateId">-</span>
+            </p>
 
-
-            <div class="result-grid">
-
-                <div class="result-box">
-                    <strong id="correctAnswers">0</strong>
-                    <span>Correct</span>
-                </div>
-
-                <div class="result-box">
-                    <strong id="wrongAnswers">0</strong>
-                    <span>Wrong</span>
-                </div>
-
-                <div class="result-box">
-                    <strong id="skippedAnswers">0</strong>
-                    <span>Skipped</span>
-                </div>
-
-            </div>
+        </div>
 
 
-            <div
-                class="certificate-box"
-                id="certificateBox"
-            >
-                🎓 <strong>Certificate Eligible!</strong><br>
-                You achieved the required score of 70% or above.
-                Your certificate can be generated in the certificate
-                module.
-            </div>
+        <div class="result-actions">
+
+            <button id="certificateButton"
+                    class="nav-btn primary"
+                    onclick="generateCertificate()">
+                🎓 Generate Certificate
+            </button>
+
+            <button class="nav-btn"
+                    onclick="closeResult()">
+                Back to Tests
+            </button>
+
+        </div>
 
 
-            <div class="result-actions">
+        <!-- RATING -->
 
-                <button
-                    class="primary-button"
-                    onclick="restartTest()"
-                >
-                    Take Another Test
-                </button>
+        <div class="rating-box">
 
-                <a
-                    href="dashboard.html"
-                    class="secondary-button"
-                    style="display:grid;place-items:center;"
-                >
-                    Go to Dashboard
-                </a>
+            <h3>
+                How was your experience?
+            </h3>
+
+            <p>
+                Rate your experience with our assessment platform.
+            </p>
+
+            <div class="stars">
+
+                <button class="star"
+                        onclick="setRating(1)">★</button>
+
+                <button class="star"
+                        onclick="setRating(2)">★</button>
+
+                <button class="star"
+                        onclick="setRating(3)">★</button>
+
+                <button class="star"
+                        onclick="setRating(4)">★</button>
+
+                <button class="star"
+                        onclick="setRating(5)">★</button>
 
             </div>
 
+            <textarea id="feedback"
+                      class="feedback"
+                      placeholder="Share your feedback...">
+            </textarea>
 
-            <!-- ================= RATING ================= -->
+            <button class="rating-submit"
+                    onclick="submitRating()">
+                Submit Feedback
+            </button>
 
-            <div class="rating-section">
-
-                <h3>
-                    ⭐ Rate Your Experience
-                </h3>
-
-                <p>
-                    How was your experience using the Student Result
-                    & Quiz Portal?
-                </p>
-
-
-                <div class="stars">
-
-                    <button
-                        class="star"
-                        data-rating="1"
-                        onclick="selectRating(1)"
-                    >
-                        ⭐
-                    </button>
-
-                    <button
-                        class="star"
-                        data-rating="2"
-                        onclick="selectRating(2)"
-                    >
-                        ⭐
-                    </button>
-
-                    <button
-                        class="star"
-                        data-rating="3"
-                        onclick="selectRating(3)"
-                    >
-                        ⭐
-                    </button>
-
-                    <button
-                        class="star"
-                        data-rating="4"
-                        onclick="selectRating(4)"
-                    >
-                        ⭐
-                    </button>
-
-                    <button
-                        class="star"
-                        data-rating="5"
-                        onclick="selectRating(5)"
-                    >
-                        ⭐
-                    </button>
-
-                </div>
-
-
-                <textarea
-                    id="feedback"
-                    class="feedback"
-                    placeholder="Write your feedback about the test..."
-                ></textarea>
-
-
-                <button
-                    class="primary-button"
-                    onclick="submitRating()"
-                >
-                    Submit Rating & Feedback
-                </button>
-
-                <div
-                    class="rating-success"
-                    id="ratingSuccess"
-                >
-                    ✓ Thank you! Your rating and feedback have been saved.
-                </div>
-
+            <div id="ratingMessage"
+                 class="rating-message">
             </div>
 
         </div>
 
-    </section>
-
-</main>
-
-
-<footer class="site-footer">
-
-    <div class="footer-brand">
-        Student Result & Quiz Portal
     </div>
 
-    <div class="footer-text">
-        Learn • Practice • Test • Track Your Progress
+</section>
+
+
+<!-- CERTIFICATE -->
+
+<section id="certificate"
+         class="certificate">
+
+    <div class="certificate-inner">
+
+        <div class="certificate-label">
+            STUDENT RESULT & QUIZ PORTAL
+        </div>
+
+        <h1>
+            Certificate of Achievement
+        </h1>
+
+        <p>
+            This certificate is proudly presented to
+        </p>
+
+        <h2 id="certificateStudent">
+            Student
+        </h2>
+
+        <p>
+            for successfully completing the
+        </p>
+
+        <h2 id="certificateTest">
+            Online Assessment
+        </h2>
+
+        <p>
+            with a score of
+            <strong id="certificateScore">
+                0%
+            </strong>
+            and meeting the certificate eligibility
+            requirement of 70%.
+        </p>
+
+        <div class="signature">
+            Priyanshu Mishra
+            <br>
+            <small>Founder & Developer</small>
+        </div>
+
+        <div class="certificate-id">
+            Certificate ID:
+            <span id="certificateIdPrint">-</span>
+        </div>
+
+        <div class="certificate-id">
+            Issued by Student Result & Quiz Portal
+        </div>
+
     </div>
 
-    <div class="founder-mini">
-        Founded & Developed by Priyanshu Mishra •
-        B.Tech CSE, 3rd Semester •
-        IEC College of Institution, Greater Noida
-    </div>
+    <button class="print-btn"
+            onclick="window.print()">
+        🖨 Print / Save Certificate
+    </button>
 
-</footer>
+</section>
 
 
 <script>
 
-    /* =========================================================
-       TEST DATABASE
-       20 QUESTIONS PER TEST
-       ========================================================= */
-
-    const testDatabase = {
-
-        python: {
-
-            title: "Python Assessment",
-
-            questions: [
-
-                {
-                    q: "Which keyword is used to define a function in Python?",
-                    options: ["function", "def", "func", "define"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which data type stores True or False?",
-                    options: ["String", "Integer", "Boolean", "Float"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which symbol is used for a single-line comment?",
-                    options: ["//", "#", "/*", "--"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which function is used to display output?",
-                    options: ["display()", "show()", "print()", "output()"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which collection is ordered and changeable?",
-                    options: ["Tuple", "Set", "List", "FrozenSet"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which operator is used for exponentiation?",
-                    options: ["^", "**", "//", "%%"],
-                    answer: 1
-                },
-
-                {
-                    q: "What is the output type of input() by default?",
-                    options: ["Integer", "Float", "String", "Boolean"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which keyword is used to create a class?",
-                    options: ["object", "class", "struct", "define"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which method adds an item to the end of a list?",
-                    options: ["add()", "insertEnd()", "append()", "push()"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which keyword is used to handle exceptions?",
-                    options: ["catch", "try", "error", "handle"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which value represents no value in Python?",
-                    options: ["null", "undefined", "None", "void"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which function returns the length of an object?",
-                    options: ["length()", "size()", "len()", "count()"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which loop is commonly used to iterate over a sequence?",
-                    options: ["for", "repeat", "loop", "iterate"],
-                    answer: 0
-                },
-
-                {
-                    q: "Which data structure stores unique values?",
-                    options: ["List", "Set", "Tuple", "String"],
-                    answer: 1
-                },
-
-                {
-                    q: "What does == compare?",
-                    options: [
-                        "Memory only",
-                        "Values",
-                        "Variable names",
-                        "Functions"
-                    ],
-                    answer: 1
-                },
-
-                {
-                    q: "Which keyword exits a loop immediately?",
-                    options: ["stop", "exit", "break", "return"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which keyword skips the current loop iteration?",
-                    options: ["skip", "continue", "pass", "next"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which file extension is normally used for Python files?",
-                    options: [".java", ".py", ".python", ".pt"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which built-in function converts a value to an integer?",
-                    options: ["integer()", "number()", "int()", "convert()"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which keyword is used to import a module?",
-                    options: ["include", "using", "import", "require"],
-                    answer: 2
-                }
-
-            ]
-
-        },
-
-
-        dsa: {
-
-            title: "Data Structures & Algorithms Assessment",
-
-            questions: [
-
-                {
-                    q: "Which data structure follows LIFO?",
-                    options: ["Queue", "Stack", "Array", "Graph"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which data structure follows FIFO?",
-                    options: ["Stack", "Queue", "Tree", "Heap"],
-                    answer: 1
-                },
-
-                {
-                    q: "What is the average time complexity of binary search?",
-                    options: ["O(n)", "O(log n)", "O(n²)", "O(1)"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which structure is commonly used for BFS?",
-                    options: ["Stack", "Queue", "Heap", "Array"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which structure is commonly used for DFS?",
-                    options: ["Queue", "Stack", "Hash", "Linked List"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which data structure contains nodes connected by edges?",
-                    options: ["Array", "Graph", "Stack", "Queue"],
-                    answer: 1
-                },
-
-                {
-                    q: "What is the worst-case complexity of linear search?",
-                    options: ["O(1)", "O(log n)", "O(n)", "O(n log n)"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which sorting algorithm repeatedly selects the minimum element?",
-                    options: [
-                        "Bubble Sort",
-                        "Selection Sort",
-                        "Merge Sort",
-                        "Quick Sort"
-                    ],
-                    answer: 1
-                },
-
-                {
-                    q: "Which sorting algorithm uses divide and conquer?",
-                    options: [
-                        "Merge Sort",
-                        "Bubble Sort",
-                        "Selection Sort",
-                        "Linear Search"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "Which data structure is hierarchical?",
-                    options: ["Tree", "Array", "Stack", "Queue"],
-                    answer: 0
-                },
-
-                {
-                    q: "What is the root node of a tree?",
-                    options: [
-                        "Last node",
-                        "Topmost node",
-                        "Middle node",
-                        "Leaf node"
-                    ],
-                    answer: 1
-                },
-
-                {
-                    q: "Which node has no children?",
-                    options: ["Root", "Parent", "Leaf", "Branch"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which data structure can provide average O(1) lookup?",
-                    options: ["Hash Table", "Linked List", "Stack", "Queue"],
-                    answer: 0
-                },
-
-                {
-                    q: "What is an array?",
-                    options: [
-                        "Collection of elements",
-                        "Only one variable",
-                        "A function",
-                        "An algorithm"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "Which algorithm is used to find the shortest path in weighted graphs with non-negative weights?",
-                    options: [
-                        "Dijkstra",
-                        "Binary Search",
-                        "Bubble Sort",
-                        "DFS only"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "What is the purpose of Big-O notation?",
-                    options: [
-                        "Measure code color",
-                        "Describe algorithm growth",
-                        "Store data",
-                        "Create variables"
-                    ],
-                    answer: 1
-                },
-
-                {
-                    q: "Which structure uses nodes and pointers?",
-                    options: [
-                        "Linked List",
-                        "Array",
-                        "Integer",
-                        "String"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "Which tree is commonly used for efficient ordered searching?",
-                    options: [
-                        "Binary Search Tree",
-                        "Random Tree",
-                        "Queue Tree",
-                        "Linear Tree"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "Which sorting algorithm repeatedly swaps adjacent elements?",
-                    options: [
-                        "Bubble Sort",
-                        "Merge Sort",
-                        "Heap Sort",
-                        "Counting Sort"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "What is recursion?",
-                    options: [
-                        "A function calling itself",
-                        "A loop only",
-                        "A variable",
-                        "A data type"
-                    ],
-                    answer: 0
-                }
-
-            ]
-
-        },
-
-
-        web: {
-
-            title: "Web Development Assessment",
-
-            questions: [
-
-                {
-                    q: "What does HTML stand for?",
-                    options: [
-                        "Hyper Text Markup Language",
-                        "High Text Machine Language",
-                        "Hyper Tool Multi Language",
-                        "Home Text Markup Language"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "Which tag creates a hyperlink?",
-                    options: ["<link>", "<a>", "<href>", "<url>"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which language is used to style web pages?",
-                    options: ["HTML", "CSS", "SQL", "Python"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which language adds behavior to web pages?",
-                    options: ["CSS", "HTML", "JavaScript", "SQL"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which HTML tag creates the largest heading?",
-                    options: ["<h6>", "<heading>", "<h1>", "<head>"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which CSS property changes text color?",
-                    options: ["font-color", "text-color", "color", "foreground"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which CSS property changes background color?",
-                    options: ["background-color", "bg", "color-bg", "background"],
-                    answer: 0
-                },
-
-                {
-                    q: "Which HTML tag is used for an image?",
-                    options: ["<image>", "<img>", "<picture>", "<src>"],
-                    answer: 1
-                },
-
-                {
-                    q: "What does CSS stand for?",
-                    options: [
-                        "Computer Style Sheets",
-                        "Cascading Style Sheets",
-                        "Creative Style System",
-                        "Colorful Style Sheets"
-                    ],
-                    answer: 1
-                },
-
-                {
-                    q: "Which symbol identifies an ID selector in CSS?",
-                    options: [".", "#", "*", "@"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which symbol identifies a class selector in CSS?",
-                    options: ["#", ".", "*", "&"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which keyword declares a JavaScript variable that cannot be reassigned?",
-                    options: ["var", "let", "const", "static"],
-                    answer: 2
-                },
-
-                {
-                    q: "Which method selects an element by its ID?",
-                    options: [
-                        "getElementById()",
-                        "selectById()",
-                        "findId()",
-                        "queryId()"
-                    ],
-                    answer: 0
-                },
-
-                {
-                    q: "Which HTTP method is commonly used to retrieve data?",
-                    options: ["POST", "GET", "DELETE", "PATCH"],
-                    answer: 1
-                },
-
-                {
-                    q: "What does responsive design mean?",
-                    options: [
-                        "Website works only on desktop",
-                        "Website adapts to different screen sizes",
-                        "Website has no CSS",
-                        "Website loads only once"
-                    ],
-                    answer: 1
-                },
-
-                {
-                    q: "Which HTML element contains metadata?",
-                    options: ["<body>", "<head>", "<main>", "<footer>"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which tag creates an unordered list?",
-                    options: ["<ol>", "<ul>", "<list>", "<li>"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which tag represents a list item?",
-                    options: ["<item>", "<li>", "<list-item>", "<ul>"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which CSS layout system is designed for one-dimensional layouts?",
-                    options: ["Grid", "Flexbox", "Float", "Table"],
-                    answer: 1
-                },
-
-                {
-                    q: "Which CSS layout system is designed for two-dimensional layouts?",
-                    options: ["Flexbox", "Grid", "Float", "Inline"],
-                    answer: 1
-                }
-
-            ]
-
-        }
-
-    };
-
-
-    /* =========================================================
-       APPLICATION STATE
-       ========================================================= */
-
-    let currentTest = null;
-    let currentQuestion = 0;
-    let answers = [];
-    let timeLeft = 600;
-    let timerInterval = null;
-    let selectedRating = 0;
-
-
-    /* =========================================================
-       START TEST
-       ========================================================= */
-
-    function startTest(testKey) {
-
-        if (!testDatabase[testKey]) {
-            alert("Test could not be loaded.");
-            return;
-        }
-
-        currentTest = testKey;
-        currentQuestion = 0;
-        answers = new Array(20).fill(null);
-        timeLeft = 600;
-
-        document.getElementById("testSelection").style.display = "none";
-        document.getElementById("testScreen").style.display = "block";
-        document.getElementById("resultScreen").style.display = "none";
-
-        document.getElementById("activeTestTitle").textContent =
-            testDatabase[testKey].title;
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-        startTimer();
-        renderQuestion();
+/* =========================================================
+   QUESTION BANK
+========================================================= */
+
+const questionBank = {
+
+python: [
+
+{
+q:"Which keyword is used to define a function in Python?",
+options:["function","def","define","func"],
+answer:1
+},
+
+{
+q:"Which data type is immutable in Python?",
+options:["List","Dictionary","Set","Tuple"],
+answer:3
+},
+
+{
+q:"What type of value does input() normally return?",
+options:["Integer","String","Float","Boolean"],
+answer:1
+},
+
+{
+q:"Which symbol is used for comments in Python?",
+options:["//","#","<!--","**"],
+answer:1
+},
+
+{
+q:"Which of these is a Python list?",
+options:["(1,2,3)","[1,2,3]","{1,2,3}","<1,2,3>"],
+answer:1
+},
+
+{
+q:"Which keyword is used to create a class?",
+options:["object","class","struct","define"],
+answer:1
+},
+
+{
+q:"What is the output type of len('Python')?",
+options:["String","Float","Integer","Boolean"],
+answer:2
+},
+
+{
+q:"Which operator is used for exponentiation?",
+options:["^","**","//","%%"],
+answer:1
+},
+
+{
+q:"Which keyword is used for a loop over a sequence?",
+options:["for","loop","repeat","iterate"],
+answer:0
+},
+
+{
+q:"Which data structure stores key-value pairs?",
+options:["List","Tuple","Dictionary","Set"],
+answer:2
+},
+
+{
+q:"Which keyword is used to handle exceptions?",
+options:["try","check","error","catch"],
+answer:0
+},
+
+{
+q:"Which function converts a value to an integer?",
+options:["str()","float()","int()","integer()"],
+answer:2
+},
+
+{
+q:"Which keyword stops a loop immediately?",
+options:["stop","exit","break","return"],
+answer:2
+},
+
+{
+q:"Which keyword skips the current loop iteration?",
+options:["skip","continue","pass","next"],
+answer:1
+},
+
+{
+q:"Which collection does not allow duplicate values?",
+options:["List","Tuple","Set","String"],
+answer:2
+},
+
+{
+q:"Which operator checks equality?",
+options:["=","==","!=","==="],
+answer:1
+},
+
+{
+q:"What does // perform in Python?",
+options:["Normal division","Floor division","Power","Modulo"],
+answer:1
+},
+
+{
+q:"Which function displays output?",
+options:["show()","display()","print()","output()"],
+answer:2
+},
+
+{
+q:"Which keyword returns a value from a function?",
+options:["send","return","give","output"],
+answer:1
+},
+
+{
+q:"Python is generally considered which type of language?",
+options:["Low-level","High-level","Machine","Assembly"],
+answer:1
+}
+
+],
+
+
+dsa: [
+
+{
+q:"Which data structure follows LIFO?",
+options:["Queue","Stack","Array","Graph"],
+answer:1
+},
+
+{
+q:"Which data structure follows FIFO?",
+options:["Stack","Queue","Tree","Heap"],
+answer:1
+},
+
+{
+q:"What is the average time complexity of binary search?",
+options:["O(n)","O(log n)","O(n²)","O(1)"],
+answer:1
+},
+
+{
+q:"Which data structure is commonly used for BFS?",
+options:["Stack","Queue","Heap","Array"],
+answer:1
+},
+
+{
+q:"Which data structure is commonly used for DFS?",
+options:["Queue","Stack","Hash","Heap"],
+answer:1
+},
+
+{
+q:"Which sorting algorithm has average O(n log n) complexity?",
+options:["Bubble Sort","Merge Sort","Linear Search","Selection Sort"],
+answer:1
+},
+
+{
+q:"What is the worst-case complexity of linear search?",
+options:["O(1)","O(log n)","O(n)","O(n log n)"],
+answer:2
+},
+
+{
+q:"Which structure represents hierarchical data?",
+options:["Tree","Queue","Stack","Array"],
+answer:0
+},
+
+{
+q:"A graph mainly consists of?",
+options:["Nodes and edges","Only arrays","Only stacks","Functions"],
+answer:0
+},
+
+{
+q:"Which structure is useful for priority-based processing?",
+options:["Heap","Stack","Array","String"],
+answer:0
+},
+
+{
+q:"What is the first index of an array in many programming languages?",
+options:["0","1","-1","Depends always"],
+answer:0
+},
+
+{
+q:"Which technique divides a problem into smaller subproblems?",
+options:["Divide and conquer","Compilation","Hashing only","Iteration only"],
+answer:0
+},
+
+{
+q:"Which data structure provides key-value lookup?",
+options:["Hash table","Stack","Queue","String"],
+answer:0
+},
+
+{
+q:"What is a node with no children called?",
+options:["Root","Leaf","Parent","Edge"],
+answer:1
+},
+
+{
+q:"Which algorithm finds shortest paths with non-negative edge weights?",
+options:["Dijkstra","Bubble Sort","DFS only","Binary Search"],
+answer:0
+},
+
+{
+q:"Which traversal visits Root, Left, Right?",
+options:["Inorder","Postorder","Preorder","Level order"],
+answer:2
+},
+
+{
+q:"Which traversal visits Left, Root, Right?",
+options:["Inorder","Preorder","Postorder","Level order"],
+answer:0
+},
+
+{
+q:"Which traversal visits Left, Right, Root?",
+options:["Preorder","Postorder","Inorder","BFS"],
+answer:1
+},
+
+{
+q:"What does Big-O describe?",
+options:["Program color","Growth of resource usage","Variable name","Compiler version"],
+answer:1
+},
+
+{
+q:"Which structure normally provides direct indexed access?",
+options:["Array","Linked List","Graph","Queue"],
+answer:0
+}
+
+],
+
+
+web: [
+
+{
+q:"What does HTML stand for?",
+options:[
+"Hyper Text Markup Language",
+"High Text Machine Language",
+"Hyperlink Text Management Language",
+"Home Tool Markup Language"
+],
+answer:0
+},
+
+{
+q:"Which HTML element creates a hyperlink?",
+options:["<link>","<a>","<href>","<url>"],
+answer:1
+},
+
+{
+q:"Which language is primarily used to style webpages?",
+options:["HTML","CSS","SQL","Python"],
+answer:1
+},
+
+{
+q:"Which language adds behavior and interactivity to webpages?",
+options:["CSS","HTML","JavaScript","XML"],
+answer:2
+},
+
+{
+q:"Which CSS property changes text color?",
+options:["font-color","text-color","color","foreground"],
+answer:2
+},
+
+{
+q:"Which CSS property changes background color?",
+options:["background-color","bg","color-bg","background-style"],
+answer:0
+},
+
+{
+q:"What does CSS stand for?",
+options:[
+"Computer Style Sheets",
+"Cascading Style Sheets",
+"Creative Style System",
+"Colorful Style Syntax"
+],
+answer:1
+},
+
+{
+q:"Which HTML element is used for the largest heading?",
+options:["<heading>","<h6>","<h1>","<head>"],
+answer:2
+},
+
+{
+q:"Which HTML element creates a paragraph?",
+options:["<p>","<para>","<text>","<paragraph>"],
+answer:0
+},
+
+{
+q:"Which CSS unit is relative to the root font size?",
+options:["px","em","rem","%"],
+answer:2
+},
+
+{
+q:"Which JavaScript keyword declares a block-scoped variable?",
+options:["var","let","define","variable"],
+answer:1
+},
+
+{
+q:"Which method prints information to the browser console?",
+options:["print()","console.log()","log.console()","writeLog()"],
+answer:1
+},
+
+{
+q:"Which symbol starts a JavaScript single-line comment?",
+options:["#","//","<!--","**"],
+answer:1
+},
+
+{
+q:"What is responsive web design?",
+options:[
+"Design that adapts to different screen sizes",
+"Only mobile design",
+"Only desktop design",
+"A programming language"
+],
+answer:0
+},
+
+{
+q:"Which HTML attribute provides alternative text for an image?",
+options:["title","alt","src","text"],
+answer:1
+},
+
+{
+q:"Which HTML element is used to include JavaScript?",
+options:["<javascript>","<js>","<script>","<code>"],
+answer:2
+},
+
+{
+q:"Which CSS layout system is designed for one-dimensional layouts?",
+options:["Grid","Flexbox","Float","Table"],
+answer:1
+},
+
+{
+q:"Which CSS layout system is useful for two-dimensional layouts?",
+options:["Grid","Inline","Float","Position"],
+answer:0
+},
+
+{
+q:"What does DOM stand for?",
+options:[
+"Document Object Model",
+"Data Object Management",
+"Document Orientation Method",
+"Digital Object Model"
+],
+answer:0
+},
+
+{
+q:"Which HTTP status code generally means Not Found?",
+options:["200","301","404","500"],
+answer:2
+}
+
+]
+
+};
+
+
+/* =========================================================
+   TEST STATE
+========================================================= */
+
+let currentTest = [];
+let currentTestName = "";
+let currentQuestion = 0;
+let answers = [];
+let timeLeft = 600;
+let timerInterval = null;
+let selectedRating = 0;
+let latestResult = null;
+
+
+/* =========================================================
+   START TEST
+========================================================= */
+
+function startTest(type){
+
+    currentTest = questionBank[type];
+
+    currentTestName = type;
+
+    currentQuestion = 0;
+
+    answers = new Array(currentTest.length).fill(null);
+
+    timeLeft = 600;
+
+    document.getElementById("testTitle").textContent =
+        getTestName(type);
+
+    document.getElementById("testScreen").style.display =
+        "block";
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("certificate").style.display =
+        "none";
+
+    document.body.style.overflow = "hidden";
+
+    renderQuestion();
+
+    startTimer();
+}
+
+
+/* =========================================================
+   TEST NAME
+========================================================= */
+
+function getTestName(type){
+
+    if(type === "python"){
+        return "Python Programming Assessment";
     }
 
+    if(type === "dsa"){
+        return "Data Structures & Algorithms Assessment";
+    }
 
-    /* =========================================================
-       TIMER
-       ========================================================= */
+    return "Web Development Assessment";
+}
 
-    function startTimer() {
 
-        clearInterval(timerInterval);
+/* =========================================================
+   RENDER QUESTION
+========================================================= */
+
+function renderQuestion(){
+
+    const question = currentTest[currentQuestion];
+
+    document.getElementById("questionNumber").textContent =
+        "QUESTION " +
+        String(currentQuestion + 1).padStart(2,"0");
+
+    document.getElementById("questionText").textContent =
+        question.q;
+
+    document.getElementById("questionCounter").textContent =
+        "Question " +
+        (currentQuestion + 1) +
+        " of " +
+        currentTest.length;
+
+    const answered =
+        answers.filter(answer => answer !== null).length;
+
+    document.getElementById("answeredCounter").textContent =
+        answered + " Answered";
+
+    const progress =
+        ((currentQuestion + 1) / currentTest.length) * 100;
+
+    document.getElementById("progressBar").style.width =
+        progress + "%";
+
+    const optionsContainer =
+        document.getElementById("options");
+
+    optionsContainer.innerHTML = "";
+
+    question.options.forEach((option,index)=>{
+
+        const button =
+            document.createElement("button");
+
+        button.className = "option";
+
+        button.textContent = option;
+
+        if(answers[currentQuestion] === index){
+            button.classList.add("selected");
+        }
+
+        button.onclick = function(){
+
+            answers[currentQuestion] = index;
+
+            renderQuestion();
+
+        };
+
+        optionsContainer.appendChild(button);
+
+    });
+
+    document.getElementById("previousBtn").disabled =
+        currentQuestion === 0;
+
+    document.getElementById("nextBtn").textContent =
+        currentQuestion === currentTest.length - 1
+        ? "Submit Test ✓"
+        : "Next →";
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+function nextQuestion(){
+
+    if(currentQuestion < currentTest.length - 1){
+
+        currentQuestion++;
+
+        renderQuestion();
+
+    }else{
+
+        submitTest(false);
+
+    }
+}
+
+
+/* =========================================================
+   PREVIOUS
+========================================================= */
+
+function previousQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        renderQuestion();
+
+    }
+}
+
+
+/* =========================================================
+   TIMER
+========================================================= */
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+    updateTimer();
+
+    timerInterval = setInterval(()=>{
+
+        timeLeft--;
 
         updateTimer();
 
-        timerInterval = setInterval(function () {
+        if(timeLeft <= 60){
 
-            timeLeft--;
-
-            updateTimer();
-
-            if (timeLeft <= 0) {
-
-                clearInterval(timerInterval);
-
-                alert(
-                    "⏰ Time is over! Your test has been submitted automatically."
-                );
-
-                submitTest(true);
-            }
-
-        }, 1000);
-    }
-
-
-    function updateTimer() {
-
-        const timer = document.getElementById("timer");
-
-        const minutes = Math.floor(timeLeft / 60)
-            .toString()
-            .padStart(2, "0");
-
-        const seconds = (timeLeft % 60)
-            .toString()
-            .padStart(2, "0");
-
-        timer.textContent = `${minutes}:${seconds}`;
-
-        timer.classList.remove("warning", "danger");
-
-        if (timeLeft <= 120) {
-            timer.classList.add("danger");
-        } else if (timeLeft <= 300) {
-            timer.classList.add("warning");
-        }
-    }
-
-
-    /* =========================================================
-       RENDER QUESTION
-       ========================================================= */
-
-    function renderQuestion() {
-
-        const test = testDatabase[currentTest];
-        const question = test.questions[currentQuestion];
-
-        document.getElementById("questionNumber").textContent =
-            `QUESTION ${String(currentQuestion + 1).padStart(2, "0")}`;
-
-        document.getElementById("questionText").textContent =
-            question.q;
-
-        document.getElementById("questionProgress").textContent =
-            `Question ${currentQuestion + 1} of 20`;
-
-        const answeredCount =
-            answers.filter(answer => answer !== null).length;
-
-        document.getElementById("answeredProgress").textContent =
-            `${answeredCount} answered`;
-
-        const progress =
-            ((currentQuestion + 1) / 20) * 100;
-
-        document.getElementById("progressFill").style.width =
-            `${progress}%`;
-
-        const optionsContainer =
-            document.getElementById("options");
-
-        optionsContainer.innerHTML = "";
-
-        question.options.forEach((option, index) => {
-
-            const wrapper = document.createElement("div");
-
-            wrapper.className = "option";
-
-            const input = document.createElement("input");
-
-            input.type = "radio";
-            input.name = "answer";
-            input.id = `option-${index}`;
-            input.value = index;
-
-            if (answers[currentQuestion] === index) {
-                input.checked = true;
-            }
-
-            input.addEventListener("change", function () {
-
-                answers[currentQuestion] = Number(this.value);
-
-                updateAnsweredCount();
-
-            });
-
-            const label = document.createElement("label");
-
-            label.htmlFor = `option-${index}`;
-
-            label.textContent = option;
-
-            wrapper.appendChild(input);
-            wrapper.appendChild(label);
-
-            optionsContainer.appendChild(wrapper);
-
-        });
-
-
-        document.getElementById("previousButton").style.visibility =
-            currentQuestion === 0 ? "hidden" : "visible";
-
-
-        if (currentQuestion === 19) {
-
-            document.getElementById("nextButton").style.display =
-                "none";
-
-            document.getElementById("submitButton").style.display =
-                "block";
-
-        } else {
-
-            document.getElementById("nextButton").style.display =
-                "block";
-
-            document.getElementById("submitButton").style.display =
-                "none";
+            document
+                .getElementById("timer")
+                .classList.add("warning");
 
         }
 
-    }
+        if(timeLeft <= 0){
 
+            clearInterval(timerInterval);
 
-    function updateAnsweredCount() {
-
-        const answeredCount =
-            answers.filter(answer => answer !== null).length;
-
-        document.getElementById("answeredProgress").textContent =
-            `${answeredCount} answered`;
-    }
-
-
-    /* =========================================================
-       NEXT / PREVIOUS
-       ========================================================= */
-
-    function nextQuestion() {
-
-        if (currentQuestion < 19) {
-
-            currentQuestion++;
-
-            renderQuestion();
-
-            window.scrollTo({
-                top: document.getElementById("testScreen").offsetTop - 20,
-                behavior: "smooth"
-            });
+            submitTest(true);
 
         }
 
-    }
+    },1000);
+}
 
 
-    function previousQuestion() {
+/* =========================================================
+   UPDATE TIMER
+========================================================= */
 
-        if (currentQuestion > 0) {
+function updateTimer(){
 
-            currentQuestion--;
+    const minutes =
+        Math.floor(timeLeft / 60);
 
-            renderQuestion();
+    const seconds =
+        timeLeft % 60;
 
-            window.scrollTo({
-                top: document.getElementById("testScreen").offsetTop - 20,
-                behavior: "smooth"
-            });
+    document.getElementById("timer").textContent =
+        String(minutes).padStart(2,"0") +
+        ":" +
+        String(seconds).padStart(2,"0");
+}
 
-        }
 
-    }
+/* =========================================================
+   SUBMIT TEST
+========================================================= */
 
+function submitTest(autoSubmit=false){
 
-    /* =========================================================
-       SUBMIT TEST
-       ========================================================= */
+    clearInterval(timerInterval);
 
-    function submitTest(autoSubmit) {
+    let score = 0;
 
-        clearInterval(timerInterval);
+    currentTest.forEach((question,index)=>{
 
-        let correct = 0;
-        let wrong = 0;
-        let skipped = 0;
+        if(answers[index] === question.answer){
 
-        const questions =
-            testDatabase[currentTest].questions;
-
-
-        questions.forEach((question, index) => {
-
-            if (answers[index] === null) {
-
-                skipped++;
-
-            } else if (answers[index] === question.answer) {
-
-                correct++;
-
-            } else {
-
-                wrong++;
-
-            }
-
-        });
-
-
-        const percentage =
-            Math.round((correct / 20) * 100);
-
-        const passed = percentage >= 70;
-
-
-        /* Save local attempt */
-
-        saveAttempt({
-            test: currentTest,
-            title: testDatabase[currentTest].title,
-            correct,
-            wrong,
-            skipped,
-            percentage,
-            passed,
-            date: new Date().toISOString()
-        });
-
-
-        document.getElementById("testScreen").style.display =
-            "none";
-
-        document.getElementById("resultScreen").style.display =
-            "block";
-
-
-        document.getElementById("resultScore").textContent =
-            `${percentage}%`;
-
-        document.getElementById("correctAnswers").textContent =
-            correct;
-
-        document.getElementById("wrongAnswers").textContent =
-            wrong;
-
-        document.getElementById("skippedAnswers").textContent =
-            skipped;
-
-
-        if (passed) {
-
-            document.getElementById("resultIcon").textContent =
-                "🏆";
-
-            document.getElementById("resultTitle").textContent =
-                "Congratulations!";
-
-            document.getElementById("resultMessage").textContent =
-                "You successfully completed the assessment.";
-
-            document.getElementById("certificateBox").style.display =
-                "block";
-
-        } else {
-
-            document.getElementById("resultIcon").textContent =
-                "📚";
-
-            document.getElementById("resultTitle").textContent =
-                "Keep Practicing!";
-
-            document.getElementById("resultMessage").textContent =
-                "You completed the test. Improve your score and try again.";
-
-            document.getElementById("certificateBox").style.display =
-                "none";
-
-        }
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-
-
-    /* =========================================================
-       SAVE ATTEMPT
-       ========================================================= */
-
-    function saveAttempt(data) {
-
-        const attempts =
-            JSON.parse(
-                localStorage.getItem("studentPortalAttempts") || "[]"
-            );
-
-        attempts.push(data);
-
-        localStorage.setItem(
-            "studentPortalAttempts",
-            JSON.stringify(attempts)
-        );
-
-    }
-
-
-    /* =========================================================
-       RATING
-       ========================================================= */
-
-    function selectRating(rating) {
-
-        selectedRating = rating;
-
-        document.querySelectorAll(".star").forEach(star => {
-
-            const value =
-                Number(star.dataset.rating);
-
-            star.classList.toggle(
-                "active",
-                value <= rating
-            );
-
-        });
-
-    }
-
-
-    function submitRating() {
-
-        if (selectedRating === 0) {
-
-            alert("Please select a rating from 1 to 5 stars.");
-
-            return;
-        }
-
-
-        const feedback =
-            document.getElementById("feedback").value.trim();
-
-
-        const ratings =
-            JSON.parse(
-                localStorage.getItem("studentPortalRatings") || "[]"
-            );
-
-
-        ratings.push({
-
-            rating: selectedRating,
-
-            feedback: feedback,
-
-            test: currentTest,
-
-            date: new Date().toISOString()
-
-        });
-
-
-        localStorage.setItem(
-            "studentPortalRatings",
-            JSON.stringify(ratings)
-        );
-
-
-        document.getElementById("ratingSuccess").style.display =
-            "block";
-
-    }
-
-
-    /* =========================================================
-       RESTART
-       ========================================================= */
-
-    function restartTest() {
-
-        clearInterval(timerInterval);
-
-        document.getElementById("resultScreen").style.display =
-            "none";
-
-        document.getElementById("testSelection").style.display =
-            "block";
-
-        selectedRating = 0;
-
-        document.getElementById("feedback").value = "";
-
-        document.querySelectorAll(".star").forEach(star => {
-
-            star.classList.remove("active");
-
-        });
-
-        document.getElementById("ratingSuccess").style.display =
-            "none";
-
-        window.scrollTo({
-            top: document.getElementById("testSelection").offsetTop - 20,
-            behavior: "smooth"
-        });
-
-    }
-
-
-    /* =========================================================
-       PREVENT ACCIDENTAL PAGE LEAVE DURING TEST
-       ========================================================= */
-
-    window.addEventListener("beforeunload", function(event) {
-
-        if (
-            currentTest &&
-            document.getElementById("testScreen").style.display !== "none"
-        ) {
-
-            event.preventDefault();
-
-            event.returnValue = "";
+            score++;
 
         }
 
     });
+
+    const total =
+        currentTest.length;
+
+    const percentage =
+        Math.round((score / total) * 100);
+
+    const passed =
+        percentage >= 70;
+
+    const certificateId =
+        "SRQP-" +
+        new Date().getFullYear() +
+        "-" +
+        Math.random()
+            .toString(36)
+            .substring(2,8)
+            .toUpperCase();
+
+    const testDate =
+        new Date().toLocaleDateString(
+            "en-IN",
+            {
+                day:"2-digit",
+                month:"long",
+                year:"numeric"
+            }
+        );
+
+    const studentName =
+        localStorage.getItem("studentName") ||
+        localStorage.getItem("name") ||
+        "Student";
+
+    latestResult = {
+
+        studentName:studentName,
+
+        testName:getTestName(currentTestName),
+
+        score:score,
+
+        total:total,
+
+        percentage:percentage,
+
+        passed:passed,
+
+        certificateId:certificateId,
+
+        date:testDate,
+
+        autoSubmitted:autoSubmit
+
+    };
+
+    localStorage.setItem(
+        "lastTestResult",
+        JSON.stringify(latestResult)
+    );
+
+
+    /* SAVE LOCAL TEST ATTEMPT */
+
+    const attempts =
+        JSON.parse(
+            localStorage.getItem("studentPortalAttempts") ||
+            "[]"
+        );
+
+    attempts.push(latestResult);
+
+    localStorage.setItem(
+        "studentPortalAttempts",
+        JSON.stringify(attempts)
+    );
+
+
+    document.getElementById("testScreen").style.display =
+        "none";
+
+    document.body.style.overflow =
+        "auto";
+
+    document.getElementById("resultScreen").style.display =
+        "block";
+
+
+    document.getElementById("studentResultName").textContent =
+        studentName;
+
+    document.getElementById("scoreText").textContent =
+        score + " / " + total;
+
+    document.getElementById("percentageText").textContent =
+        percentage + "%";
+
+    const status =
+        document.getElementById("passStatus");
+
+    status.textContent =
+        passed ? "PASS" : "NOT PASSED";
+
+    status.className =
+        "status " +
+        (passed ? "pass" : "fail");
+
+
+    document.getElementById("resultMessage").textContent =
+        autoSubmit
+        ? "Time limit reached. Your test was submitted automatically."
+        : passed
+        ? "Congratulations! You have qualified for certificate eligibility."
+        : "Keep practicing and try the assessment again to reach the 70% certificate requirement.";
+
+
+    document.getElementById("resultTestName").textContent =
+        getTestName(currentTestName);
+
+    document.getElementById("resultDate").textContent =
+        testDate;
+
+    document.getElementById("certificateId").textContent =
+        passed ? certificateId : "Not eligible";
+
+
+    const certificateButton =
+        document.getElementById("certificateButton");
+
+    certificateButton.style.display =
+        passed ? "inline-block" : "none";
+
+
+    selectedRating = 0;
+
+    document.querySelectorAll(".star")
+        .forEach(star=>{
+            star.classList.remove("active");
+        });
+
+    document.getElementById("feedback").value = "";
+
+    document.getElementById("ratingMessage").textContent = "";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================================================
+   CLOSE RESULT
+========================================================= */
+
+function closeResult(){
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("certificate").style.display =
+        "none";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================================================
+   CERTIFICATE
+========================================================= */
+
+function generateCertificate(){
+
+    if(!latestResult || !latestResult.passed){
+
+        alert(
+            "Certificate is available only after achieving 70% or above."
+        );
+
+        return;
+    }
+
+    document.getElementById("certificateStudent").textContent =
+        latestResult.studentName;
+
+    document.getElementById("certificateTest").textContent =
+        latestResult.testName;
+
+    document.getElementById("certificateScore").textContent =
+        latestResult.percentage + "%";
+
+    document.getElementById("certificateIdPrint").textContent =
+        latestResult.certificateId;
+
+    document.getElementById("resultScreen").style.display =
+        "none";
+
+    document.getElementById("certificate").style.display =
+        "block";
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+}
+
+
+/* =========================================================
+   RATING
+========================================================= */
+
+function setRating(rating){
+
+    selectedRating = rating;
+
+    document.querySelectorAll(".star")
+        .forEach((star,index)=>{
+
+            if(index < rating){
+
+                star.classList.add("active");
+
+            }else{
+
+                star.classList.remove("active");
+
+            }
+
+        });
+}
+
+
+/* =========================================================
+   SUBMIT RATING
+========================================================= */
+
+function submitRating(){
+
+    if(selectedRating === 0){
+
+        alert("Please select a rating first.");
+
+        return;
+    }
+
+    const feedback =
+        document.getElementById("feedback").value.trim();
+
+    const ratings =
+        JSON.parse(
+            localStorage.getItem("studentPortalRatings") ||
+            "[]"
+        );
+
+    ratings.push({
+
+        rating:selectedRating,
+
+        feedback:feedback,
+
+        test:
+            latestResult
+            ? latestResult.testName
+            : "Assessment",
+
+        date:new Date().toISOString()
+
+    });
+
+    localStorage.setItem(
+        "studentPortalRatings",
+        JSON.stringify(ratings)
+    );
+
+    document.getElementById("ratingMessage").textContent =
+        "✓ Thank you! Your feedback has been recorded.";
+
+}
+
+
+/* =========================================================
+   SIMPLE LOCAL STATISTICS
+========================================================= */
+
+function getLocalStatistics(){
+
+    const attempts =
+        JSON.parse(
+            localStorage.getItem("studentPortalAttempts") ||
+            "[]"
+        );
+
+    const ratings =
+        JSON.parse(
+            localStorage.getItem("studentPortalRatings") ||
+            "[]"
+        );
+
+    const certificates =
+        attempts.filter(
+            item => item.passed
+        ).length;
+
+    const ratingAverage =
+        ratings.length
+        ? (
+            ratings.reduce(
+                (sum,item)=>sum + item.rating,
+                0
+            ) / ratings.length
+          ).toFixed(1)
+        : "0.0";
+
+    return {
+
+        testsTaken:attempts.length,
+
+        certificatesIssued:certificates,
+
+        ratings:ratings.length,
+
+        averageRating:ratingAverage
+
+    };
+}
 
 </script>
 
