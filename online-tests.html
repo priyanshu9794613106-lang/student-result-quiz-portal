@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -8,7 +7,7 @@
 <title>Online Tests | Student Result & Quiz Portal</title>
 
 <meta name="description"
-content="Professional online assessments for Python, Data Structures & Algorithms and Web Development. 20 questions, 10 minute timed tests and certificate eligibility.">
+content="Professional online assessments for Python, Data Structures and Algorithms, and Web Development.">
 
 <style>
 *{
@@ -27,6 +26,7 @@ content="Professional online assessments for Python, Data Structures & Algorithm
     --primary2:#8b5cf6;
     --success:#22c55e;
     --danger:#ef4444;
+    --warning:#f59e0b;
     --border:rgba(255,255,255,.10);
     --shadow:0 25px 70px rgba(0,0,0,.35);
 }
@@ -45,13 +45,15 @@ body{
     min-height:100vh;
 }
 
-/* ================= NAVBAR ================= */
+/* =========================
+   NAVBAR
+========================= */
 
 .navbar{
     position:sticky;
     top:0;
     z-index:1000;
-    background:rgba(7,17,31,.82);
+    background:rgba(7,17,31,.88);
     backdrop-filter:blur(18px);
     border-bottom:1px solid var(--border);
 }
@@ -59,7 +61,7 @@ body{
 .nav-inner{
     max-width:1200px;
     margin:auto;
-    padding:18px 22px;
+    padding:17px 22px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -88,17 +90,20 @@ body{
     text-decoration:none;
     font-size:14px;
     font-weight:600;
+    transition:.2s;
 }
 
 .nav-links a:hover{
     color:white;
 }
 
-/* ================= HERO ================= */
+/* =========================
+   HERO
+========================= */
 
 .hero{
     max-width:1050px;
-    margin:0 auto;
+    margin:auto;
     text-align:center;
     padding:80px 22px 45px;
 }
@@ -136,7 +141,9 @@ body{
     font-size:17px;
 }
 
-/* ================= STATS ================= */
+/* =========================
+   STATS
+========================= */
 
 .stats{
     max-width:1000px;
@@ -167,7 +174,9 @@ body{
     display:block;
 }
 
-/* ================= TESTS ================= */
+/* =========================
+   TEST CARDS
+========================= */
 
 .tests{
     max-width:1150px;
@@ -264,11 +273,9 @@ body{
     filter:brightness(1.1);
 }
 
-.start-btn:active{
-    transform:scale(.98);
-}
-
-/* ================= TEST SCREEN ================= */
+/* =========================
+   TEST SCREEN
+========================= */
 
 .test-screen{
     display:none;
@@ -284,7 +291,7 @@ body{
 .test-header{
     position:sticky;
     top:0;
-    z-index:10;
+    z-index:20;
     background:rgba(7,17,31,.94);
     backdrop-filter:blur(18px);
     border-bottom:1px solid var(--border);
@@ -306,7 +313,7 @@ body{
 }
 
 .timer{
-    min-width:100px;
+    min-width:105px;
     text-align:center;
     padding:11px 15px;
     border-radius:12px;
@@ -317,9 +324,16 @@ body{
 }
 
 .timer.warning{
-    color:#fff;
+    color:white;
     background:rgba(239,68,68,.18);
-    border-color:rgba(239,68,68,.5);
+    border-color:rgba(239,68,68,.55);
+    animation:pulseTimer 1s infinite;
+}
+
+@keyframes pulseTimer{
+    50%{
+        transform:scale(1.04);
+    }
 }
 
 .test-container{
@@ -397,7 +411,7 @@ body{
 }
 
 .option.selected{
-    background:rgba(108,99,255,.16);
+    background:rgba(108,99,255,.18);
     border-color:#887eff;
     color:white;
 }
@@ -417,6 +431,11 @@ body{
     border-radius:12px;
     cursor:pointer;
     font-weight:800;
+    transition:.2s;
+}
+
+.nav-btn:hover{
+    transform:translateY(-1px);
 }
 
 .nav-btn.primary{
@@ -429,7 +448,9 @@ body{
     cursor:not-allowed;
 }
 
-/* ================= RESULT ================= */
+/* =========================
+   RESULT
+========================= */
 
 .result-screen{
     display:none;
@@ -519,6 +540,7 @@ body{
 .result-details span{
     color:white;
     text-align:right;
+    word-break:break-word;
 }
 
 .result-actions{
@@ -528,7 +550,9 @@ body{
     flex-wrap:wrap;
 }
 
-/* ================= RATING ================= */
+/* =========================
+   RATING
+========================= */
 
 .rating-box{
     margin-top:28px;
@@ -577,6 +601,7 @@ body{
     padding:14px;
     resize:vertical;
     outline:none;
+    font-family:inherit;
 }
 
 .feedback:focus{
@@ -600,7 +625,9 @@ body{
     font-size:13px;
 }
 
-/* ================= CERTIFICATE ================= */
+/* =========================
+   CERTIFICATE
+========================= */
 
 .certificate{
     display:none;
@@ -674,7 +701,9 @@ body{
     font-weight:800;
 }
 
-/* ================= MOBILE ================= */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:850px){
 
@@ -745,20 +774,23 @@ body{
     }
 
     .test-header-inner{
-        padding:14px 15px;
+        padding:14px 16px;
     }
 
     .test-title{
-        font-size:13px;
+        max-width:65%;
+        line-height:1.3;
     }
 
     .timer{
-        min-width:85px;
+        min-width:90px;
         padding:9px 10px;
     }
 }
 
-/* ================= PRINT ================= */
+/* =========================
+   PRINT
+========================= */
 
 @media print{
 
@@ -787,668 +819,663 @@ body{
     }
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- ================= NAVBAR ================= -->
+<!-- =========================
+     NAVBAR
+========================= -->
 
 <header class="navbar">
 
-```
-<div class="nav-inner">
+    <div class="nav-inner">
 
-    <a href="index.html" class="brand">
-        Student <span>Portal</span>
-    </a>
+        <a href="index.html" class="brand">
+            Student <span>Portal</span>
+        </a>
 
-    <nav class="nav-links">
+        <nav class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="online-tests.html">Tests</a>
+            <a href="login.html">Login</a>
+        </nav>
 
-        <a href="index.html">Home</a>
-
-        <a href="dashboard.html">Dashboard</a>
-
-        <a href="online-tests.html">Tests</a>
-
-        <a href="login.html">Login</a>
-
-    </nav>
-
-</div>
-```
+    </div>
 
 </header>
 
-<!-- ================= HERO ================= -->
+
+<!-- =========================
+     HOME / TEST LIST
+========================= -->
+
+<main id="mainContent">
 
 <section class="hero">
 
-```
-<div class="badge">
-    ⚡ PROFESSIONAL ONLINE ASSESSMENT PLATFORM
-</div>
+    <div class="badge">
+        ⚡ PROFESSIONAL ONLINE ASSESSMENT PLATFORM
+    </div>
 
-<h1>
-    Test Your <span>Knowledge.</span>
-</h1>
+    <h1>
+        Test Your <span>Knowledge.</span>
+    </h1>
 
-<p>
-    Take professional assessments in Python,
-    Data Structures & Algorithms and Web Development.
-    Every test contains <strong>20 questions</strong>
-    with a strict <strong>10-minute</strong> time limit.
-</p>
-```
+    <p>
+        Take professional assessments in Python,
+        Data Structures & Algorithms and Web Development.
+        Every test contains <strong>20 questions</strong>
+        with a strict <strong>10-minute</strong> time limit.
+    </p>
 
 </section>
 
-<!-- ================= STATS ================= -->
 
 <section class="stats">
 
-```
-<div class="stat-card">
-    <strong>20</strong>
-    <small>Questions / Test</small>
-</div>
+    <div class="stat-card">
+        <strong>20</strong>
+        <small>Questions / Test</small>
+    </div>
 
-<div class="stat-card">
-    <strong>10 Min</strong>
-    <small>Time Limit</small>
-</div>
+    <div class="stat-card">
+        <strong>10 Min</strong>
+        <small>Time Limit</small>
+    </div>
 
-<div class="stat-card">
-    <strong>70%</strong>
-    <small>Certificate Pass Mark</small>
-</div>
-```
+    <div class="stat-card">
+        <strong>70%</strong>
+        <small>Certificate Pass Mark</small>
+    </div>
 
 </section>
 
-<!-- ================= AVAILABLE TESTS ================= -->
 
 <section class="tests">
 
-```
-<div class="section-title">
+    <div class="section-title">
 
-    <h2>Available Assessments</h2>
-
-    <p>
-        Select a subject and begin your timed assessment.
-    </p>
-
-</div>
-
-
-<div class="test-grid">
-
-
-    <!-- PYTHON -->
-
-    <article class="test-card">
-
-        <div class="test-icon">
-            🐍
-        </div>
-
-        <h3>
-            Python Programming
-        </h3>
+        <h2>Available Assessments</h2>
 
         <p>
-            Test Python fundamentals, variables, data types,
-            operators, functions, loops, lists, dictionaries
-            and programming concepts.
+            Select a subject and begin your timed assessment.
         </p>
 
-        <div class="test-meta">
-
-            <span class="meta">
-                20 Questions
-            </span>
-
-            <span class="meta">
-                ⏱ 10 Minutes
-            </span>
-
-            <span class="meta">
-                🎓 Certificate
-            </span>
-
-        </div>
-
-        <button
-            type="button"
-            class="start-btn"
-            onclick="startTest('python')">
-
-            Start Python Test →
-
-        </button>
-
-    </article>
+    </div>
 
 
-    <!-- DSA -->
+    <div class="test-grid">
 
-    <article class="test-card">
+        <!-- PYTHON -->
 
-        <div class="test-icon">
-            🧠
-        </div>
+        <article class="test-card">
 
-        <h3>
-            Data Structures & Algorithms
-        </h3>
+            <div class="test-icon">
+                🐍
+            </div>
 
-        <p>
-            Practice arrays, stacks, queues, searching,
-            sorting, trees, graphs and algorithmic complexity.
-        </p>
+            <h3>
+                Python Programming
+            </h3>
 
-        <div class="test-meta">
+            <p>
+                Test Python fundamentals, variables,
+                data types, operators, functions,
+                loops, lists, dictionaries and
+                programming concepts.
+            </p>
 
-            <span class="meta">
-                20 Questions
-            </span>
+            <div class="test-meta">
 
-            <span class="meta">
-                ⏱ 10 Minutes
-            </span>
+                <span class="meta">
+                    20 Questions
+                </span>
 
-            <span class="meta">
-                🎓 Certificate
-            </span>
+                <span class="meta">
+                    ⏱ 10 Minutes
+                </span>
 
-        </div>
+                <span class="meta">
+                    🎓 Certificate
+                </span>
 
-        <button
-            type="button"
-            class="start-btn"
-            onclick="startTest('dsa')">
+            </div>
 
-            Start DSA Test →
+            <button
+                type="button"
+                class="start-btn"
+                onclick="startTest('python')">
 
-        </button>
+                Start Python Test →
 
-    </article>
+            </button>
+
+        </article>
 
 
-    <!-- WEB -->
+        <!-- DSA -->
 
-    <article class="test-card">
+        <article class="test-card">
 
-        <div class="test-icon">
-            🌐
-        </div>
+            <div class="test-icon">
+                🧠
+            </div>
 
-        <h3>
-            Web Development
-        </h3>
+            <h3>
+                Data Structures & Algorithms
+            </h3>
 
-        <p>
-            Test HTML, CSS, JavaScript, responsive design,
-            DOM, Flexbox, Grid and web fundamentals.
-        </p>
+            <p>
+                Practice arrays, stacks, queues,
+                searching, sorting, trees, graphs
+                and algorithmic complexity.
+            </p>
 
-        <div class="test-meta">
+            <div class="test-meta">
 
-            <span class="meta">
-                20 Questions
-            </span>
+                <span class="meta">
+                    20 Questions
+                </span>
 
-            <span class="meta">
-                ⏱ 10 Minutes
-            </span>
+                <span class="meta">
+                    ⏱ 10 Minutes
+                </span>
 
-            <span class="meta">
-                🎓 Certificate
-            </span>
+                <span class="meta">
+                    🎓 Certificate
+                </span>
 
-        </div>
+            </div>
 
-        <button
-            type="button"
-            class="start-btn"
-            onclick="startTest('web')">
+            <button
+                type="button"
+                class="start-btn"
+                onclick="startTest('dsa')">
 
-            Start Web Test →
+                Start DSA Test →
 
-        </button>
+            </button>
 
-    </article>
+        </article>
 
-</div>
-```
+
+        <!-- WEB -->
+
+        <article class="test-card">
+
+            <div class="test-icon">
+                🌐
+            </div>
+
+            <h3>
+                Web Development
+            </h3>
+
+            <p>
+                Test HTML, CSS, JavaScript,
+                responsive design, DOM, Flexbox,
+                Grid and web fundamentals.
+            </p>
+
+            <div class="test-meta">
+
+                <span class="meta">
+                    20 Questions
+                </span>
+
+                <span class="meta">
+                    ⏱ 10 Minutes
+                </span>
+
+                <span class="meta">
+                    🎓 Certificate
+                </span>
+
+            </div>
+
+            <button
+                type="button"
+                class="start-btn"
+                onclick="startTest('web')">
+
+                Start Web Test →
+
+            </button>
+
+        </article>
+
+    </div>
 
 </section>
 
-<!-- =====================================================
+</main>
+
+
+<!-- =========================
      TEST SCREEN
-===================================================== -->
+========================= -->
 
-<section id="testScreen" class="test-screen">
+<section
+    id="testScreen"
+    class="test-screen"
+    aria-hidden="true">
 
-```
-<header class="test-header">
+    <header class="test-header">
 
-    <div class="test-header-inner">
+        <div class="test-header-inner">
 
-        <div
-            id="testTitle"
-            class="test-title">
+            <div
+                id="testTitle"
+                class="test-title">
 
-            Online Assessment
+                Online Assessment
+
+            </div>
+
+            <div
+                id="timer"
+                class="timer">
+
+                10:00
+
+            </div>
 
         </div>
 
-        <div
-            id="timer"
-            class="timer">
-
-            10:00
-
-        </div>
-
-    </div>
-
-</header>
+    </header>
 
 
-<div class="test-container">
+    <div class="test-container">
 
-    <div class="progress-info">
+        <div class="progress-info">
 
-        <span id="questionCounter">
-            Question 1 of 20
-        </span>
+            <span id="questionCounter">
+                Question 1 of 20
+            </span>
 
-        <span id="answeredCounter">
-            0 Answered
-        </span>
-
-    </div>
-
-
-    <div class="progress">
-
-        <div
-            id="progressBar"
-            class="progress-bar">
-        </div>
-
-    </div>
-
-
-    <div class="question-card">
-
-        <div
-            id="questionNumber"
-            class="question-number">
-
-            QUESTION 01
+            <span id="answeredCounter">
+                0 Answered
+            </span>
 
         </div>
 
 
-        <h2 id="questionText">
-            Question loading...
-        </h2>
+        <div class="progress">
+
+            <div
+                id="progressBar"
+                class="progress-bar">
+            </div>
+
+        </div>
 
 
-        <div
-            id="options"
-            class="options">
+        <div class="question-card">
+
+            <div
+                id="questionNumber"
+                class="question-number">
+
+                QUESTION 01
+
+            </div>
+
+
+            <h2 id="questionText">
+                Question loading...
+            </h2>
+
+
+            <div
+                id="options"
+                class="options">
+            </div>
+
+        </div>
+
+
+        <div class="navigation">
+
+            <button
+                type="button"
+                id="previousBtn"
+                class="nav-btn"
+                onclick="previousQuestion()">
+
+                ← Previous
+
+            </button>
+
+
+            <button
+                type="button"
+                id="nextBtn"
+                class="nav-btn primary"
+                onclick="nextQuestion()">
+
+                Next →
+
+            </button>
+
         </div>
 
     </div>
-
-
-    <div class="navigation">
-
-        <button
-            type="button"
-            id="previousBtn"
-            class="nav-btn"
-            onclick="previousQuestion()">
-
-            ← Previous
-
-        </button>
-
-
-        <button
-            type="button"
-            id="nextBtn"
-            class="nav-btn primary"
-            onclick="nextQuestion()">
-
-            Next →
-
-        </button>
-
-    </div>
-
-</div>
-```
 
 </section>
 
-<!-- =====================================================
+
+<!-- =========================
      RESULT SCREEN
-===================================================== -->
+========================= -->
 
 <section
     id="resultScreen"
     class="result-screen">
 
-```
-<div class="result-card">
+    <div class="result-card">
 
-    <div class="result-icon">
-        🏆
-    </div>
-
-    <h2>
-        Your Test Result
-    </h2>
-
-    <div
-        id="studentResultName"
-        class="result-name">
-
-        Student
-
-    </div>
-
-
-    <div
-        id="scoreText"
-        class="score">
-
-        0 / 20
-
-    </div>
-
-
-    <div
-        id="percentageText"
-        class="percentage">
-
-        0%
-
-    </div>
-
-
-    <div
-        id="passStatus"
-        class="status">
-
-        RESULT
-
-    </div>
-
-
-    <p
-        id="resultMessage"
-        class="result-message">
-
-        Your result is being calculated.
-
-    </p>
-
-
-    <div class="result-details">
-
-        <p>
-
-            <strong>
-                Test:
-            </strong>
-
-            <span id="resultTestName">
-                -
-            </span>
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Date:
-            </strong>
-
-            <span id="resultDate">
-                -
-            </span>
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Certificate ID:
-            </strong>
-
-            <span id="certificateId">
-                -
-            </span>
-
-        </p>
-
-    </div>
-
-
-    <div class="result-actions">
-
-        <button
-            type="button"
-            id="certificateButton"
-            class="nav-btn primary"
-            onclick="generateCertificate()">
-
-            🎓 Generate Certificate
-
-        </button>
-
-
-        <button
-            type="button"
-            class="nav-btn"
-            onclick="closeResult()">
-
-            Back to Tests
-
-        </button>
-
-    </div>
-
-
-    <!-- RATING -->
-
-    <div class="rating-box">
-
-        <h3>
-            How was your experience?
-        </h3>
-
-        <p>
-            Rate your experience with our assessment platform.
-        </p>
-
-
-        <div class="stars">
-
-            <button
-                type="button"
-                class="star"
-                onclick="setRating(1)">
-                ★
-            </button>
-
-            <button
-                type="button"
-                class="star"
-                onclick="setRating(2)">
-                ★
-            </button>
-
-            <button
-                type="button"
-                class="star"
-                onclick="setRating(3)">
-                ★
-            </button>
-
-            <button
-                type="button"
-                class="star"
-                onclick="setRating(4)">
-                ★
-            </button>
-
-            <button
-                type="button"
-                class="star"
-                onclick="setRating(5)">
-                ★
-            </button>
-
+        <div class="result-icon">
+            🏆
         </div>
 
+        <h2>
+            Your Test Result
+        </h2>
 
-        <textarea
-            id="feedback"
-            class="feedback"
-            placeholder="Share your feedback...">
-        </textarea>
+        <div
+            id="studentResultName"
+            class="result-name">
 
+            Student
 
-        <button
-            type="button"
-            class="rating-submit"
-            onclick="submitRating()">
-
-            Submit Feedback
-
-        </button>
+        </div>
 
 
         <div
-            id="ratingMessage"
-            class="rating-message">
+            id="scoreText"
+            class="score">
+
+            0 / 20
+
+        </div>
+
+
+        <div
+            id="percentageText"
+            class="percentage">
+
+            0%
+
+        </div>
+
+
+        <div
+            id="passStatus"
+            class="status">
+
+            RESULT
+
+        </div>
+
+
+        <p
+            id="resultMessage"
+            class="result-message">
+
+            Your result is being calculated.
+
+        </p>
+
+
+        <div class="result-details">
+
+            <p>
+
+                <strong>
+                    Test:
+                </strong>
+
+                <span id="resultTestName">
+                    -
+                </span>
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    Date:
+                </strong>
+
+                <span id="resultDate">
+                    -
+                </span>
+
+            </p>
+
+
+            <p>
+
+                <strong>
+                    Certificate ID:
+                </strong>
+
+                <span id="certificateId">
+                    -
+                </span>
+
+            </p>
+
+        </div>
+
+
+        <div class="result-actions">
+
+            <button
+                type="button"
+                id="certificateButton"
+                class="nav-btn primary"
+                onclick="generateCertificate()">
+
+                🎓 Generate Certificate
+
+            </button>
+
+
+            <button
+                type="button"
+                class="nav-btn"
+                onclick="closeResult()">
+
+                Back to Tests
+
+            </button>
+
+        </div>
+
+
+        <!-- RATING -->
+
+        <div class="rating-box">
+
+            <h3>
+                How was your experience?
+            </h3>
+
+            <p>
+                Rate your experience with our assessment platform.
+            </p>
+
+
+            <div class="stars">
+
+                <button
+                    type="button"
+                    class="star"
+                    onclick="setRating(1)">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    class="star"
+                    onclick="setRating(2)">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    class="star"
+                    onclick="setRating(3)">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    class="star"
+                    onclick="setRating(4)">
+                    ★
+                </button>
+
+                <button
+                    type="button"
+                    class="star"
+                    onclick="setRating(5)">
+                    ★
+                </button>
+
+            </div>
+
+
+            <textarea
+                id="feedback"
+                class="feedback"
+                placeholder="Share your feedback..."></textarea>
+
+
+            <button
+                type="button"
+                class="rating-submit"
+                onclick="submitRating()">
+
+                Submit Feedback
+
+            </button>
+
+
+            <div
+                id="ratingMessage"
+                class="rating-message">
+            </div>
+
         </div>
 
     </div>
 
-</div>
-```
-
 </section>
 
-<!-- =====================================================
+
+<!-- =========================
      CERTIFICATE
-===================================================== -->
+========================= -->
 
 <section
     id="certificate"
     class="certificate">
 
-```
-<div class="certificate-inner">
+    <div class="certificate-inner">
 
-    <div class="certificate-label">
-        STUDENT RESULT & QUIZ PORTAL
+        <div class="certificate-label">
+            STUDENT RESULT & QUIZ PORTAL
+        </div>
+
+
+        <h1>
+            Certificate of Achievement
+        </h1>
+
+
+        <p>
+            This certificate is proudly presented to
+        </p>
+
+
+        <h2 id="certificateStudent">
+            Student
+        </h2>
+
+
+        <p>
+            for successfully completing the
+        </p>
+
+
+        <h2 id="certificateTest">
+            Online Assessment
+        </h2>
+
+
+        <p>
+
+            with a score of
+
+            <strong id="certificateScore">
+                0%
+            </strong>
+
+            and meeting the certificate eligibility
+            requirement of 70%.
+
+        </p>
+
+
+        <div class="signature">
+
+            Priyanshu Mishra
+
+            <br>
+
+            <small>
+                Founder & Developer
+            </small>
+
+        </div>
+
+
+        <div class="certificate-id">
+
+            Certificate ID:
+
+            <span id="certificateIdPrint">
+                -
+            </span>
+
+        </div>
+
+
+        <div class="certificate-id">
+
+            Issued by Student Result & Quiz Portal
+
+        </div>
+
     </div>
 
 
-    <h1>
-        Certificate of Achievement
-    </h1>
+    <button
+        type="button"
+        class="print-btn"
+        onclick="window.print()">
 
+        🖨 Print / Save Certificate
 
-    <p>
-        This certificate is proudly presented to
-    </p>
-
-
-    <h2 id="certificateStudent">
-        Student
-    </h2>
-
-
-    <p>
-        for successfully completing the
-    </p>
-
-
-    <h2 id="certificateTest">
-        Online Assessment
-    </h2>
-
-
-    <p>
-
-        with a score of
-
-        <strong id="certificateScore">
-            0%
-        </strong>
-
-        and meeting the certificate eligibility
-        requirement of 70%.
-
-    </p>
-
-
-    <div class="signature">
-
-        Priyanshu Mishra
-
-        <br>
-
-        <small>
-            Founder & Developer
-        </small>
-
-    </div>
-
-
-    <div class="certificate-id">
-
-        Certificate ID:
-
-        <span id="certificateIdPrint">
-            -
-        </span>
-
-    </div>
-
-
-    <div class="certificate-id">
-
-        Issued by Student Result & Quiz Portal
-
-    </div>
-
-</div>
-
-
-<button
-    type="button"
-    class="print-btn"
-    onclick="window.print()">
-
-    🖨 Print / Save Certificate
-
-</button>
-```
+    </button>
 
 </section>
+
 
 <script>
 
@@ -1856,7 +1883,7 @@ const questionBank = {
 
 
 /* =========================================================
-   TEST STATE
+   GLOBAL TEST STATE
 ========================================================= */
 
 let currentTest = [];
@@ -1871,25 +1898,55 @@ let testSubmitted = false;
 
 
 /* =========================================================
+   GET STUDENT NAME
+========================================================= */
+
+function getStudentName(){
+
+    const possibleNames = [
+
+        localStorage.getItem("studentName"),
+        localStorage.getItem("name"),
+        localStorage.getItem("userName"),
+        localStorage.getItem("username")
+
+    ];
+
+    for(let name of possibleNames){
+
+        if(name && String(name).trim()){
+
+            return String(name).trim();
+
+        }
+
+    }
+
+    return "Student";
+
+}
+
+
+/* =========================================================
    GET TEST NAME
 ========================================================= */
 
 function getTestName(type){
 
-    switch(type){
-
-        case "python":
-            return "Python Programming Assessment";
-
-        case "dsa":
-            return "Data Structures & Algorithms Assessment";
-
-        case "web":
-            return "Web Development Assessment";
-
-        default:
-            return "Online Assessment";
+    if(type === "python"){
+        return "Python Programming Assessment";
     }
+
+    if(type === "dsa"){
+        return "Data Structures & Algorithms Assessment";
+    }
+
+    if(type === "web"){
+        return "Web Development Assessment";
+    }
+
+    return "Online Assessment";
+
 }
 
 
@@ -1899,116 +1956,94 @@ function getTestName(type){
 
 function startTest(type){
 
-    console.log("Starting test:", type);
+    try{
 
-    /*
-       Check whether the selected test exists.
-    */
+        if(!questionBank[type]){
 
-    if(
-        !questionBank[type] ||
-        !Array.isArray(questionBank[type]) ||
-        questionBank[type].length === 0
-    ){
+            alert("This test is currently unavailable.");
+
+            return;
+
+        }
+
+        clearInterval(timerInterval);
+
+        currentTest = questionBank[type];
+
+        currentTestName = type;
+
+        currentQuestion = 0;
+
+        answers = new Array(currentTest.length).fill(null);
+
+        timeLeft = 600;
+
+        testSubmitted = false;
+
+        selectedRating = 0;
+
+
+        /* Hide normal page */
+
+        document.getElementById("mainContent").style.display = "none";
+
+        document.getElementById("resultScreen").style.display = "none";
+
+        document.getElementById("certificate").style.display = "none";
+
+
+        /* Show test */
+
+        const testScreen =
+            document.getElementById("testScreen");
+
+        testScreen.style.display = "block";
+
+        testScreen.setAttribute("aria-hidden","false");
+
+        document.body.style.overflow = "hidden";
+
+
+        /* Reset timer */
+
+        const timer =
+            document.getElementById("timer");
+
+        timer.classList.remove("warning");
+
+
+        /* Set title */
+
+        document.getElementById("testTitle").textContent =
+            getTestName(type);
+
+
+        /* Render first question */
+
+        renderQuestion();
+
+
+        /* Start countdown */
+
+        startTimer();
+
+
+        /* Move screen to top */
+
+        testScreen.scrollTop = 0;
+
+        window.scrollTo(0,0);
+
+    }catch(error){
+
+        console.error("Start test error:",error);
 
         alert(
-            "Unable to load this test. Please refresh the page and try again."
+            "Test interface could not open. Please refresh the page and try again."
         );
 
-        return;
     }
 
-
-    /*
-       Reset complete test state.
-    */
-
-    currentTest = questionBank[type];
-
-    currentTestName = type;
-
-    currentQuestion = 0;
-
-    answers =
-        new Array(currentTest.length).fill(null);
-
-    timeLeft = 600;
-
-    testSubmitted = false;
-
-
-    /*
-       Reset timer style.
-    */
-
-    const timer =
-        document.getElementById("timer");
-
-    timer.classList.remove("warning");
-
-
-    /*
-       Set title.
-    */
-
-    document.getElementById("testTitle").textContent =
-        getTestName(type);
-
-
-    /*
-       Hide result/certificate.
-    */
-
-    document.getElementById("resultScreen").style.display =
-        "none";
-
-    document.getElementById("certificate").style.display =
-        "none";
-
-
-    /*
-       SHOW TEST INTERFACE.
-    */
-
-    const testScreen =
-        document.getElementById("testScreen");
-
-    testScreen.style.display =
-        "block";
-
-
-    /*
-       Prevent main page scrolling.
-    */
-
-    document.body.style.overflow =
-        "hidden";
-
-
-    /*
-       Render first question.
-    */
-
-    renderQuestion();
-
-
-    /*
-       Start timer.
-    */
-
-    startTimer();
-
-
-    /*
-       Move test window to top.
-    */
-
-    testScreen.scrollTop = 0;
-
-
-    console.log(
-        "Test interface opened successfully."
-    );
 }
 
 
@@ -2019,7 +2054,9 @@ function startTest(type){
 function renderQuestion(){
 
     if(!currentTest.length){
+
         return;
+
     }
 
 
@@ -2027,26 +2064,14 @@ function renderQuestion(){
         currentTest[currentQuestion];
 
 
-    /*
-       Question number.
-    */
-
     document.getElementById("questionNumber").textContent =
         "QUESTION " +
         String(currentQuestion + 1).padStart(2,"0");
 
 
-    /*
-       Question text.
-    */
-
     document.getElementById("questionText").textContent =
         question.q;
 
-
-    /*
-       Counter.
-    */
 
     document.getElementById("questionCounter").textContent =
         "Question " +
@@ -2054,10 +2079,6 @@ function renderQuestion(){
         " of " +
         currentTest.length;
 
-
-    /*
-       Answered count.
-    */
 
     const answered =
         answers.filter(
@@ -2069,10 +2090,6 @@ function renderQuestion(){
         answered + " Answered";
 
 
-    /*
-       Progress.
-    */
-
     const progress =
         ((currentQuestion + 1) /
         currentTest.length) * 100;
@@ -2081,10 +2098,6 @@ function renderQuestion(){
     document.getElementById("progressBar").style.width =
         progress + "%";
 
-
-    /*
-       Options.
-    */
 
     const optionsContainer =
         document.getElementById("options");
@@ -2102,18 +2115,10 @@ function renderQuestion(){
 
             button.type = "button";
 
+            button.className = "option";
 
-            button.className =
-                "option";
+            button.textContent = option;
 
-
-            button.textContent =
-                option;
-
-
-            /*
-               Show selected option.
-            */
 
             if(
                 answers[currentQuestion] === index
@@ -2124,18 +2129,11 @@ function renderQuestion(){
             }
 
 
-            /*
-               Select answer.
-            */
-
             button.addEventListener(
                 "click",
                 function(){
 
-                    answers[currentQuestion] =
-                        index;
-
-                    renderQuestion();
+                    selectAnswer(index);
 
                 }
             );
@@ -2147,22 +2145,34 @@ function renderQuestion(){
     );
 
 
-    /*
-       Previous button.
-    */
-
     document.getElementById("previousBtn").disabled =
         currentQuestion === 0;
 
-
-    /*
-       Next / Submit button.
-    */
 
     document.getElementById("nextBtn").textContent =
         currentQuestion === currentTest.length - 1
         ? "Submit Test ✓"
         : "Next →";
+
+}
+
+
+/* =========================================================
+   SELECT ANSWER
+========================================================= */
+
+function selectAnswer(index){
+
+    if(testSubmitted){
+
+        return;
+
+    }
+
+    answers[currentQuestion] = index;
+
+    renderQuestion();
+
 }
 
 
@@ -2173,7 +2183,9 @@ function renderQuestion(){
 function nextQuestion(){
 
     if(testSubmitted){
+
         return;
+
     }
 
 
@@ -2186,37 +2198,17 @@ function nextQuestion(){
 
         renderQuestion();
 
-        return;
+        const screen =
+            document.getElementById("testScreen");
+
+        screen.scrollTop = 0;
+
+    }else{
+
+        submitTest(false);
+
     }
 
-
-    /*
-       Last question = submit.
-    */
-
-    const unanswered =
-        answers.filter(
-            answer => answer === null
-        ).length;
-
-
-    if(unanswered > 0){
-
-        const confirmSubmit =
-            confirm(
-                "You have " +
-                unanswered +
-                " unanswered question(s). Do you want to submit the test?"
-            );
-
-
-        if(!confirmSubmit){
-            return;
-        }
-    }
-
-
-    submitTest(false);
 }
 
 
@@ -2227,7 +2219,9 @@ function nextQuestion(){
 function previousQuestion(){
 
     if(testSubmitted){
+
         return;
+
     }
 
 
@@ -2237,7 +2231,13 @@ function previousQuestion(){
 
         renderQuestion();
 
+        const screen =
+            document.getElementById("testScreen");
+
+        screen.scrollTop = 0;
+
     }
+
 }
 
 
@@ -2249,18 +2249,21 @@ function startTimer(){
 
     clearInterval(timerInterval);
 
-    timeLeft = 600;
-
-    document.getElementById("timer")
-        .classList.remove("warning");
-
-
     updateTimer();
 
 
     timerInterval =
         setInterval(
             function(){
+
+                if(testSubmitted){
+
+                    clearInterval(timerInterval);
+
+                    return;
+
+                }
+
 
                 timeLeft--;
 
@@ -2269,7 +2272,8 @@ function startTimer(){
 
                 if(timeLeft <= 60){
 
-                    document.getElementById("timer")
+                    document
+                        .getElementById("timer")
                         .classList.add("warning");
 
                 }
@@ -2286,6 +2290,7 @@ function startTimer(){
             },
             1000
         );
+
 }
 
 
@@ -2294,6 +2299,13 @@ function startTimer(){
 ========================================================= */
 
 function updateTimer(){
+
+    if(timeLeft < 0){
+
+        timeLeft = 0;
+
+    }
+
 
     const minutes =
         Math.floor(timeLeft / 60);
@@ -2307,6 +2319,7 @@ function updateTimer(){
         String(minutes).padStart(2,"0") +
         ":" +
         String(seconds).padStart(2,"0");
+
 }
 
 
@@ -2317,12 +2330,13 @@ function updateTimer(){
 function submitTest(autoSubmit){
 
     if(testSubmitted){
+
         return;
+
     }
 
 
     testSubmitted = true;
-
 
     clearInterval(timerInterval);
 
@@ -2360,10 +2374,6 @@ function submitTest(autoSubmit){
         percentage >= 70;
 
 
-    /*
-       Generate certificate ID.
-    */
-
     const certificateId =
         "SRQP-" +
         new Date().getFullYear() +
@@ -2373,10 +2383,6 @@ function submitTest(autoSubmit){
             .substring(2,8)
             .toUpperCase();
 
-
-    /*
-       Test date.
-    */
 
     const testDate =
         new Date().toLocaleDateString(
@@ -2389,26 +2395,19 @@ function submitTest(autoSubmit){
         );
 
 
-    /*
-       Get student name.
-    */
-
     const studentName =
-        localStorage.getItem("studentName") ||
-        localStorage.getItem("name") ||
-        "Student";
+        getStudentName();
 
-
-    /*
-       Result object.
-    */
 
     latestResult = {
 
         studentName:studentName,
 
-        testName:
-            getTestName(currentTestName),
+        testName:getTestName(
+            currentTestName
+        ),
+
+        testType:currentTestName,
 
         score:score,
 
@@ -2422,14 +2421,12 @@ function submitTest(autoSubmit){
 
         date:testDate,
 
-        autoSubmitted:autoSubmit
+        autoSubmitted:Boolean(autoSubmit)
 
     };
 
 
-    /*
-       Save latest result.
-    */
+    /* SAVE LAST RESULT */
 
     localStorage.setItem(
         "lastTestResult",
@@ -2437,9 +2434,7 @@ function submitTest(autoSubmit){
     );
 
 
-    /*
-       Save attempts.
-    */
+    /* SAVE ATTEMPT */
 
     let attempts = [];
 
@@ -2454,7 +2449,9 @@ function submitTest(autoSubmit){
             );
 
         if(!Array.isArray(attempts)){
+
             attempts = [];
+
         }
 
     }catch(error){
@@ -2473,51 +2470,38 @@ function submitTest(autoSubmit){
     );
 
 
-    /*
-       Hide test screen.
-    */
+    /* HIDE TEST */
 
     document.getElementById("testScreen").style.display =
         "none";
+
+
+    document
+        .getElementById("testScreen")
+        .setAttribute("aria-hidden","true");
 
 
     document.body.style.overflow =
         "auto";
 
 
-    /*
-       Show result screen.
-    */
+    /* SHOW RESULT */
 
     document.getElementById("resultScreen").style.display =
         "block";
 
 
-    /*
-       Result data.
-    */
-
-    document.getElementById(
-        "studentResultName"
-    ).textContent =
+    document.getElementById("studentResultName").textContent =
         studentName;
 
 
-    document.getElementById(
-        "scoreText"
-    ).textContent =
+    document.getElementById("scoreText").textContent =
         score + " / " + total;
 
 
-    document.getElementById(
-        "percentageText"
-    ).textContent =
+    document.getElementById("percentageText").textContent =
         percentage + "%";
 
-
-    /*
-       Pass/fail.
-    */
 
     const status =
         document.getElementById("passStatus");
@@ -2530,56 +2514,32 @@ function submitTest(autoSubmit){
 
 
     status.className =
-        "status " +
-        (passed ? "pass" : "fail");
+        passed
+        ? "status pass"
+        : "status fail";
 
 
-    /*
-       Message.
-    */
-
-    document.getElementById(
-        "resultMessage"
-    ).textContent =
-
+    document.getElementById("resultMessage").textContent =
         autoSubmit
-
         ? "Time limit reached. Your test was submitted automatically."
-
         : passed
-
         ? "Congratulations! You have qualified for certificate eligibility."
-
         : "Keep practicing and try the assessment again to reach the 70% certificate requirement.";
 
 
-    /*
-       Details.
-    */
-
-    document.getElementById(
-        "resultTestName"
-    ).textContent =
-        getTestName(currentTestName);
+    document.getElementById("resultTestName").textContent =
+        latestResult.testName;
 
 
-    document.getElementById(
-        "resultDate"
-    ).textContent =
-        testDate;
+    document.getElementById("resultDate").textContent =
+        latestResult.date;
 
 
-    document.getElementById(
-        "certificateId"
-    ).textContent =
+    document.getElementById("certificateId").textContent =
         passed
-        ? certificateId
+        ? latestResult.certificateId
         : "Not eligible";
 
-
-    /*
-       Certificate button.
-    */
 
     const certificateButton =
         document.getElementById(
@@ -2593,14 +2553,13 @@ function submitTest(autoSubmit){
         : "none";
 
 
-    /*
-       Reset rating.
-    */
+    /* RESET RATING */
 
     selectedRating = 0;
 
 
-    document.querySelectorAll(".star")
+    document
+        .querySelectorAll(".star")
         .forEach(
             function(star){
 
@@ -2610,24 +2569,16 @@ function submitTest(autoSubmit){
         );
 
 
-    document.getElementById(
-        "feedback"
-    ).value = "";
+    document.getElementById("feedback").value = "";
 
+    document.getElementById("ratingMessage").textContent = "";
 
-    document.getElementById(
-        "ratingMessage"
-    ).textContent = "";
-
-
-    /*
-       Scroll to result.
-    */
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
 
 
@@ -2637,27 +2588,30 @@ function submitTest(autoSubmit){
 
 function closeResult(){
 
-    document.getElementById(
-        "resultScreen"
-    ).style.display =
+    clearInterval(timerInterval);
+
+    document.getElementById("resultScreen").style.display =
         "none";
 
-
-    document.getElementById(
-        "certificate"
-    ).style.display =
+    document.getElementById("certificate").style.display =
         "none";
 
+    document.getElementById("mainContent").style.display =
+        "block";
+
+    document.body.style.overflow =
+        "auto";
 
     window.scrollTo({
         top:0,
         behavior:"smooth"
     });
+
 }
 
 
 /* =========================================================
-   CERTIFICATE
+   GENERATE CERTIFICATE
 ========================================================= */
 
 function generateCertificate(){
@@ -2672,6 +2626,7 @@ function generateCertificate(){
         );
 
         return;
+
     }
 
 
@@ -2715,6 +2670,7 @@ function generateCertificate(){
         top:0,
         behavior:"smooth"
     });
+
 }
 
 
@@ -2727,7 +2683,8 @@ function setRating(rating){
     selectedRating = rating;
 
 
-    document.querySelectorAll(".star")
+    document
+        .querySelectorAll(".star")
         .forEach(
             function(star,index){
 
@@ -2743,6 +2700,7 @@ function setRating(rating){
 
             }
         );
+
 }
 
 
@@ -2759,13 +2717,15 @@ function submitRating(){
         );
 
         return;
+
     }
 
 
     const feedback =
-        document.getElementById(
-            "feedback"
-        ).value.trim();
+        document
+            .getElementById("feedback")
+            .value
+            .trim();
 
 
     let ratings = [];
@@ -2780,8 +2740,11 @@ function submitRating(){
                 ) || "[]"
             );
 
+
         if(!Array.isArray(ratings)){
+
             ratings = [];
+
         }
 
     }catch(error){
@@ -2828,6 +2791,7 @@ function submitRating(){
 function getLocalStatistics(){
 
     let attempts = [];
+
     let ratings = [];
 
 
@@ -2840,6 +2804,21 @@ function getLocalStatistics(){
                 ) || "[]"
             );
 
+        if(!Array.isArray(attempts)){
+
+            attempts = [];
+
+        }
+
+    }catch(error){
+
+        attempts = [];
+
+    }
+
+
+    try{
+
         ratings =
             JSON.parse(
                 localStorage.getItem(
@@ -2847,17 +2826,14 @@ function getLocalStatistics(){
                 ) || "[]"
             );
 
-        if(!Array.isArray(attempts)){
-            attempts = [];
-        }
-
         if(!Array.isArray(ratings)){
+
             ratings = [];
+
         }
 
     }catch(error){
 
-        attempts = [];
         ratings = [];
 
     }
@@ -2865,43 +2841,42 @@ function getLocalStatistics(){
 
     const certificates =
         attempts.filter(
-            item => item.passed
+            function(item){
+
+                return item.passed === true;
+
+            }
         ).length;
 
 
     const ratingAverage =
         ratings.length
-
         ? (
-
             ratings.reduce(
-                (sum,item) =>
-                    sum + Number(item.rating || 0),
+                function(sum,item){
+
+                    return sum +
+                        Number(item.rating || 0);
+
+                },
                 0
-            )
-
-            / ratings.length
-
+            ) / ratings.length
         ).toFixed(1)
-
         : "0.0";
 
 
     return {
 
-        testsTaken:
-            attempts.length,
+        testsTaken:attempts.length,
 
-        certificatesIssued:
-            certificates,
+        certificatesIssued:certificates,
 
-        ratings:
-            ratings.length,
+        ratings:ratings.length,
 
-        averageRating:
-            ratingAverage
+        averageRating:ratingAverage
 
     };
+
 }
 
 
@@ -2919,9 +2894,9 @@ window.addEventListener(
 );
 
 
-/*
-   Make sure page starts in normal state.
-*/
+/* =========================================================
+   INITIAL PAGE STATE
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -2943,7 +2918,7 @@ document.addEventListener(
 
 
         console.log(
-            "Student Result & Quiz Portal loaded successfully."
+            "Student Result & Quiz Portal — Online Tests Loaded Successfully"
         );
 
     }
