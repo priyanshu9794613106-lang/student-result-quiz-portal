@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,7 @@
 <title>Online Tests | Student Result & Quiz Portal</title>
 
 <meta name="description"
-content="Professional online assessments for Python, Data Structures and Algorithms, and Web Development.">
+content="Professional online assessments for Python, Data Structures & Algorithms and Web Development.">
 
 <style>
 *{
@@ -26,7 +27,6 @@ content="Professional online assessments for Python, Data Structures and Algorit
     --primary2:#8b5cf6;
     --success:#22c55e;
     --danger:#ef4444;
-    --warning:#f59e0b;
     --border:rgba(255,255,255,.10);
     --shadow:0 25px 70px rgba(0,0,0,.35);
 }
@@ -45,9 +45,7 @@ body{
     min-height:100vh;
 }
 
-/* =========================
-   NAVBAR
-========================= */
+/* ================= NAVBAR ================= */
 
 .navbar{
     position:sticky;
@@ -61,7 +59,7 @@ body{
 .nav-inner{
     max-width:1200px;
     margin:auto;
-    padding:17px 22px;
+    padding:18px 22px;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -90,16 +88,13 @@ body{
     text-decoration:none;
     font-size:14px;
     font-weight:600;
-    transition:.2s;
 }
 
 .nav-links a:hover{
     color:white;
 }
 
-/* =========================
-   HERO
-========================= */
+/* ================= HERO ================= */
 
 .hero{
     max-width:1050px;
@@ -141,9 +136,7 @@ body{
     font-size:17px;
 }
 
-/* =========================
-   STATS
-========================= */
+/* ================= STATS ================= */
 
 .stats{
     max-width:1000px;
@@ -174,9 +167,7 @@ body{
     display:block;
 }
 
-/* =========================
-   TEST CARDS
-========================= */
+/* ================= TEST CARDS ================= */
 
 .tests{
     max-width:1150px;
@@ -265,23 +256,20 @@ body{
     color:white;
     font-weight:800;
     background:linear-gradient(135deg,var(--primary),var(--primary2));
-    transition:.2s;
 }
 
 .start-btn:hover{
+    filter:brightness(1.12);
     transform:translateY(-2px);
-    filter:brightness(1.1);
 }
 
-/* =========================
-   TEST SCREEN
-========================= */
+/* ================= TEST SCREEN ================= */
 
 .test-screen{
     display:none;
     position:fixed;
     inset:0;
-    z-index:2000;
+    z-index:5000;
     overflow-y:auto;
     background:
         radial-gradient(circle at 20% 10%,rgba(108,99,255,.12),transparent 30%),
@@ -313,7 +301,7 @@ body{
 }
 
 .timer{
-    min-width:105px;
+    min-width:100px;
     text-align:center;
     padding:11px 15px;
     border-radius:12px;
@@ -324,16 +312,9 @@ body{
 }
 
 .timer.warning{
-    color:white;
+    color:#fff;
     background:rgba(239,68,68,.18);
-    border-color:rgba(239,68,68,.55);
-    animation:pulseTimer 1s infinite;
-}
-
-@keyframes pulseTimer{
-    50%{
-        transform:scale(1.04);
-    }
+    border-color:rgba(239,68,68,.6);
 }
 
 .test-container{
@@ -431,11 +412,6 @@ body{
     border-radius:12px;
     cursor:pointer;
     font-weight:800;
-    transition:.2s;
-}
-
-.nav-btn:hover{
-    transform:translateY(-1px);
 }
 
 .nav-btn.primary{
@@ -448,9 +424,7 @@ body{
     cursor:not-allowed;
 }
 
-/* =========================
-   RESULT
-========================= */
+/* ================= RESULT ================= */
 
 .result-screen{
     display:none;
@@ -540,7 +514,6 @@ body{
 .result-details span{
     color:white;
     text-align:right;
-    word-break:break-word;
 }
 
 .result-actions{
@@ -550,9 +523,7 @@ body{
     flex-wrap:wrap;
 }
 
-/* =========================
-   RATING
-========================= */
+/* ================= RATING ================= */
 
 .rating-box{
     margin-top:28px;
@@ -581,13 +552,10 @@ body{
     color:#536176;
     font-size:35px;
     cursor:pointer;
-    transition:.15s;
 }
 
-.star.active,
-.star:hover{
+.star.active{
     color:#fbbf24;
-    transform:scale(1.08);
 }
 
 .feedback{
@@ -601,11 +569,6 @@ body{
     padding:14px;
     resize:vertical;
     outline:none;
-    font-family:inherit;
-}
-
-.feedback:focus{
-    border-color:#7c72ff;
 }
 
 .rating-submit{
@@ -625,9 +588,7 @@ body{
     font-size:13px;
 }
 
-/* =========================
-   CERTIFICATE
-========================= */
+/* ================= CERTIFICATE ================= */
 
 .certificate{
     display:none;
@@ -701,9 +662,7 @@ body{
     font-weight:800;
 }
 
-/* =========================
-   MOBILE
-========================= */
+/* ================= MOBILE ================= */
 
 @media(max-width:850px){
 
@@ -713,10 +672,6 @@ body{
 
     .stats{
         grid-template-columns:1fr;
-    }
-
-    .hero h1{
-        letter-spacing:-2px;
     }
 }
 
@@ -772,25 +727,9 @@ body{
     .certificate h1{
         font-size:34px;
     }
-
-    .test-header-inner{
-        padding:14px 16px;
-    }
-
-    .test-title{
-        max-width:65%;
-        line-height:1.3;
-    }
-
-    .timer{
-        min-width:90px;
-        padding:9px 10px;
-    }
 }
 
-/* =========================
-   PRINT
-========================= */
+/* ================= PRINT ================= */
 
 @media print{
 
@@ -813,19 +752,13 @@ body{
     .print-btn{
         display:none;
     }
-
-    .certificate-inner{
-        min-height:700px;
-    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAVBAR
-========================= -->
+<!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
@@ -847,11 +780,7 @@ body{
 </header>
 
 
-<!-- =========================
-     HOME / TEST LIST
-========================= -->
-
-<main id="mainContent">
+<!-- ================= HERO ================= -->
 
 <section class="hero">
 
@@ -873,6 +802,8 @@ body{
 </section>
 
 
+<!-- ================= STATS ================= -->
+
 <section class="stats">
 
     <div class="stat-card">
@@ -893,6 +824,8 @@ body{
 </section>
 
 
+<!-- ================= TESTS ================= -->
+
 <section class="tests">
 
     <div class="section-title">
@@ -907,6 +840,7 @@ body{
 
 
     <div class="test-grid">
+
 
         <!-- PYTHON -->
 
@@ -1050,36 +984,23 @@ body{
 
 </section>
 
-</main>
 
-
-<!-- =========================
+<!-- =====================================================
      TEST SCREEN
-========================= -->
+===================================================== -->
 
-<section
-    id="testScreen"
-    class="test-screen"
-    aria-hidden="true">
+<section id="testScreen" class="test-screen">
 
     <header class="test-header">
 
         <div class="test-header-inner">
 
-            <div
-                id="testTitle"
-                class="test-title">
-
+            <div id="testTitle" class="test-title">
                 Online Assessment
-
             </div>
 
-            <div
-                id="timer"
-                class="timer">
-
+            <div id="timer" class="timer">
                 10:00
-
             </div>
 
         </div>
@@ -1166,9 +1087,9 @@ body{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      RESULT SCREEN
-========================= -->
+===================================================== -->
 
 <section
     id="resultScreen"
@@ -1180,9 +1101,11 @@ body{
             🏆
         </div>
 
+
         <h2>
             Your Test Result
         </h2>
+
 
         <div
             id="studentResultName"
@@ -1378,9 +1301,9 @@ body{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      CERTIFICATE
-========================= -->
+===================================================== -->
 
 <section
     id="certificate"
@@ -1419,16 +1342,12 @@ body{
 
 
         <p>
-
             with a score of
-
             <strong id="certificateScore">
                 0%
             </strong>
-
             and meeting the certificate eligibility
             requirement of 70%.
-
         </p>
 
 
@@ -1448,7 +1367,6 @@ body{
         <div class="certificate-id">
 
             Certificate ID:
-
             <span id="certificateIdPrint">
                 -
             </span>
@@ -1883,7 +1801,7 @@ const questionBank = {
 
 
 /* =========================================================
-   GLOBAL TEST STATE
+   TEST STATE
 ========================================================= */
 
 let currentTest = [];
@@ -1894,58 +1812,15 @@ let timeLeft = 600;
 let timerInterval = null;
 let selectedRating = 0;
 let latestResult = null;
-let testSubmitted = false;
 
 
 /* =========================================================
-   GET STUDENT NAME
+   SAFE ELEMENT HELPER
 ========================================================= */
 
-function getStudentName(){
+function getElement(id){
 
-    const possibleNames = [
-
-        localStorage.getItem("studentName"),
-        localStorage.getItem("name"),
-        localStorage.getItem("userName"),
-        localStorage.getItem("username")
-
-    ];
-
-    for(let name of possibleNames){
-
-        if(name && String(name).trim()){
-
-            return String(name).trim();
-
-        }
-
-    }
-
-    return "Student";
-
-}
-
-
-/* =========================================================
-   GET TEST NAME
-========================================================= */
-
-function getTestName(type){
-
-    if(type === "python"){
-        return "Python Programming Assessment";
-    }
-
-    if(type === "dsa"){
-        return "Data Structures & Algorithms Assessment";
-    }
-
-    if(type === "web"){
-        return "Web Development Assessment";
-    }
-
-    return "Online Assessment";
+    return document.getElementById(id);
 
 }
 
@@ -1960,15 +1835,14 @@ function startTest(type){
 
         if(!questionBank[type]){
 
-            alert("This test is currently unavailable.");
+            alert("Test could not be loaded.");
 
             return;
 
         }
 
-        clearInterval(timerInterval);
 
-        currentTest = questionBank[type];
+        currentTest = [...questionBank[type]];
 
         currentTestName = type;
 
@@ -1978,71 +1852,103 @@ function startTest(type){
 
         timeLeft = 600;
 
-        testSubmitted = false;
 
-        selectedRating = 0;
+        const testScreen = getElement("testScreen");
 
+        const resultScreen = getElement("resultScreen");
 
-        /* Hide normal page */
-
-        document.getElementById("mainContent").style.display = "none";
-
-        document.getElementById("resultScreen").style.display = "none";
-
-        document.getElementById("certificate").style.display = "none";
+        const certificate = getElement("certificate");
 
 
-        /* Show test */
+        if(!testScreen){
 
-        const testScreen =
-            document.getElementById("testScreen");
+            alert("Test interface could not be loaded. Please refresh the page.");
+
+            return;
+
+        }
+
+
+        if(resultScreen){
+
+            resultScreen.style.display = "none";
+
+        }
+
+
+        if(certificate){
+
+            certificate.style.display = "none";
+
+        }
+
+
+        getElement("testTitle").textContent =
+            getTestName(type);
+
 
         testScreen.style.display = "block";
 
-        testScreen.setAttribute("aria-hidden","false");
 
         document.body.style.overflow = "hidden";
 
 
-        /* Reset timer */
+        testScreen.scrollTop = 0;
+
 
         const timer =
-            document.getElementById("timer");
+            getElement("timer");
 
-        timer.classList.remove("warning");
+        if(timer){
 
+            timer.classList.remove("warning");
 
-        /* Set title */
+        }
 
-        document.getElementById("testTitle").textContent =
-            getTestName(type);
-
-
-        /* Render first question */
 
         renderQuestion();
-
-
-        /* Start countdown */
 
         startTimer();
 
 
-        /* Move screen to top */
-
-        testScreen.scrollTop = 0;
-
-        window.scrollTo(0,0);
-
     }catch(error){
 
-        console.error("Start test error:",error);
+        console.error("START TEST ERROR:",error);
 
         alert(
-            "Test interface could not open. Please refresh the page and try again."
+            "Test open karne me problem aa rahi hai. Page ko refresh karke dobara try karo."
         );
 
     }
+
+}
+
+
+/* =========================================================
+   TEST NAME
+========================================================= */
+
+function getTestName(type){
+
+    if(type === "python"){
+
+        return "Python Programming Assessment";
+
+    }
+
+    if(type === "dsa"){
+
+        return "Data Structures & Algorithms Assessment";
+
+    }
+
+    if(type === "web"){
+
+        return "Web Development Assessment";
+
+    }
+
+    return "Online Assessment";
 
 }
 
@@ -2064,16 +1970,16 @@ function renderQuestion(){
         currentTest[currentQuestion];
 
 
-    document.getElementById("questionNumber").textContent =
+    getElement("questionNumber").textContent =
         "QUESTION " +
         String(currentQuestion + 1).padStart(2,"0");
 
 
-    document.getElementById("questionText").textContent =
+    getElement("questionText").textContent =
         question.q;
 
 
-    document.getElementById("questionCounter").textContent =
+    getElement("questionCounter").textContent =
         "Question " +
         (currentQuestion + 1) +
         " of " +
@@ -2086,7 +1992,7 @@ function renderQuestion(){
         ).length;
 
 
-    document.getElementById("answeredCounter").textContent =
+    getElement("answeredCounter").textContent =
         answered + " Answered";
 
 
@@ -2095,19 +2001,19 @@ function renderQuestion(){
         currentTest.length) * 100;
 
 
-    document.getElementById("progressBar").style.width =
+    getElement("progressBar").style.width =
         progress + "%";
 
 
     const optionsContainer =
-        document.getElementById("options");
+        getElement("options");
 
 
     optionsContainer.innerHTML = "";
 
 
     question.options.forEach(
-        function(option,index){
+        (option,index)=>{
 
             const button =
                 document.createElement("button");
@@ -2133,7 +2039,9 @@ function renderQuestion(){
                 "click",
                 function(){
 
-                    selectAnswer(index);
+                    answers[currentQuestion] = index;
+
+                    renderQuestion();
 
                 }
             );
@@ -2145,33 +2053,14 @@ function renderQuestion(){
     );
 
 
-    document.getElementById("previousBtn").disabled =
+    getElement("previousBtn").disabled =
         currentQuestion === 0;
 
 
-    document.getElementById("nextBtn").textContent =
+    getElement("nextBtn").textContent =
         currentQuestion === currentTest.length - 1
         ? "Submit Test ✓"
         : "Next →";
-
-}
-
-
-/* =========================================================
-   SELECT ANSWER
-========================================================= */
-
-function selectAnswer(index){
-
-    if(testSubmitted){
-
-        return;
-
-    }
-
-    answers[currentQuestion] = index;
-
-    renderQuestion();
 
 }
 
@@ -2182,7 +2071,7 @@ function selectAnswer(index){
 
 function nextQuestion(){
 
-    if(testSubmitted){
+    if(!currentTest.length){
 
         return;
 
@@ -2198,12 +2087,34 @@ function nextQuestion(){
 
         renderQuestion();
 
-        const screen =
-            document.getElementById("testScreen");
-
-        screen.scrollTop = 0;
+        getElement("testScreen").scrollTop = 0;
 
     }else{
+
+        const unanswered =
+            answers.filter(
+                answer => answer === null
+            ).length;
+
+
+        if(unanswered > 0){
+
+            const confirmSubmit =
+                confirm(
+                    "Aapke " +
+                    unanswered +
+                    " question unanswered hain.\n\nKya aap test submit karna chahte hain?"
+                );
+
+
+            if(!confirmSubmit){
+
+                return;
+
+            }
+
+        }
+
 
         submitTest(false);
 
@@ -2218,23 +2129,13 @@ function nextQuestion(){
 
 function previousQuestion(){
 
-    if(testSubmitted){
-
-        return;
-
-    }
-
-
     if(currentQuestion > 0){
 
         currentQuestion--;
 
         renderQuestion();
 
-        const screen =
-            document.getElementById("testScreen");
-
-        screen.scrollTop = 0;
+        getElement("testScreen").scrollTop = 0;
 
     }
 
@@ -2242,7 +2143,7 @@ function previousQuestion(){
 
 
 /* =========================================================
-   START TIMER
+   TIMER
 ========================================================= */
 
 function startTimer(){
@@ -2253,43 +2154,30 @@ function startTimer(){
 
 
     timerInterval =
-        setInterval(
-            function(){
+        setInterval(function(){
 
-                if(testSubmitted){
+            timeLeft--;
 
-                    clearInterval(timerInterval);
-
-                    return;
-
-                }
+            updateTimer();
 
 
-                timeLeft--;
+            if(timeLeft <= 60){
 
-                updateTimer();
+                getElement("timer")
+                    .classList.add("warning");
 
-
-                if(timeLeft <= 60){
-
-                    document
-                        .getElementById("timer")
-                        .classList.add("warning");
-
-                }
+            }
 
 
-                if(timeLeft <= 0){
+            if(timeLeft <= 0){
 
-                    clearInterval(timerInterval);
+                clearInterval(timerInterval);
 
-                    submitTest(true);
+                submitTest(true);
 
-                }
+            }
 
-            },
-            1000
-        );
+        },1000);
 
 }
 
@@ -2300,13 +2188,6 @@ function startTimer(){
 
 function updateTimer(){
 
-    if(timeLeft < 0){
-
-        timeLeft = 0;
-
-    }
-
-
     const minutes =
         Math.floor(timeLeft / 60);
 
@@ -2315,10 +2196,18 @@ function updateTimer(){
         timeLeft % 60;
 
 
-    document.getElementById("timer").textContent =
-        String(minutes).padStart(2,"0") +
-        ":" +
-        String(seconds).padStart(2,"0");
+    const timer =
+        getElement("timer");
+
+
+    if(timer){
+
+        timer.textContent =
+            String(minutes).padStart(2,"0") +
+            ":" +
+            String(seconds).padStart(2,"0");
+
+    }
 
 }
 
@@ -2327,16 +2216,14 @@ function updateTimer(){
    SUBMIT TEST
 ========================================================= */
 
-function submitTest(autoSubmit){
+function submitTest(autoSubmit=false){
 
-    if(testSubmitted){
+    if(!currentTest.length){
 
         return;
 
     }
 
-
-    testSubmitted = true;
 
     clearInterval(timerInterval);
 
@@ -2345,7 +2232,7 @@ function submitTest(autoSubmit){
 
 
     currentTest.forEach(
-        function(question,index){
+        (question,index)=>{
 
             if(
                 answers[index] ===
@@ -2396,7 +2283,9 @@ function submitTest(autoSubmit){
 
 
     const studentName =
-        getStudentName();
+        localStorage.getItem("studentName") ||
+        localStorage.getItem("name") ||
+        "Student";
 
 
     latestResult = {
@@ -2406,8 +2295,6 @@ function submitTest(autoSubmit){
         testName:getTestName(
             currentTestName
         ),
-
-        testType:currentTestName,
 
         score:score,
 
@@ -2421,12 +2308,10 @@ function submitTest(autoSubmit){
 
         date:testDate,
 
-        autoSubmitted:Boolean(autoSubmit)
+        autoSubmitted:autoSubmit
 
     };
 
-
-    /* SAVE LAST RESULT */
 
     localStorage.setItem(
         "lastTestResult",
@@ -2448,12 +2333,6 @@ function submitTest(autoSubmit){
                 ) || "[]"
             );
 
-        if(!Array.isArray(attempts)){
-
-            attempts = [];
-
-        }
-
     }catch(error){
 
         attempts = [];
@@ -2472,13 +2351,8 @@ function submitTest(autoSubmit){
 
     /* HIDE TEST */
 
-    document.getElementById("testScreen").style.display =
+    getElement("testScreen").style.display =
         "none";
-
-
-    document
-        .getElementById("testScreen")
-        .setAttribute("aria-hidden","true");
 
 
     document.body.style.overflow =
@@ -2487,24 +2361,24 @@ function submitTest(autoSubmit){
 
     /* SHOW RESULT */
 
-    document.getElementById("resultScreen").style.display =
+    getElement("resultScreen").style.display =
         "block";
 
 
-    document.getElementById("studentResultName").textContent =
+    getElement("studentResultName").textContent =
         studentName;
 
 
-    document.getElementById("scoreText").textContent =
+    getElement("scoreText").textContent =
         score + " / " + total;
 
 
-    document.getElementById("percentageText").textContent =
+    getElement("percentageText").textContent =
         percentage + "%";
 
 
     const status =
-        document.getElementById("passStatus");
+        getElement("passStatus");
 
 
     status.textContent =
@@ -2514,12 +2388,15 @@ function submitTest(autoSubmit){
 
 
     status.className =
-        passed
-        ? "status pass"
-        : "status fail";
+        "status " +
+        (
+            passed
+            ? "pass"
+            : "fail"
+        );
 
 
-    document.getElementById("resultMessage").textContent =
+    getElement("resultMessage").textContent =
         autoSubmit
         ? "Time limit reached. Your test was submitted automatically."
         : passed
@@ -2527,24 +2404,22 @@ function submitTest(autoSubmit){
         : "Keep practicing and try the assessment again to reach the 70% certificate requirement.";
 
 
-    document.getElementById("resultTestName").textContent =
-        latestResult.testName;
+    getElement("resultTestName").textContent =
+        getTestName(currentTestName);
 
 
-    document.getElementById("resultDate").textContent =
-        latestResult.date;
+    getElement("resultDate").textContent =
+        testDate;
 
 
-    document.getElementById("certificateId").textContent =
+    getElement("certificateId").textContent =
         passed
-        ? latestResult.certificateId
+        ? certificateId
         : "Not eligible";
 
 
     const certificateButton =
-        document.getElementById(
-            "certificateButton"
-        );
+        getElement("certificateButton");
 
 
     certificateButton.style.display =
@@ -2553,25 +2428,19 @@ function submitTest(autoSubmit){
         : "none";
 
 
-    /* RESET RATING */
-
     selectedRating = 0;
 
 
-    document
-        .querySelectorAll(".star")
+    document.querySelectorAll(".star")
         .forEach(
-            function(star){
-
-                star.classList.remove("active");
-
-            }
+            star =>
+                star.classList.remove("active")
         );
 
 
-    document.getElementById("feedback").value = "";
+    getElement("feedback").value = "";
 
-    document.getElementById("ratingMessage").textContent = "";
+    getElement("ratingMessage").textContent = "";
 
 
     window.scrollTo({
@@ -2588,19 +2457,13 @@ function submitTest(autoSubmit){
 
 function closeResult(){
 
-    clearInterval(timerInterval);
-
-    document.getElementById("resultScreen").style.display =
+    getElement("resultScreen").style.display =
         "none";
 
-    document.getElementById("certificate").style.display =
+
+    getElement("certificate").style.display =
         "none";
 
-    document.getElementById("mainContent").style.display =
-        "block";
-
-    document.body.style.overflow =
-        "auto";
 
     window.scrollTo({
         top:0,
@@ -2611,7 +2474,7 @@ function closeResult(){
 
 
 /* =========================================================
-   GENERATE CERTIFICATE
+   CERTIFICATE
 ========================================================= */
 
 function generateCertificate(){
@@ -2630,39 +2493,27 @@ function generateCertificate(){
     }
 
 
-    document.getElementById(
-        "certificateStudent"
-    ).textContent =
+    getElement("certificateStudent").textContent =
         latestResult.studentName;
 
 
-    document.getElementById(
-        "certificateTest"
-    ).textContent =
+    getElement("certificateTest").textContent =
         latestResult.testName;
 
 
-    document.getElementById(
-        "certificateScore"
-    ).textContent =
+    getElement("certificateScore").textContent =
         latestResult.percentage + "%";
 
 
-    document.getElementById(
-        "certificateIdPrint"
-    ).textContent =
+    getElement("certificateIdPrint").textContent =
         latestResult.certificateId;
 
 
-    document.getElementById(
-        "resultScreen"
-    ).style.display =
+    getElement("resultScreen").style.display =
         "none";
 
 
-    document.getElementById(
-        "certificate"
-    ).style.display =
+    getElement("certificate").style.display =
         "block";
 
 
@@ -2683,10 +2534,9 @@ function setRating(rating){
     selectedRating = rating;
 
 
-    document
-        .querySelectorAll(".star")
+    document.querySelectorAll(".star")
         .forEach(
-            function(star,index){
+            (star,index)=>{
 
                 if(index < rating){
 
@@ -2722,10 +2572,9 @@ function submitRating(){
 
 
     const feedback =
-        document
-            .getElementById("feedback")
-            .value
-            .trim();
+        getElement("feedback")
+        .value
+        .trim();
 
 
     let ratings = [];
@@ -2739,13 +2588,6 @@ function submitRating(){
                     "studentPortalRatings"
                 ) || "[]"
             );
-
-
-        if(!Array.isArray(ratings)){
-
-            ratings = [];
-
-        }
 
     }catch(error){
 
@@ -2776,16 +2618,14 @@ function submitRating(){
     );
 
 
-    document.getElementById(
-        "ratingMessage"
-    ).textContent =
+    getElement("ratingMessage").textContent =
         "✓ Thank you! Your feedback has been recorded.";
 
 }
 
 
 /* =========================================================
-   LOCAL STATISTICS
+   STATISTICS
 ========================================================= */
 
 function getLocalStatistics(){
@@ -2804,12 +2644,6 @@ function getLocalStatistics(){
                 ) || "[]"
             );
 
-        if(!Array.isArray(attempts)){
-
-            attempts = [];
-
-        }
-
     }catch(error){
 
         attempts = [];
@@ -2826,12 +2660,6 @@ function getLocalStatistics(){
                 ) || "[]"
             );
 
-        if(!Array.isArray(ratings)){
-
-            ratings = [];
-
-        }
-
     }catch(error){
 
         ratings = [];
@@ -2841,11 +2669,7 @@ function getLocalStatistics(){
 
     const certificates =
         attempts.filter(
-            function(item){
-
-                return item.passed === true;
-
-            }
+            item => item.passed
         ).length;
 
 
@@ -2853,15 +2677,11 @@ function getLocalStatistics(){
         ratings.length
         ? (
             ratings.reduce(
-                function(sum,item){
-
-                    return sum +
-                        Number(item.rating || 0);
-
-                },
+                (sum,item)=>
+                    sum + Number(item.rating),
                 0
             ) / ratings.length
-        ).toFixed(1)
+          ).toFixed(1)
         : "0.0";
 
 
@@ -2881,44 +2701,54 @@ function getLocalStatistics(){
 
 
 /* =========================================================
-   PAGE SAFETY
+   ESC KEY - CLOSE TEST SAFELY
 ========================================================= */
 
-window.addEventListener(
-    "beforeunload",
-    function(){
+document.addEventListener(
+    "keydown",
+    function(event){
 
-        clearInterval(timerInterval);
+        if(
+            event.key === "Escape" &&
+            getElement("testScreen").style.display === "block"
+        ){
+
+            const leave =
+                confirm(
+                    "Agar aap test se bahar nikle to current test progress lose ho jayegi. Kya aap bahar jana chahte hain?"
+                );
+
+
+            if(leave){
+
+                clearInterval(timerInterval);
+
+                getElement("testScreen").style.display =
+                    "none";
+
+                document.body.style.overflow =
+                    "auto";
+
+            }
+
+        }
 
     }
 );
 
 
 /* =========================================================
-   INITIAL PAGE STATE
+   INITIAL PAGE CHECK
 ========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     function(){
 
-        document.getElementById(
-            "testScreen"
-        ).style.display = "none";
-
-
-        document.getElementById(
-            "resultScreen"
-        ).style.display = "none";
-
-
-        document.getElementById(
-            "certificate"
-        ).style.display = "none";
-
+        clearInterval(timerInterval);
 
         console.log(
-            "Student Result & Quiz Portal — Online Tests Loaded Successfully"
+            "Student Result & Quiz Portal - Online Tests Loaded Successfully"
         );
 
     }
@@ -2928,3 +2758,4 @@ document.addEventListener(
 
 </body>
 </html>
+```
